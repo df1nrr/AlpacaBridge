@@ -19,6 +19,7 @@ namespace alpacacore::catalog {
 void register_builtin_schemas(DeviceCatalog& catalog) {
     register_altair_schema(catalog);
     register_astroasis_schema(catalog);
+    register_deepskydad_schema(catalog);
     register_skywatcher_schema(catalog);
     register_weewx_schema(catalog);
     register_remotealpaca_schema(catalog);
@@ -43,6 +44,9 @@ void register_builtin_factories([[maybe_unused]] DeviceCatalog& catalog) {
 #endif
 #ifdef ALPACACORE_ENABLE_ASTROASIS
     register_astroasis_factory(catalog);
+#endif
+#ifdef ALPACACORE_ENABLE_DEEPSKYDAD
+    register_deepskydad_factory(catalog);
 #endif
 #ifdef ALPACACORE_ENABLE_SKYWATCHER
     register_skywatcher_factory(catalog);

@@ -54,3 +54,4 @@ playerone	switch	-	no-fake	6	-	no fake exists yet
 qhy	filterwheel	-usb	no-fake	6	-	no fake exists yet
 gemini	covercalibrator	-v1	no-fake	6	-	no fake exists yet
 gemini	covercalibrator	-v2	no-fake	6	-	no fake exists yet
+deepskydad	covercalibrator	fake_deepskydad_flatpanel.h	pending	6	-	not run yet: the fake ConformU run needs the arm64 rig; the fake models FP2 flap moves with a 300 ms travel, so it can pass on merit

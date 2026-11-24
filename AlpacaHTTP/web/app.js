@@ -3360,6 +3360,8 @@ document.getElementById('vendor').addEventListener('change', function() {
     
     if (vendor === 'astroasis') {
         document.getElementById('astroasis-config').style.display = 'block';
+    } else if (vendor === 'deepskydad') {
+        document.getElementById('deepskydad-config').style.display = 'block';
     } else if (vendor === 'ioptron') {
         document.getElementById('ioptron-config').style.display = 'block';
         updateIoptronConfigFields();
@@ -5278,6 +5280,15 @@ document.getElementById('device-form').addEventListener('submit', async function
             if (baudRate !== null) {
                 deviceData.baudRate = baudRate;
             }
+        }
+    } else if (deviceData.vendor === 'deepskydad') {
+        const deepskydadConnType = document.getElementById('deepskydad-connection-type');
+        deviceData.connectionType = deepskydadConnType ? deepskydadConnType.value : 'auto';
+        if (deviceData.connectionType === 'serial') {
+            deviceData.portPath = (formData.get('deepskydadPortPath') || '').trim();
+        } else {
+            const panelIndex = readOptionalNumber(formData, 'deepskydadPanelIndex');
+            deviceData.panelIndex = panelIndex !== null ? panelIndex : 0;
         }
     } else if (deviceData.vendor === 'astroasis') {
         const astroasisHidPath = (formData.get('astroasisHidPath') || '').trim();

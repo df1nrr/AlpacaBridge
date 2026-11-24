@@ -145,6 +145,7 @@ cmake --build AlpacaHTTP/build --parallel
 | `ALPACACORE_ENABLE_BISQUE` | `OFF` | Bisque/Paramount (TheSkyX) telescope support |
 | `ALPACACORE_ENABLE_WANDERERASTRO` | `OFF` | WandererAstro CoverCalibrator |
 | `ALPACACORE_ENABLE_ASTROASIS` | `OFF` | Astroasis Oasis Focuser |
+| `ALPACACORE_ENABLE_DEEPSKYDAD` | `OFF` | Deep Sky Dad FP1/FP2 flat panel (CoverCalibrator) |
 | `ALPACACORE_ENABLE_GPHOTO` | `OFF` | libgphoto2 DSLR/mirrorless cameras (Canon, Nikon, Sony) |
 
 ## Running tests

@@ -3904,6 +3904,44 @@ int main() {
     }
 #endif
 
+#ifdef ALPACACORE_ENABLE_DEEPSKYDAD
+    {
+        // case: deepskydad covercalibrator serial port survives the config round-trip
+        // deepskydad / covercalibrator — connectionType and portPath persist through
+        // sanitize_device_config, and the factory builds the FP2 driver with no hardware.
+        const auto cfg = roundtrip_config(router,
+                                          {{"vendor", "deepskydad"},
+                                           {"deviceType", "covercalibrator"},
+                                           {"deviceNumber", 9771},
+                                           {"connectionType", "serial"},
+                                           {"portPath", "/dev/ttyACM3"}},
+                                          "CoverCalibrator", 9771);
+        EXPECT(cfg.is_object() && !cfg.empty());
+        EXPECT(cfg.value("connectionType", "") == "serial");
+        EXPECT(cfg.value("portPath", "") == "/dev/ttyACM3");
+        const auto name = route_request(router, "GET", "/api/v1/covercalibrator/9771/name");
+        EXPECT(name.status_code() == 200);
+        EXPECT(nlohmann::json::parse(name.body()).value("Value", "") == "Deep Sky Dad FP2");
+        remove_device(router, "deepskydad", "covercalibrator", 9771);
+    }
+    {
+        // case: deepskydad covercalibrator panelIndex survives the config round-trip
+        // deepskydad / covercalibrator, auto-detect form: the by-index factory scans at
+        // connect, so the entry registers with no panel attached and panelIndex survives.
+        const auto cfg = roundtrip_config(router,
+                                          {{"vendor", "deepskydad"},
+                                           {"deviceType", "covercalibrator"},
+                                           {"deviceNumber", 9772},
+                                           {"connectionType", "auto"},
+                                           {"panelIndex", 2}},
+                                          "CoverCalibrator", 9772);
+        EXPECT(cfg.is_object() && !cfg.empty());
+        EXPECT(cfg.value("connectionType", "") == "auto");
+        EXPECT(cfg.value("panelIndex", -1) == 2);
+        remove_device(router, "deepskydad", "covercalibrator", 9772);
+    }
+#endif
+
 #ifdef ALPACACORE_ENABLE_ASTROASIS
     {
         // astroasis / focuser — explicit hidPath persists through
