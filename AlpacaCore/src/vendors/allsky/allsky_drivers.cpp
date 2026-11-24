@@ -24,6 +24,7 @@
 #include <cmath>
 #include <condition_variable>
 #include <cstdio>
+#include <functional>
 #include <mutex>
 #include <optional>
 #include <string>
@@ -121,6 +122,7 @@ std::string fmt(double v, const char* f = "%.1f") {
 
 // One camera measurement.
 struct CameraReading {
+    std::size_t image_hash = 0;  // the frame's bytes: an unchanged frame is not a new reading
     AllskyAnalysis analysis;
     double cloud_cover = 0.0;
     bool night = false;
@@ -130,6 +132,7 @@ struct CameraReading {
 CameraReading measure_camera(const AllskyCameraConfig& cfg, const AllskyFetcher& fetcher, const AllskyClock& clock) {
     const std::string jpeg = fetcher(cfg.image_url, cfg.timeout);
     CameraReading r;
+    r.image_hash = std::hash<std::string>{}(jpeg);
     r.analysis = analyse_allsky_image(decode_allsky_jpeg(jpeg), cfg.roi);
     r.cloud_cover = allsky_cloud_cover(r.analysis.stars, cfg.clear_sky_stars);
     r.at = clock();
@@ -137,6 +140,13 @@ CameraReading measure_camera(const AllskyCameraConfig& cfg, const AllskyFetcher&
     ALPACA_LOG_DEBUG(kTag, "Image: " + std::to_string(r.analysis.stars) + " stars, cloud " + fmt(r.cloud_cover, "%.0f") +
                                " %, sky median " + fmt(r.analysis.sky_median) + (r.night ? ", night" : ", day"));
     return r;
+}
+
+// The camera that stops publishing keeps serving its last frame: an identical frame keeps the
+// previous reading's time, so the reading ages instead of looking fresh.
+void merge_camera_reading(std::optional<CameraReading>& held, CameraReading r) {
+    if (held && held->image_hash == r.image_hash) r.at = held->at;
+    held = r;
 }
 
 // ---------------------------------------------------------------- ObservingConditions
@@ -278,7 +288,7 @@ private:
     }
     void store(const CameraReading& r) {
         std::lock_guard<std::mutex> lock(mutex_);
-        reading_ = r;
+        merge_camera_reading(reading_, r);
     }
 
     int device_number_;
@@ -417,7 +427,7 @@ private:
             try {
                 const auto c = measure_camera(config_.camera, camera_fetcher_, clock_);
                 std::lock_guard<std::mutex> lock(mutex_);
-                camera_ = c;
+                merge_camera_reading(camera_, c);
             } catch (const std::exception& e) {
                 ALPACA_LOG_WARN("WeatherSafety", std::string("Allsky poll failed: ") + e.what());
             }

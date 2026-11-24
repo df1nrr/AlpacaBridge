@@ -39,7 +39,7 @@ struct AllskyCameraConfig {
     double longitude = 0.0;
     int clear_sky_stars = 200;  ///< stars a clear night shows: 0 % cloud at or above it
     AllskyRoi roi;
-    std::chrono::seconds poll_interval{std::chrono::seconds(120)};
+    std::chrono::seconds poll_interval{std::chrono::seconds(60)};  // Allsky writes a frame about every minute
     std::chrono::milliseconds timeout{std::chrono::milliseconds(15000)};
 };
 

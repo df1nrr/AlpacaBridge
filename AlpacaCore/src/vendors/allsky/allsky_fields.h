@@ -37,7 +37,7 @@ inline const Field<double> kAllskyRoiCenterX{.key = "roiCenterX", .default_value
 inline const Field<double> kAllskyRoiCenterY{.key = "roiCenterY", .default_value = 0.50, .min = 0.0, .max = 1.0};
 inline const Field<double> kAllskyRoiRadius{.key = "roiRadius", .default_value = 0.36, .min = 0.05, .max = 1.0};
 inline const Field<std::int64_t> kAllskyPollIntervalSeconds{
-    .key = "pollIntervalSeconds", .default_value = 120, .min = 30, .max = 3600};
+    .key = "pollIntervalSeconds", .default_value = 60, .min = 30, .max = 3600};
 
 inline const Field<std::string> kSafetyApiKey{.key = "apiKey", .default_value = ""};
 inline const Field<std::int64_t> kSafetyWeatherPollIntervalSeconds{

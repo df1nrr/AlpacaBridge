@@ -118,6 +118,14 @@ double median_of(std::vector<float> v) {
 }  // namespace
 
 GrayImage decode_allsky_jpeg(const std::string& jpeg_bytes) {
+    // A frame fetched while the camera is still writing it ends before its EOI marker. libjpeg only
+    // warns about that and fills the rest grey, which would read as a starless (cloudy) sky.
+    std::size_t end = jpeg_bytes.size();
+    while (end > 0 && (jpeg_bytes[end - 1] == '\0' || jpeg_bytes[end - 1] == '\n' || jpeg_bytes[end - 1] == '\r')) --end;
+    if (end < 4 || static_cast<unsigned char>(jpeg_bytes[0]) != 0xFF || static_cast<unsigned char>(jpeg_bytes[1]) != 0xD8 ||
+        static_cast<unsigned char>(jpeg_bytes[end - 2]) != 0xFF || static_cast<unsigned char>(jpeg_bytes[end - 1]) != 0xD9) {
+        throw AlpacaException("Allsky image is incomplete or not a JPEG (caught mid-write?)", AlpacaError::DriverException);
+    }
     jpeg_decompress_struct cinfo{};
     JpegError err{};
     cinfo.err = jpeg_std_error(&err.mgr);

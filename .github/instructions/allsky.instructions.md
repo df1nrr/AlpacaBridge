@@ -16,6 +16,10 @@ by libjpeg to grayscale at half size.
   it, inside the sky circle (`roiCenterX`/`roiCenterY` of the width/height, `roiRadius` of the height) and away from
   saturated areas grown by 12 px (the moon and its glare). Tuned on Isartalsternwarte frames (Allsky v2024.12.06,
   2028x1520, 60 s): a clear night 120-260 stars, haze 1-20, overcast or a wet dome 0-1.
+- A frame without its JPEG EOI marker (fetched while the camera writes it) is refused, never decoded: libjpeg would
+  fill the rest grey, a starless "cloudy" sky. An identical frame keeps the previous reading's time, so a camera that
+  stopped publishing ages out instead of looking fresh. The Allsky software writes a frame about every minute
+  (60 s exposures): the default poll is 60 s.
 - CloudCover = 100 % minus the share of `clearSkyStars` (default 200), measured only while the sun is below -6
   degrees (`sun_altitude_deg`, NOAA low-precision); in daylight and twilight it is ValueNotSet. The count depends
   on the camera, lens, exposure and moon: the operator sets `clearSkyStars` from a clear night's log (debug level).

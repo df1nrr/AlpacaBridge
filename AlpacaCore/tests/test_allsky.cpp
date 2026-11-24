@@ -186,6 +186,9 @@ TEST_CASE("Allsky - star counting on synthetic fields", "[allsky][observingcondi
     CHECK(as::allsky_cloud_cover(75, 150) == 50.0);
     CHECK(as::allsky_cloud_cover(400, 150) == 0.0);
     require_alpaca_error([] { (void)as::decode_allsky_jpeg("<html>404</html>"); }, AlpacaError::DriverException);
+    const auto whole = star_field_jpeg(50);
+    require_alpaca_error([&] { (void)as::decode_allsky_jpeg(whole.substr(0, whole.size() / 2)); },
+                         AlpacaError::DriverException);  // caught mid-write: no EOI marker
 }
 
 TEST_CASE("Allsky - sun altitude", "[allsky][observingconditions][unit]") {
@@ -215,6 +218,8 @@ TEST_CASE("Allsky ObservingConditions Driver - cloud cover at night, none by day
     CHECK(d->get_cloud_cover() == 100.0);
     CHECK(d->get_time_since_last_update("CloudCover") == Approx(0.0).margin(1.0));
     sky.advance(std::chrono::seconds(90));
+    CHECK(d->get_time_since_last_update("") == Approx(90.0).margin(1.0));
+    d->refresh();  // the camera serves the same frame again: the reading does not get younger
     CHECK(d->get_time_since_last_update("") == Approx(90.0).margin(1.0));
     sky.now_s = std::chrono::duration_cast<std::chrono::seconds>(kNoon.time_since_epoch()).count();
     d->refresh();

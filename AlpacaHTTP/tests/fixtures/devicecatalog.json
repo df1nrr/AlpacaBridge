@@ -13,7 +13,7 @@
       {"key": "roiCenterX", "type": "double", "default": 0.47, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 1.0}},
       {"key": "roiCenterY", "type": "double", "default": 0.5, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 1.0}},
       {"key": "roiRadius", "type": "double", "default": 0.36, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.05, "max": 1.0}},
-      {"key": "pollIntervalSeconds", "type": "int", "default": 120, "required": false, "secret": false, "role": "Plain", "range": {"min": 30, "max": 3600}}
+      {"key": "pollIntervalSeconds", "type": "int", "default": 60, "required": false, "secret": false, "role": "Plain", "range": {"min": 30, "max": 3600}}
     ]
   },
   {
@@ -31,7 +31,7 @@
       {"key": "roiCenterX", "type": "double", "default": 0.47, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 1.0}},
       {"key": "roiCenterY", "type": "double", "default": 0.5, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 1.0}},
       {"key": "roiRadius", "type": "double", "default": 0.36, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.05, "max": 1.0}},
-      {"key": "pollIntervalSeconds", "type": "int", "default": 120, "required": false, "secret": false, "role": "Plain", "range": {"min": 30, "max": 3600}},
+      {"key": "pollIntervalSeconds", "type": "int", "default": 60, "required": false, "secret": false, "role": "Plain", "range": {"min": 30, "max": 3600}},
       {"key": "weatherPollIntervalSeconds", "type": "int", "default": 600, "required": false, "secret": false, "role": "Plain", "range": {"min": 120, "max": 3600}},
       {"key": "maxCloudCover", "type": "double", "default": 50.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 100.0}},
       {"key": "maxWindSpeed", "type": "double", "default": 10.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 60.0}},

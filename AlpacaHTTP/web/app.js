@@ -4914,7 +4914,7 @@ document.getElementById('device-form').addEventListener('submit', async function
         deviceData.roiCenterX = asNumber(p + 'RoiCenterX', 0.47);
         deviceData.roiCenterY = asNumber(p + 'RoiCenterY', 0.5);
         deviceData.roiRadius = asNumber(p + 'RoiRadius', 0.36);
-        deviceData.pollIntervalSeconds = asNumber(p + 'PollInterval', 120);
+        deviceData.pollIntervalSeconds = asNumber(p + 'PollInterval', 60);
         if (p === 'allskySafety') {
             deviceData.apiKey = (formData.get('allskySafetyApiKey') || '').trim();
             deviceData.weatherPollIntervalSeconds = asNumber('allskySafetyWeatherPoll', 600);
