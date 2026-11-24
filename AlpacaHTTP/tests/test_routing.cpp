@@ -9391,7 +9391,7 @@ int main() {
         std::ifstream fixture_in(fixture_path);
         EXPECT(fixture_in.good());
         nlohmann::json fixture = nlohmann::json::parse(fixture_in, nullptr, false);
-        EXPECT(!fixture.is_discarded() && fixture.is_array() && fixture.size() == 47);
+        EXPECT(!fixture.is_discarded() && fixture.is_array() && fixture.size() == 48);
         // The fixture is written for the all-vendors build. `available` is the
         // one value that depends on the build (true with the vendor on, false
         // with ALPACACORE_ENABLE_<VENDOR>=OFF), so it is set from this build
@@ -9532,6 +9532,13 @@ int main() {
             }
             if (entry.value("vendor", "") == "touptek") {
 #ifdef ALPACACORE_ENABLE_TOUPTEK
+                entry["available"] = true;
+#else
+                entry["available"] = false;
+#endif
+            }
+            if (entry.value("vendor", "") == "deepskydad") {
+#ifdef ALPACACORE_ENABLE_DEEPSKYDAD
                 entry["available"] = true;
 #else
                 entry["available"] = false;
