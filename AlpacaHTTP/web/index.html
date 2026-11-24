@@ -57,6 +57,7 @@
                         <option value="focuser">Focuser</option>
                         <option value="observingconditions">Observing Conditions</option>
                         <option value="rotator">Rotator</option>
+                        <option value="safetymonitor">Safety Monitor</option>
                         <option value="switch">Switch</option>
                         <option value="telescope">Telescope</option>
                     </select>
@@ -94,6 +95,8 @@
                         <option value="touptek">ToupTek</option>
                         <option value="wandererastro">WandererAstro</option>
                         <option value="weewx">WeeWX</option>
+                        <option value="openweather">OpenWeather</option>
+                        <option value="allsky">Allsky camera</option>
                         <option value="zwo">ZWO</option>
                     </select>
                 </div>
@@ -190,6 +193,143 @@
                         <label for="scopedome-shutter-timeout">Shutter timeout (seconds):</label>
                         <input type="number" id="scopedome-shutter-timeout" name="scopedomeShutterTimeout" data-config-key="shutterTimeoutSec" value="180" min="10" max="600" step="1">
                         <small>A shutter that has not reached its limit switch by then is stopped and reported as Error.</small>
+                    </div>
+                </div>
+
+                <!-- OpenWeather (ObservingConditions) -->
+                <div id="openweather-config" data-vendor="openweather" data-device-type="observingconditions" class="vendor-config" style="display: none;">
+                    <h3>OpenWeather</h3>
+                    <p><small>Current weather for your site from openweathermap.org: temperature, humidity, dew point, pressure,
+                       wind, gusts, cloud cover and rain. Needs a free API key (a new key can take up to two hours to work).
+                       The free plan allows 1000 requests a day.</small></p>
+                        <div class="form-group">
+                            <label for="openweather-api-key">API key:</label>
+                            <input type="password" id="openweather-api-key" name="openweatherApiKey" data-config-key="apiKey" placeholder="your OpenWeather API key" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="openweather-latitude">Latitude (degrees, north positive):</label>
+                            <input type="number" id="openweather-latitude" name="openweatherLatitude" data-config-key="latitude" value="0" min="-90" max="90" step="0.0001">
+                        </div>
+                        <div class="form-group">
+                            <label for="openweather-longitude">Longitude (degrees, east positive):</label>
+                            <input type="number" id="openweather-longitude" name="openweatherLongitude" data-config-key="longitude" value="0" min="-180" max="180" step="0.0001">
+                        </div>
+                        <div class="form-group">
+                            <label for="openweather-poll">Update interval (seconds):</label>
+                            <input type="number" id="openweather-poll" name="openweatherPollInterval" data-config-key="pollIntervalSeconds" value="600" min="120" max="3600" step="1">
+                        </div>
+                </div>
+
+                <!-- Allsky camera: cloud cover (ObservingConditions) and the weather safety monitor (SafetyMonitor) -->
+                <div id="allsky-config" data-vendor="allsky" class="vendor-config" style="display: none;">
+                    <div id="allsky-oc-fields" data-device-type="observingconditions">
+                        <h3>Allsky camera (cloud cover)</h3>
+                        <p><small>Counts the stars in the latest allsky image and reports CloudCover from the count. Measured only
+                           at night (sun below -6 degrees); in daylight CloudCover has no value.</small></p>
+                        <div class="form-group">
+                            <label for="allsky-oc-image-url">Allsky image URL:</label>
+                            <input type="text" id="allsky-oc-image-url" name="allskyOcImageUrl" data-config-key="imageUrl" placeholder="https://isartalsternwarte.de/allsky/image.jpg" autocomplete="off">
+                            <small>The latest frame the Allsky software publishes (image.jpg).</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-oc-clear-sky-stars">Stars on a clear night:</label>
+                            <input type="number" id="allsky-oc-clear-sky-stars" name="allskyOcClearSkyStars" data-config-key="clearSkyStars" value="200" min="10" max="5000" step="1">
+                            <small>Cloud cover is 0 % at or above this count and grows as stars disappear. Watch the log (debug level) on a clear night and set it to about what it counts.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-oc-roi-x">Sky circle centre x (fraction of the width):</label>
+                            <input type="number" id="allsky-oc-roi-x" name="allskyOcRoiCenterX" data-config-key="roiCenterX" value="0.47" min="0" max="1" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-oc-roi-y">Sky circle centre y (fraction of the height):</label>
+                            <input type="number" id="allsky-oc-roi-y" name="allskyOcRoiCenterY" data-config-key="roiCenterY" value="0.5" min="0" max="1" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-oc-roi-r">Sky circle radius (fraction of the height):</label>
+                            <input type="number" id="allsky-oc-roi-r" name="allskyOcRoiRadius" data-config-key="roiRadius" value="0.36" min="0.05" max="1" step="0.01">
+                            <small>Only stars inside this circle count: keep the horizon, trees, overlay text and dome edge outside it.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-oc-poll">Image interval (seconds):</label>
+                            <input type="number" id="allsky-oc-poll" name="allskyOcPollInterval" data-config-key="pollIntervalSeconds" value="120" min="30" max="3600" step="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-oc-latitude">Latitude (degrees, north positive):</label>
+                            <input type="number" id="allsky-oc-latitude" name="allskyOcLatitude" data-config-key="latitude" value="0" min="-90" max="90" step="0.0001">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-oc-longitude">Longitude (degrees, east positive):</label>
+                            <input type="number" id="allsky-oc-longitude" name="allskyOcLongitude" data-config-key="longitude" value="0" min="-180" max="180" step="0.0001">
+                        </div>
+                    </div>
+                    <div id="allsky-safety-fields" data-device-type="safetymonitor">
+                        <h3>Weather safety (OpenWeather + allsky camera)</h3>
+                        <p><small>Unsafe at once when it rains, the wind, gusts or humidity exceed their limits, the clouds exceed
+                           theirs (the allsky star count at night, OpenWeather's cover by day) or a reading is too old. Safe again
+                           only after everything has been fine for the hold-off time.</small></p>
+                        <div class="form-group">
+                            <label for="allsky-safety-api-key">OpenWeather API key:</label>
+                            <input type="password" id="allsky-safety-api-key" name="allskySafetyApiKey" data-config-key="apiKey" placeholder="your OpenWeather API key" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-latitude">Latitude (degrees, north positive):</label>
+                            <input type="number" id="allsky-safety-latitude" name="allskySafetyLatitude" data-config-key="latitude" value="0" min="-90" max="90" step="0.0001">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-longitude">Longitude (degrees, east positive):</label>
+                            <input type="number" id="allsky-safety-longitude" name="allskySafetyLongitude" data-config-key="longitude" value="0" min="-180" max="180" step="0.0001">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-image-url">Allsky image URL (optional):</label>
+                            <input type="text" id="allsky-safety-image-url" name="allskySafetyImageUrl" data-config-key="imageUrl" placeholder="https://isartalsternwarte.de/allsky/image.jpg" autocomplete="off">
+                            <small>The latest frame the Allsky software publishes (image.jpg). Leave empty to judge clouds from OpenWeather only.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-clear-sky-stars">Stars on a clear night:</label>
+                            <input type="number" id="allsky-safety-clear-sky-stars" name="allskySafetyClearSkyStars" data-config-key="clearSkyStars" value="200" min="10" max="5000" step="1">
+                            <small>Cloud cover is 0 % at or above this count and grows as stars disappear. Watch the log (debug level) on a clear night and set it to about what it counts.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-roi-x">Sky circle centre x (fraction of the width):</label>
+                            <input type="number" id="allsky-safety-roi-x" name="allskySafetyRoiCenterX" data-config-key="roiCenterX" value="0.47" min="0" max="1" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-roi-y">Sky circle centre y (fraction of the height):</label>
+                            <input type="number" id="allsky-safety-roi-y" name="allskySafetyRoiCenterY" data-config-key="roiCenterY" value="0.5" min="0" max="1" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-roi-r">Sky circle radius (fraction of the height):</label>
+                            <input type="number" id="allsky-safety-roi-r" name="allskySafetyRoiRadius" data-config-key="roiRadius" value="0.36" min="0.05" max="1" step="0.01">
+                            <small>Only stars inside this circle count: keep the horizon, trees, overlay text and dome edge outside it.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-poll">Image interval (seconds):</label>
+                            <input type="number" id="allsky-safety-poll" name="allskySafetyPollInterval" data-config-key="pollIntervalSeconds" value="120" min="30" max="3600" step="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-weather-poll">OpenWeather interval (seconds):</label>
+                            <input type="number" id="allsky-safety-weather-poll" name="allskySafetyWeatherPoll" data-config-key="weatherPollIntervalSeconds" value="600" min="120" max="3600" step="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-max-cloud">Maximum cloud cover (%):</label>
+                            <input type="number" id="allsky-safety-max-cloud" name="allskySafetyMaxCloud" data-config-key="maxCloudCover" value="50" min="0" max="100" step="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-max-wind">Maximum wind speed (m/s):</label>
+                            <input type="number" id="allsky-safety-max-wind" name="allskySafetyMaxWind" data-config-key="maxWindSpeed" value="10" min="0" max="60" step="0.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-max-gust">Maximum gust (m/s):</label>
+                            <input type="number" id="allsky-safety-max-gust" name="allskySafetyMaxGust" data-config-key="maxWindGust" value="15" min="0" max="80" step="0.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-max-humidity">Maximum humidity (%):</label>
+                            <input type="number" id="allsky-safety-max-humidity" name="allskySafetyMaxHumidity" data-config-key="maxHumidity" value="95" min="0" max="100" step="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="allsky-safety-hold-off">Hold-off before safe (minutes):</label>
+                            <input type="number" id="allsky-safety-hold-off" name="allskySafetyHoldOff" data-config-key="holdOffMinutes" value="15" min="0" max="240" step="1">
+                        </div>
                     </div>
                 </div>
 

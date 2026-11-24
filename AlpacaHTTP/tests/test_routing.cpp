@@ -3896,6 +3896,87 @@ int main() {
     }
 #endif
 
+#ifdef ALPACACORE_ENABLE_OPENWEATHER
+    {
+        // case: openweather observingconditions key, site and poll interval survive the config round-trip
+        // openweather / observingconditions — every field persists (the key too: it is not a Secret
+        // field) and the factory builds the driver without a request.
+        const auto cfg = roundtrip_config(router,
+                                          {{"vendor", "openweather"},
+                                           {"deviceType", "observingconditions"},
+                                           {"deviceNumber", 9785},
+                                           {"apiKey", "0123456789abcdef"},
+                                           {"latitude", 47.83},
+                                           {"longitude", 11.46},
+                                           {"pollIntervalSeconds", 900}},
+                                          "ObservingConditions", 9785);
+        EXPECT(cfg.is_object() && !cfg.empty());
+        EXPECT(cfg.value("apiKey", "") == "0123456789abcdef");
+        EXPECT(cfg.value("latitude", -1.0) == 47.83);
+        EXPECT(cfg.value("longitude", -1.0) == 11.46);
+        EXPECT(cfg.value("pollIntervalSeconds", -1) == 900);
+        remove_device(router, "openweather", "observingconditions", 9785);
+    }
+#endif
+
+#ifdef ALPACACORE_ENABLE_ALLSKY
+    {
+        // case: allsky observingconditions image URL, site, star count and circle survive the config round-trip
+        const auto cfg = roundtrip_config(router,
+                                          {{"vendor", "allsky"},
+                                           {"deviceType", "observingconditions"},
+                                           {"deviceNumber", 9786},
+                                           {"imageUrl", "https://example.org/allsky/image.jpg"},
+                                           {"latitude", 47.83},
+                                           {"longitude", 11.46},
+                                           {"clearSkyStars", 250},
+                                           {"roiCenterX", 0.5},
+                                           {"roiCenterY", 0.48},
+                                           {"roiRadius", 0.3},
+                                           {"pollIntervalSeconds", 60}},
+                                          "ObservingConditions", 9786);
+        EXPECT(cfg.is_object() && !cfg.empty());
+        EXPECT(cfg.value("imageUrl", "") == "https://example.org/allsky/image.jpg");
+        EXPECT(cfg.value("clearSkyStars", -1) == 250);
+        EXPECT(cfg.value("roiCenterX", -1.0) == 0.5);
+        EXPECT(cfg.value("roiCenterY", -1.0) == 0.48);
+        EXPECT(cfg.value("roiRadius", -1.0) == 0.3);
+        EXPECT(cfg.value("pollIntervalSeconds", -1) == 60);
+        remove_device(router, "allsky", "observingconditions", 9786);
+    }
+    {
+        // case: allsky safetymonitor limits and hold-off survive the config round-trip
+        const auto cfg = roundtrip_config(router,
+                                          {{"vendor", "allsky"},
+                                           {"deviceType", "safetymonitor"},
+                                           {"deviceNumber", 9787},
+                                           {"apiKey", "0123456789abcdef"},
+                                           {"latitude", 47.83},
+                                           {"longitude", 11.46},
+                                           {"imageUrl", "https://example.org/allsky/image.jpg"},
+                                           {"maxCloudCover", 40.0},
+                                           {"maxWindSpeed", 8.0},
+                                           {"maxWindGust", 12.0},
+                                           {"maxHumidity", 90.0},
+                                           {"holdOffMinutes", 20},
+                                           {"weatherPollIntervalSeconds", 900}},
+                                          "SafetyMonitor", 9787);
+        EXPECT(cfg.is_object() && !cfg.empty());
+        EXPECT(cfg.value("apiKey", "") == "0123456789abcdef");
+        EXPECT(cfg.value("imageUrl", "") == "https://example.org/allsky/image.jpg");
+        EXPECT(cfg.value("maxCloudCover", -1.0) == 40.0);
+        EXPECT(cfg.value("maxWindSpeed", -1.0) == 8.0);
+        EXPECT(cfg.value("maxWindGust", -1.0) == 12.0);
+        EXPECT(cfg.value("maxHumidity", -1.0) == 90.0);
+        EXPECT(cfg.value("holdOffMinutes", -1) == 20);
+        EXPECT(cfg.value("weatherPollIntervalSeconds", -1) == 900);
+        const auto safe = route_request(router, "GET", "/api/v1/safetymonitor/9787/issafe");
+        EXPECT(safe.status_code() == 200);
+        EXPECT(nlohmann::json::parse(safe.body(), nullptr, false).value("Value", true) == false);  // disconnected
+        remove_device(router, "allsky", "safetymonitor", 9787);
+    }
+#endif
+
 #ifdef ALPACACORE_ENABLE_SCOPEDOME
     {
         // case: scopedome dome port, azimuths, tolerance and shutter timeout survive the config round-trip
@@ -8994,7 +9075,7 @@ int main() {
         std::ifstream fixture_in(fixture_path);
         EXPECT(fixture_in.good());
         nlohmann::json fixture = nlohmann::json::parse(fixture_in, nullptr, false);
-        EXPECT(!fixture.is_discarded() && fixture.is_array() && fixture.size() == 46);
+        EXPECT(!fixture.is_discarded() && fixture.is_array() && fixture.size() == 49);
         // The fixture is written for the all-vendors build. `available` is the
         // one value that depends on the build (true with the vendor on, false
         // with ALPACACORE_ENABLE_<VENDOR>=OFF), so it is set from this build
@@ -9156,6 +9237,20 @@ int main() {
             }
             if (entry.value("vendor", "") == "scopedome") {
 #ifdef ALPACACORE_ENABLE_SCOPEDOME
+                entry["available"] = true;
+#else
+                entry["available"] = false;
+#endif
+            }
+            if (entry.value("vendor", "") == "allsky") {
+#ifdef ALPACACORE_ENABLE_ALLSKY
+                entry["available"] = true;
+#else
+                entry["available"] = false;
+#endif
+            }
+            if (entry.value("vendor", "") == "openweather") {
+#ifdef ALPACACORE_ENABLE_OPENWEATHER
                 entry["available"] = true;
 #else
                 entry["available"] = false;

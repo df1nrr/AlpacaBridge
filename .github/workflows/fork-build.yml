@@ -34,7 +34,7 @@ jobs:
           mkdir -p "$OUT"
           { apt-get update -qq
             apt-get install -y -qq --no-install-recommends ca-certificates git python3 dpkg-dev binutils \
-              build-essential catch2 file
+              build-essential catch2 file nodejs
           } > "$OUT/setup.log" 2>&1 || { tail -50 "$OUT/setup.log"; exit 1; }
           git config --global --add safe.directory '*'
 
@@ -75,13 +75,20 @@ jobs:
           chown -R builder "$GITHUB_WORKSPACE" "$OUT"
           as_builder() { runuser -u builder -- env OUT="$OUT" bash -c "$1"; }
           rc=0
-          as_builder 'AlpacaHTTP/build/AlpacaCore/tests/alpacacore_tests "[deepskydad],[simulator]" 2>&1 | tail -60 > "$OUT/test-vendor.log"' || rc=1
+          as_builder 'AlpacaHTTP/build/AlpacaCore/tests/alpacacore_tests "[deepskydad],[simulator],[scopedome],[openweather],[allsky]" 2>&1 | tail -60 > "$OUT/test-vendor.log"' || rc=1
           tail -5 "$OUT/test-vendor.log"
           as_builder 'ctest --test-dir AlpacaHTTP/build --output-on-failure --timeout 600 -j "$(nproc)" -R "Contract sweep|[Rr]outing|catalog" > "$OUT/test-sweep.log" 2>&1' || rc=1
           tail -40 "$OUT/test-sweep.log"
           # test_routing is one process for every case: keep its whole output.
           as_builder 'cd AlpacaHTTP/build/test_routing_cwd && ../test_routing > "$OUT/test-routing.log" 2>&1' || { rc=1; grep -A3 "EXPECT failed" "$OUT/test-routing.log" | tail -20; }
           exit $rc
+
+      - name: Test (web UI)
+        shell: bash
+        run: |
+          mapfile -t tests < <(git ls-files 'AlpacaHTTP/tests/web/*.test.js')
+          node --test "${tests[@]}" > "$OUT/test-web.log" 2>&1 || { grep -B2 -A25 "^not ok" "$OUT/test-web.log" | head -80; exit 1; }
+          tail -8 "$OUT/test-web.log"
 
       - name: Test (full suite)
         shell: bash

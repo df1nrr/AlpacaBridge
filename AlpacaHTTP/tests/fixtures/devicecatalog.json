@@ -1,5 +1,46 @@
 [
   {
+    "vendor": "allsky",
+    "deviceType": "observingconditions",
+    "displayName": "Allsky camera (cloud cover)",
+    "available": true,
+    "buildOption": "ALPACACORE_ENABLE_ALLSKY",
+    "fields": [
+      {"key": "imageUrl", "type": "string", "default": "", "required": false, "secret": false, "role": "Plain"},
+      {"key": "latitude", "type": "double", "default": 0.0, "required": false, "secret": false, "role": "Plain", "range": {"min": -90.0, "max": 90.0}},
+      {"key": "longitude", "type": "double", "default": 0.0, "required": false, "secret": false, "role": "Plain", "range": {"min": -180.0, "max": 180.0}},
+      {"key": "clearSkyStars", "type": "int", "default": 200, "required": false, "secret": false, "role": "Plain", "range": {"min": 10, "max": 5000}},
+      {"key": "roiCenterX", "type": "double", "default": 0.47, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 1.0}},
+      {"key": "roiCenterY", "type": "double", "default": 0.5, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 1.0}},
+      {"key": "roiRadius", "type": "double", "default": 0.36, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.05, "max": 1.0}},
+      {"key": "pollIntervalSeconds", "type": "int", "default": 120, "required": false, "secret": false, "role": "Plain", "range": {"min": 30, "max": 3600}}
+    ]
+  },
+  {
+    "vendor": "allsky",
+    "deviceType": "safetymonitor",
+    "displayName": "Weather safety (OpenWeather + allsky camera)",
+    "available": true,
+    "buildOption": "ALPACACORE_ENABLE_ALLSKY",
+    "fields": [
+      {"key": "apiKey", "type": "string", "default": "", "required": false, "secret": false, "role": "Plain"},
+      {"key": "latitude", "type": "double", "default": 0.0, "required": false, "secret": false, "role": "Plain", "range": {"min": -90.0, "max": 90.0}},
+      {"key": "longitude", "type": "double", "default": 0.0, "required": false, "secret": false, "role": "Plain", "range": {"min": -180.0, "max": 180.0}},
+      {"key": "imageUrl", "type": "string", "default": "", "required": false, "secret": false, "role": "Plain"},
+      {"key": "clearSkyStars", "type": "int", "default": 200, "required": false, "secret": false, "role": "Plain", "range": {"min": 10, "max": 5000}},
+      {"key": "roiCenterX", "type": "double", "default": 0.47, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 1.0}},
+      {"key": "roiCenterY", "type": "double", "default": 0.5, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 1.0}},
+      {"key": "roiRadius", "type": "double", "default": 0.36, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.05, "max": 1.0}},
+      {"key": "pollIntervalSeconds", "type": "int", "default": 120, "required": false, "secret": false, "role": "Plain", "range": {"min": 30, "max": 3600}},
+      {"key": "weatherPollIntervalSeconds", "type": "int", "default": 600, "required": false, "secret": false, "role": "Plain", "range": {"min": 120, "max": 3600}},
+      {"key": "maxCloudCover", "type": "double", "default": 50.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 100.0}},
+      {"key": "maxWindSpeed", "type": "double", "default": 10.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 60.0}},
+      {"key": "maxWindGust", "type": "double", "default": 15.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 80.0}},
+      {"key": "maxHumidity", "type": "double", "default": 95.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 100.0}},
+      {"key": "holdOffMinutes", "type": "int", "default": 15, "required": false, "secret": false, "role": "Plain", "range": {"min": 0, "max": 240}}
+    ]
+  },
+  {
     "vendor": "altair",
     "deviceType": "camera",
     "displayName": "Altair Camera",
@@ -268,6 +309,19 @@
       {"key": "syncTimeOnConnect", "type": "bool", "default": false, "required": false, "secret": false, "role": "Plain"},
       {"key": "apertureDiameter", "type": "double", "default": 0.0, "required": false, "secret": false, "role": "Plain"},
       {"key": "focalLength", "type": "double", "default": 0.0, "required": false, "secret": false, "role": "Plain"}
+    ]
+  },
+  {
+    "vendor": "openweather",
+    "deviceType": "observingconditions",
+    "displayName": "OpenWeather",
+    "available": true,
+    "buildOption": "ALPACACORE_ENABLE_OPENWEATHER",
+    "fields": [
+      {"key": "apiKey", "type": "string", "default": "", "required": false, "secret": false, "role": "Plain"},
+      {"key": "latitude", "type": "double", "default": 0.0, "required": false, "secret": false, "role": "Plain", "range": {"min": -90.0, "max": 90.0}},
+      {"key": "longitude", "type": "double", "default": 0.0, "required": false, "secret": false, "role": "Plain", "range": {"min": -180.0, "max": 180.0}},
+      {"key": "pollIntervalSeconds", "type": "int", "default": 600, "required": false, "secret": false, "role": "Plain", "range": {"min": 120, "max": 3600}}
     ]
   },
   {

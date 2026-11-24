@@ -78,6 +78,8 @@ Symbol: `transition_mutex_`
 | WandererAstro filter wheel |  | `AlpacaCore/src/vendors/wandererastro/wandererastro_filterwheel_driver.cpp` | adopted |  | writes with no reply wait under `state_mutex_` (Alternatives rejected) |
 | WandererAstro rotator |  | `AlpacaCore/src/vendors/wandererastro/wandererastro_rotator_driver.cpp` | adopted |  |  |
 | WeeWX observing conditions |  | `AlpacaCore/src/vendors/weewx/weewx_observingconditions_driver.cpp` | adopted |  |  |
+| OpenWeather observing conditions |  | `AlpacaCore/src/vendors/openweather/openweather_observingconditions_driver.cpp` | adopted |  | getters read the last reading under a leaf mutex; the poll thread fetches with no lock held |
+| Allsky camera and weather safety |  | `AlpacaCore/src/vendors/allsky/allsky_drivers.cpp` | adopted |  | getters read the last readings under a leaf mutex; the poll threads fetch with no lock held |
 | ZWO ASIAIR Plus switch |  | `AlpacaCore/src/vendors/zwo/zwo_asiair_plus_switch_driver.cpp` | adopted |  |  |
 | ZWO ASIAIR switch |  | `AlpacaCore/src/vendors/zwo/zwo_asiair_switch_driver.cpp` | adopted |  |  |
 | ZWO camera |  | `AlpacaCore/src/vendors/zwo/zwo_camera_driver.cpp` | adopted |  |  |

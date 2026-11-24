@@ -41,6 +41,8 @@ option(ALPACACORE_ENABLE_ASTROASIS "Enable Astroasis Oasis Focuser vendor suppor
 option(ALPACACORE_ENABLE_DEEPSKYDAD "Enable Deep Sky Dad flat panel (CoverCalibrator) vendor support" OFF)
 option(ALPACACORE_ENABLE_SIMULATOR "Enable simulated devices (Dome simulator)" OFF)
 option(ALPACACORE_ENABLE_SCOPEDOME "Enable ScopeDome USB Card 2.1 dome support" OFF)
+option(ALPACACORE_ENABLE_ALLSKY "Enable allsky camera cloud cover and the weather safety monitor" OFF)
+option(ALPACACORE_ENABLE_OPENWEATHER "Enable OpenWeather current-weather support" OFF)
 option(ALPACACORE_ENABLE_GPHOTO "Enable libgphoto2 DSLR/mirrorless camera vendor support" OFF)
 # The gphoto driver links the bundled libgphoto2 built by
 # scripts/build_bundled_gphoto.sh from AlpacaCore/external/libgphoto2/. PREFIX is
@@ -73,6 +75,8 @@ if(ALPACACORE_ENABLE_ALL_VENDORS)
     set(ALPACACORE_ENABLE_DEEPSKYDAD ON)
     set(ALPACACORE_ENABLE_SIMULATOR ON)
     set(ALPACACORE_ENABLE_SCOPEDOME ON)
+    set(ALPACACORE_ENABLE_ALLSKY ON)
+    set(ALPACACORE_ENABLE_OPENWEATHER ON)
     set(ALPACACORE_ENABLE_GPHOTO ON)
 endif()
 
@@ -135,6 +139,8 @@ add_library(alpacacore_builtins STATIC
     src/vendors/deepskydad/deepskydad_schema.cpp
     src/vendors/simulator/simulator_schema.cpp
     src/vendors/scopedome/scopedome_schema.cpp
+    src/vendors/allsky/allsky_schema.cpp
+    src/vendors/openweather/openweather_schema.cpp
     src/vendors/skywatcher/skywatcher_schema.cpp
     src/vendors/weewx/weewx_schema.cpp
     src/vendors/svbony/svbony_schema.cpp
@@ -353,6 +359,28 @@ if(ALPACACORE_ENABLE_SCOPEDOME)
     endif()
 endif()
 
+if(ALPACACORE_ENABLE_ALLSKY)
+    add_subdirectory(src/vendors/allsky)
+    if(TARGET alpacacore_allsky)
+        target_link_libraries(alpacacore_builtins PRIVATE alpacacore_allsky)
+        # register_builtin_factories() guards its allsky factory behind this macro.
+        target_compile_definitions(alpacacore_builtins PRIVATE ALPACACORE_ENABLE_ALLSKY)
+    endif()
+endif()
+
+if(ALPACACORE_ENABLE_ALLSKY)
+    set(ALPACACORE_ENABLE_OPENWEATHER ON)  # the weather safety monitor asks OpenWeather
+endif()
+
+if(ALPACACORE_ENABLE_OPENWEATHER)
+    add_subdirectory(src/vendors/openweather)
+    if(TARGET alpacacore_openweather)
+        target_link_libraries(alpacacore_builtins PRIVATE alpacacore_openweather)
+        # register_builtin_factories() guards its openweather factory behind this macro.
+        target_compile_definitions(alpacacore_builtins PRIVATE ALPACACORE_ENABLE_OPENWEATHER)
+    endif()
+endif()
+
 # Custom target to clean everything including CMake cache
 # Usage: cmake --build . --target alpacacore-clean-all
 # Note: Named with project prefix to avoid conflicts when used as subdirectory
@@ -508,6 +536,22 @@ if(ALPACACORE_ENABLE_SIMULATOR AND TARGET alpacacore_simulator)
 endif()
 if(ALPACACORE_ENABLE_SCOPEDOME AND TARGET alpacacore_scopedome)
     install(TARGETS alpacacore_scopedome
+        EXPORT AlpacaCoreTargets
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin
+    )
+endif()
+if(ALPACACORE_ENABLE_ALLSKY AND TARGET alpacacore_allsky)
+    install(TARGETS alpacacore_allsky
+        EXPORT AlpacaCoreTargets
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin
+    )
+endif()
+if(ALPACACORE_ENABLE_OPENWEATHER AND TARGET alpacacore_openweather)
+    install(TARGETS alpacacore_openweather
         EXPORT AlpacaCoreTargets
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib

@@ -23,6 +23,7 @@
 #include <alpacacore/catalog/builtin_catalog.h>
 #include <alpacacore/covercalibrator_driver.h>
 #include <alpacacore/dome_driver.h>
+#include <alpacacore/safetymonitor_driver.h>
 #include <alpacacore/filterwheel_driver.h>
 #include <alpacacore/focuser_driver.h>
 #include <alpacacore/observingconditions_driver.h>
@@ -292,6 +293,12 @@ std::vector<Probe> invalid_value_probes(AlpacaDriver& d, const ContractEntry& e)
 // disconnected, with no early return that skips the check.
 std::vector<Probe> not_connected_probes(AlpacaDriver& d, DeviceType type, const ContractEntry& entry) {
     std::vector<Probe> p;
+    if (type == DeviceType::SafetyMonitor) {
+        // IsSafe answers false while disconnected (checked in the case body); an advertised Action throws.
+        for (const auto& name : entry.actions) {
+            p.push_back({"action(" + name + ")", [&d, name] { (void)d.action(name, ""); }});
+        }
+    }
     switch (type) {
         case DeviceType::Telescope: {
             auto& t = dynamic_cast<alpacacore::TelescopeDriver&>(d);
@@ -656,6 +663,10 @@ bool has_can_subject(const ContractEntry& e) {
             INFO(e.id << " " << name << " must not answer NotImplemented while disconnected");
             CHECK(thrown_code(fn) != err::NotImplemented);
         }
+    }
+    if (e.type == DeviceType::SafetyMonitor) {
+        INFO(e.id << " IsSafe is false, not NotConnected, while disconnected (ISafetyMonitor)");
+        CHECK(thrown_code([&] { CHECK_FALSE(dynamic_cast<alpacacore::SafetyMonitorDriver&>(*d).get_is_safe()); }) == -1);
     }
     if (e.type == DeviceType::Switch) {
         auto& s = dynamic_cast<alpacacore::SwitchDriver&>(*d);

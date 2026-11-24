@@ -3084,6 +3084,13 @@ document.getElementById('vendor').addEventListener('change', function() {
         document.getElementById('simulator-config').style.display = 'block';
     } else if (vendor === 'scopedome') {
         document.getElementById('scopedome-config').style.display = 'block';
+    } else if (vendor === 'openweather') {
+        document.getElementById('openweather-config').style.display = 'block';
+    } else if (vendor === 'allsky') {
+        document.getElementById('allsky-config').style.display = 'block';
+        const allskyType = normalizeDeviceType(document.getElementById('device-type').value);
+        document.getElementById('allsky-oc-fields').style.display = allskyType === 'observingconditions' ? 'block' : 'none';
+        document.getElementById('allsky-safety-fields').style.display = allskyType === 'safetymonitor' ? 'block' : 'none';
     } else if (vendor === 'ioptron') {
         document.getElementById('ioptron-config').style.display = 'block';
         updateIoptronConfigFields();
@@ -4885,6 +4892,38 @@ document.getElementById('device-form').addEventListener('submit', async function
         deviceData.parkAzimuth = sdNumber('scopedomeParkAzimuth', 0);
         deviceData.azimuthTolerance = sdNumber('scopedomeAzimuthTolerance', 1);
         deviceData.shutterTimeoutSec = sdNumber('scopedomeShutterTimeout', 180);
+    } else if (deviceData.vendor === 'openweather') {
+        const owNumber = (name, fallback) => {
+            const value = readOptionalNumber(formData, name);
+            return value !== null ? value : fallback;
+        };
+        deviceData.apiKey = (formData.get('openweatherApiKey') || '').trim();
+        deviceData.latitude = owNumber('openweatherLatitude', 0);
+        deviceData.longitude = owNumber('openweatherLongitude', 0);
+        deviceData.pollIntervalSeconds = owNumber('openweatherPollInterval', 600);
+    } else if (deviceData.vendor === 'allsky') {
+        const asNumber = (name, fallback) => {
+            const value = readOptionalNumber(formData, name);
+            return value !== null ? value : fallback;
+        };
+        const p = normalizeDeviceType(deviceData.deviceType) === 'safetymonitor' ? 'allskySafety' : 'allskyOc';
+        deviceData.imageUrl = (formData.get(p + 'ImageUrl') || '').trim();
+        deviceData.latitude = asNumber(p + 'Latitude', 0);
+        deviceData.longitude = asNumber(p + 'Longitude', 0);
+        deviceData.clearSkyStars = asNumber(p + 'ClearSkyStars', 200);
+        deviceData.roiCenterX = asNumber(p + 'RoiCenterX', 0.47);
+        deviceData.roiCenterY = asNumber(p + 'RoiCenterY', 0.5);
+        deviceData.roiRadius = asNumber(p + 'RoiRadius', 0.36);
+        deviceData.pollIntervalSeconds = asNumber(p + 'PollInterval', 120);
+        if (p === 'allskySafety') {
+            deviceData.apiKey = (formData.get('allskySafetyApiKey') || '').trim();
+            deviceData.weatherPollIntervalSeconds = asNumber('allskySafetyWeatherPoll', 600);
+            deviceData.maxCloudCover = asNumber('allskySafetyMaxCloud', 50);
+            deviceData.maxWindSpeed = asNumber('allskySafetyMaxWind', 10);
+            deviceData.maxWindGust = asNumber('allskySafetyMaxGust', 15);
+            deviceData.maxHumidity = asNumber('allskySafetyMaxHumidity', 95);
+            deviceData.holdOffMinutes = asNumber('allskySafetyHoldOff', 15);
+        }
     } else if (deviceData.vendor === 'astroasis') {
         const astroasisHidPath = (formData.get('astroasisHidPath') || '').trim();
         if (astroasisHidPath !== '') {

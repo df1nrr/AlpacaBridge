@@ -135,6 +135,12 @@
 #ifdef ALPACACORE_ENABLE_SCOPEDOME
 #include <alpacacore/vendor/scopedome/scopedome_dome_driver.h>
 #endif
+#ifdef ALPACACORE_ENABLE_OPENWEATHER
+#include <alpacacore/vendor/openweather/openweather_observingconditions_driver.h>
+#endif
+#ifdef ALPACACORE_ENABLE_ALLSKY
+#include <alpacacore/vendor/allsky/allsky_drivers.h>
+#endif
 #ifdef ALPACACORE_ENABLE_GPHOTO
 #include <alpacacore/vendor/gphoto/gphoto_camera_driver.h>
 #endif
@@ -200,6 +206,8 @@ inline int platform7_interface_version(DeviceType t) {
         case DeviceType::CoverCalibrator:
         case DeviceType::ObservingConditions:
             return 2;
+        case DeviceType::SafetyMonitor:
+            return 3;
         default:
             return -1;
     }
@@ -211,6 +219,8 @@ inline const char* invalid_probe_reason_for(DeviceType t) {
         case DeviceType::Focuser:  // every focuser clamps a Move to 0..MaxStep (with_clamping_focuser says so)
             return "no argument with a static out-of-range value that is validated before the connection check "
                    "(assumption)";
+        case DeviceType::SafetyMonitor:
+            return "ISafetyMonitor has no member that takes a value";
         default:
             return "";
     }
@@ -784,6 +794,46 @@ inline ContractEntry contract_entry_simulator_dome() {
 }
 #endif
 
+#ifdef ALPACACORE_ENABLE_OPENWEATHER
+inline ContractEntry contract_entry_openweather_observingconditions() {
+    return make_entry(
+        "openweather_observingconditions", "openweather", "observingconditions", DeviceType::ObservingConditions,
+        [](int n) -> std::unique_ptr<AlpacaDriver> {
+            vendor::openweather::OpenWeatherConfig cfg;
+            cfg.api_key = "contract-sweep";
+            return vendor::openweather::create_openweather_observingconditions(n, cfg);
+        },
+        kSrcAgents);
+}
+#endif
+
+#ifdef ALPACACORE_ENABLE_ALLSKY
+inline ContractEntry contract_entry_allsky_observingconditions() {
+    return make_entry(
+        "allsky_observingconditions", "allsky", "observingconditions", DeviceType::ObservingConditions,
+        [](int n) -> std::unique_ptr<AlpacaDriver> {
+            vendor::allsky::AllskyCameraConfig cfg;
+            cfg.image_url = "http://allsky.invalid/image.jpg";
+            return vendor::allsky::create_allsky_observingconditions(n, cfg);
+        },
+        kSrcAgents);
+}
+
+inline ContractEntry contract_entry_allsky_safetymonitor() {
+    auto e = make_entry(
+        "allsky_safetymonitor", "allsky", "safetymonitor", DeviceType::SafetyMonitor,
+        [](int n) -> std::unique_ptr<AlpacaDriver> {
+            vendor::allsky::WeatherSafetyConfig cfg;
+            cfg.weather.api_key = "contract-sweep";
+            return vendor::allsky::create_weather_safetymonitor(n, cfg);
+        },
+        kSrcAgents);
+    // Action list read from allsky_drivers.cpp get_supported_actions().
+    e.actions = {"status"};
+    return e;
+}
+#endif
+
 #ifdef ALPACACORE_ENABLE_SCOPEDOME
 inline ContractEntry contract_entry_scopedome_dome() {
     return make_entry(
@@ -957,6 +1007,16 @@ inline ContractEntry contract_entry_astroasis_focuser() {
 #else
 #define CS_SCOPEDOME(X)
 #endif
+#ifdef ALPACACORE_ENABLE_OPENWEATHER
+#define CS_OPENWEATHER(X) X(openweather_observingconditions)
+#else
+#define CS_OPENWEATHER(X)
+#endif
+#ifdef ALPACACORE_ENABLE_ALLSKY
+#define CS_ALLSKY(X) X(allsky_observingconditions) X(allsky_safetymonitor)
+#else
+#define CS_ALLSKY(X)
+#endif
 
 // The formatter does not reach a fixed point on this continuation list.
 // clang-format off
@@ -982,7 +1042,9 @@ inline ContractEntry contract_entry_astroasis_focuser() {
     CS_ASTROASIS(X) \
     CS_DEEPSKYDAD(X) \
     CS_SIMULATOR(X) \
-    CS_SCOPEDOME(X)
+    CS_SCOPEDOME(X) \
+    CS_OPENWEATHER(X) \
+    CS_ALLSKY(X)
 // clang-format on
 
 namespace alpacacore::test::contract {

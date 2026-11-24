@@ -98,13 +98,13 @@ test('catalogLoader surfaces a failed load and fetches again on the next call', 
 // with the Gemini switch kept (see the next case).
 const OFFERED = {
     camera: ['altair', 'gphoto', 'iguider', 'ioptron', 'playerone', 'qhy', 'svbony', 'touptek', 'zwo'],
-    covercalibrator: ['gemini', 'wandererastro'],
-    dome: [],
+    covercalibrator: ['deepskydad', 'gemini', 'wandererastro'],
+    dome: ['scopedome', 'simulator'],
     filterwheel: ['ioptron', 'playerone', 'qhy', 'touptek', 'wandererastro', 'zwo'],
     focuser: ['astroasis', 'celestron', 'gemini', 'ifr', 'ioptron', 'qhy', 'touptek', 'zwo'],
-    observingconditions: ['weewx'],
+    observingconditions: ['allsky', 'openweather', 'weewx'],
     rotator: ['ifr', 'wandererastro', 'zwo'],
-    safetymonitor: [],
+    safetymonitor: ['allsky'],
     switch: ['gemini', 'ioptron', 'playerone', 'touptek', 'wandererastro', 'zwo'],
     telescope: ['bisque', 'celestron', 'ioptron', 'onstep', 'skywatcher', 'synscan', 'zwo'],
 };
@@ -226,6 +226,7 @@ const INDEX_FIELDS_AT_BASE = [
     { fieldId: 'gemini-flatpanel-v2-index', vendor: 'gemini', deviceType: 'covercalibrator', configKey: 'panelIndex' },
     { fieldId: 'gemini-flatpanel-pro-index', vendor: 'gemini', deviceType: 'covercalibrator', configKey: 'panelIndex' },
     { fieldId: 'gemini-pdh-index', vendor: 'gemini', deviceType: 'switch', configKey: 'hubIndex' },
+    { fieldId: 'deepskydad-panel-index', vendor: 'deepskydad', deviceType: 'covercalibrator', configKey: 'panelIndex' },
     { fieldId: 'wandererastro-cover-index', vendor: 'wandererastro', deviceType: 'covercalibrator', configKey: 'coverIndex' },
     { fieldId: 'wandererastro-rotator-index', vendor: 'wandererastro', deviceType: 'rotator', configKey: 'rotatorIndex' },
     { fieldId: 'wandererastro-filterwheel-index', vendor: 'wandererastro', deviceType: 'filterwheel', configKey: 'wandererFilterwheelIndex' },
@@ -484,11 +485,19 @@ test('readFormFields in app.js reports what the formFields helper reports for ev
 });
 
 const FORM_TYPES = ['camera', 'covercalibrator', 'dome', 'filterwheel', 'focuser', 'observingconditions', 'rotator',
-    'switch', 'telescope'];
+    'safetymonitor', 'switch', 'telescope'];
 
-test('offeredDeviceTypes hides dome, which the fixture catalog has no entry for, and offers the other 8 types', () => {
+// The fixture catalog without its dome entries: a type with no entry at all.
+const noDome = catalog.filter((d) => d.deviceType !== 'dome');
+
+test('offeredDeviceTypes offers every type the fixture catalog has an entry for', () => {
     const { offeredDeviceTypes } = schema();
-    assert.deepEqual(offeredDeviceTypes(catalog, FORM_TYPES), FORM_TYPES.filter((t) => t !== 'dome'));
+    assert.deepEqual(offeredDeviceTypes(catalog, FORM_TYPES), FORM_TYPES);
+});
+
+test('offeredDeviceTypes hides a type the catalog has no entry for', () => {
+    const { offeredDeviceTypes } = schema();
+    assert.deepEqual(offeredDeviceTypes(noDome, FORM_TYPES), FORM_TYPES.filter((t) => t !== 'dome'));
 });
 
 test('offeredDeviceTypes hides a type whose only entries are not available, unless it is the edited type', () => {
@@ -502,8 +511,8 @@ test('offeredDeviceTypes hides a type whose only entries are not available, unle
 
 test('offeredDeviceTypes keeps a hidden edited type', () => {
     const { offeredDeviceTypes } = schema();
-    assert.ok(offeredDeviceTypes(catalog, FORM_TYPES, 'Dome').includes('dome'));
-    assert.equal(offeredDeviceTypes(catalog, FORM_TYPES, 'dome').length, 9);
+    assert.ok(offeredDeviceTypes(noDome, FORM_TYPES, 'Dome').includes('dome'));
+    assert.equal(offeredDeviceTypes(noDome, FORM_TYPES, 'dome').length, 10);
 });
 
 test('offeredDeviceTypes offers nothing for an empty or failed catalog, even for the edited type', () => {

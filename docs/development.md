@@ -147,6 +147,8 @@ cmake --build AlpacaHTTP/build --parallel
 | `ALPACACORE_ENABLE_DEEPSKYDAD` | `OFF` | Deep Sky Dad FP1/FP2 flat panel (CoverCalibrator) |
 | `ALPACACORE_ENABLE_SIMULATOR` | `OFF` | Simulated devices (Dome simulator), no hardware |
 | `ALPACACORE_ENABLE_SCOPEDOME` | `OFF` | ScopeDome USB Card 2.1 domes (Dome) |
+| `ALPACACORE_ENABLE_OPENWEATHER` | `OFF` | OpenWeather current weather (ObservingConditions) |
+| `ALPACACORE_ENABLE_ALLSKY` | `OFF` | Allsky camera cloud cover and the weather safety monitor (turns OpenWeather on) |
 | `ALPACACORE_ENABLE_GPHOTO` | `OFF` | libgphoto2 DSLR/mirrorless cameras (Canon, Nikon, Sony) |
 
 ## Running tests
