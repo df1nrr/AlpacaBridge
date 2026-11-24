@@ -3917,7 +3917,7 @@ int main() {
         EXPECT(cfg.value("parkAzimuth", -1.0) == 270.0);
         const auto name = route_request(router, "GET", "/api/v1/dome/9773/name");
         EXPECT(name.status_code() == 200);
-        EXPECT(nlohmann::json::parse(name.body()).value("Value", "") == "AlpacaBridge Dome Simulator");
+        EXPECT(nlohmann::json::parse(name.body(), nullptr, false).value("Value", "") == "AlpacaBridge Dome Simulator");
         remove_device(router, "simulator", "dome", 9773);
     }
 #endif
