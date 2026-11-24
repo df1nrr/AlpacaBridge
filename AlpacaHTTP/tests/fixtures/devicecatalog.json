@@ -72,6 +72,18 @@
     ]
   },
   {
+    "vendor": "deepskydad",
+    "deviceType": "covercalibrator",
+    "displayName": "Deep Sky Dad Flat Panel (FP1/FP2)",
+    "available": true,
+    "buildOption": "ALPACACORE_ENABLE_DEEPSKYDAD",
+    "fields": [
+      {"key": "connectionType", "type": "string", "default": "auto", "required": false, "secret": false, "role": "Discriminator"},
+      {"key": "portPath", "type": "string", "default": "", "required": false, "secret": false, "role": "PortPath", "appliesWhen": {"key": "connectionType", "value": "serial"}},
+      {"key": "panelIndex", "type": "int", "default": 0, "required": false, "secret": false, "role": "EnumerationIndex"}
+    ]
+  },
+  {
     "vendor": "gemini",
     "deviceType": "covercalibrator",
     "displayName": "Gemini Flat Panel",
