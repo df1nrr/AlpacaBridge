@@ -1175,6 +1175,8 @@ inline constexpr SnapshotAdopterRow kSnapshotAdopterRoster[] = {
     {"celestron_cgx_telescope", "celestron", "AlpacaCore/src/vendors/celestron/celestron_cgx_telescope_driver.cpp"},
     {"remotealpaca_observingconditions", "remotealpaca",
      "AlpacaCore/src/vendors/remotealpaca/remotealpaca_observingconditions_driver.cpp"},
+    {"deepskydad_covercalibrator", "deepskydad",
+     "AlpacaCore/src/vendors/deepskydad/deepskydad_covercalibrator_driver.cpp"},
 };
 
 }  // namespace alpacacore::test::contract
