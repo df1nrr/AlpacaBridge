@@ -40,6 +40,7 @@ Symbol: `transition_mutex_`
 | Altair camera | `create_toupcam_family_camera` | `AlpacaCore/src/vendors/altair/altair_camera_driver.cpp` | adopted |  |  |
 | Astroasis focuser |  | `AlpacaCore/src/vendors/astroasis/astroasis_focuser_driver.cpp` | adopted |  | served from `PolledState` |
 | Deep Sky Dad flat panel |  | `AlpacaCore/src/vendors/deepskydad/deepskydad_covercalibrator_driver.cpp` | adopted |  | served from `PolledState`; commands take `command_mutex_`, an I/O-level lock, never `mutex_` across the wire |
+| Simulator dome |  | `AlpacaCore/src/vendors/simulator/simulator_dome_driver.cpp` | adopted |  | no device: getters compute the motion model under `mutex_` |
 | Bisque telescope |  | `AlpacaCore/src/vendors/bisque/bisque_telescope_driver.cpp` | partial | #1838 | rule 6: slew gate re-locks after a live `is_tracking()` without re-checking park |
 | Celestron CGX telescope |  | `AlpacaCore/src/vendors/celestron/celestron_cgx_telescope_driver.cpp` | adopted | #1759 |  |
 | Celestron focuser |  | `AlpacaCore/src/vendors/celestron/celestron_focuser_driver.cpp` | adopted |  |  |

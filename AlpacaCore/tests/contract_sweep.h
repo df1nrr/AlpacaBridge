@@ -129,6 +129,9 @@
 #ifdef ALPACACORE_ENABLE_DEEPSKYDAD
 #include <alpacacore/vendor/deepskydad/deepskydad_covercalibrator_driver.h>
 #endif
+#ifdef ALPACACORE_ENABLE_SIMULATOR
+#include <alpacacore/vendor/simulator/simulator_dome_driver.h>
+#endif
 #ifdef ALPACACORE_ENABLE_GPHOTO
 #include <alpacacore/vendor/gphoto/gphoto_camera_driver.h>
 #endif
@@ -189,6 +192,7 @@ inline int platform7_interface_version(DeviceType t) {
             return 4;
         case DeviceType::FilterWheel:
         case DeviceType::Switch:
+        case DeviceType::Dome:
             return 3;
         case DeviceType::CoverCalibrator:
         case DeviceType::ObservingConditions:
@@ -769,6 +773,14 @@ inline ContractEntry contract_entry_wandererastro_switch() {
 }
 #endif
 
+#ifdef ALPACACORE_ENABLE_SIMULATOR
+inline ContractEntry contract_entry_simulator_dome() {
+    return make_entry(
+        "simulator_dome", "simulator", "dome", DeviceType::Dome,
+        [](int n) -> std::unique_ptr<AlpacaDriver> { return vendor::simulator::create_simulator_dome(n); }, kSrcAgents);
+}
+#endif
+
 #ifdef ALPACACORE_ENABLE_DEEPSKYDAD
 inline ContractEntry contract_entry_deepskydad_covercalibrator() {
     return make_entry(
@@ -921,6 +933,11 @@ inline ContractEntry contract_entry_astroasis_focuser() {
 #else
 #define CS_DEEPSKYDAD(X)
 #endif
+#ifdef ALPACACORE_ENABLE_SIMULATOR
+#define CS_SIMULATOR(X) X(simulator_dome)
+#else
+#define CS_SIMULATOR(X)
+#endif
 
 // The formatter does not reach a fixed point on this continuation list.
 // clang-format off
@@ -944,7 +961,8 @@ inline ContractEntry contract_entry_astroasis_focuser() {
     CS_ALTAIR(X) \
     CS_WANDERERASTRO(X) \
     CS_ASTROASIS(X) \
-    CS_DEEPSKYDAD(X)
+    CS_DEEPSKYDAD(X) \
+    CS_SIMULATOR(X)
 // clang-format on
 
 namespace alpacacore::test::contract {

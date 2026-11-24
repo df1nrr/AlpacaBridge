@@ -63,6 +63,7 @@ Symbol: `TaskClock`
 | ZWO camera | `AlpacaCore/src/vendors/zwo/zwo_camera_driver.cpp` | adopted | #1328 | |
 | Astroasis focuser | `AlpacaCore/src/vendors/astroasis/astroasis_focuser_driver.cpp` | adopted | #1327 | on the clock from its first slot |
 | Deep Sky Dad flat panel | `AlpacaCore/src/vendors/deepskydad/deepskydad_covercalibrator_driver.cpp` | adopted |  | on the clock from its first slot: state poll and the flap-move grace and time limit |
+| Simulator dome | `AlpacaCore/src/vendors/simulator/simulator_dome_driver.cpp` | adopted |  | the motion model reads the clock; no thread |
 | Gemini focuser | `AlpacaCore/src/vendors/gemini/gemini_focuser_driver.cpp` | adopted | #1229 | on the clock from its first slot |
 | Gemini flat panel | `AlpacaCore/src/vendors/gemini/gemini_flatpanel_driver.cpp` | adopted | #1255 | |
 | Celestron focus motor | `AlpacaCore/src/vendors/celestron/celestron_focuser_driver.cpp` | adopted | #1320 | on the clock from its first slot |
