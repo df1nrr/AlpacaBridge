@@ -4724,6 +4724,7 @@ const std::vector<std::string>& name_brands_of(const std::string& vendor) {
         {"astroasis", {"Astroasis"}},
         {"bisque", {"Bisque"}},
         {"celestron", {"Celestron"}},
+        {"deepskydad", {"Deep Sky Dad"}},
         {"gemini", {"Gemini"}},
         {"gphoto",
          {"GPhoto", "Canon", "Nikon", "Sony", "Fuji", "Panasonic", "Olympus", "OM", "Pentax", "Leica", "Kodak", "Sigma",
@@ -5035,6 +5036,9 @@ TEST_CASE("Contract sweep tier 2 - hosts match kFakeConnectableRoster", "[contra
 #endif
 #ifdef ALPACACORE_ENABLE_ASTROASIS
     CS2_ENABLED("astroasis")
+#endif
+#ifdef ALPACACORE_ENABLE_DEEPSKYDAD
+    CS2_ENABLED("deepskydad")
 #endif
 #ifdef ALPACACORE_ENABLE_REMOTEALPACA
     CS2_ENABLED("remotealpaca")
