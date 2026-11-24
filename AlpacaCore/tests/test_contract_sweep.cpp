@@ -3779,6 +3779,9 @@ TEST_CASE("Contract sweep tier 2 - hosts match kFakeConnectableRoster", "[contra
 #ifdef ALPACACORE_ENABLE_ASTROASIS
     CS2_ENABLED("astroasis")
 #endif
+#ifdef ALPACACORE_ENABLE_DEEPSKYDAD
+    CS2_ENABLED("deepskydad")
+#endif
 #ifdef ALPACACORE_ENABLE_GEMINI
     CS2_ENABLED("gemini")
 #endif
