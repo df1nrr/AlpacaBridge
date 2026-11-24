@@ -424,6 +424,8 @@ if(TARGET alpacacore_scopedome)
     target_compile_definitions(alpacacore_tests PRIVATE ALPACACORE_ENABLE_SCOPEDOME)
 endif()
 if(TARGET alpacacore_allsky)
+    # test_allsky.cpp encodes its synthetic star fields with the vendored stb_image_write.h.
+    target_include_directories(alpacacore_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../external/stb)
     target_link_libraries(alpacacore_tests PRIVATE alpacacore_allsky)
     target_compile_definitions(alpacacore_tests PRIVATE ALPACACORE_ENABLE_ALLSKY)
 endif()

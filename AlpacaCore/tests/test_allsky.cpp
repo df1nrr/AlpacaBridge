@@ -13,13 +13,14 @@
 // Allsky camera cloud cover and the weather safety monitor. The image and the weather
 // are injected (AllskyFetcher, OpenWeatherFetcher) and the wall clock is fixed, so the
 // cases run with no network and decide night or day themselves. Synthetic star fields
-// are encoded to JPEG here with libjpeg, as the camera would serve them.
+// are encoded to JPEG here with stb_image_write, as the camera would serve them.
 
 #include <alpacacore/util/error_handling.h>
 #include <alpacacore/vendor/allsky/allsky_drivers.h>
 #include <alpacacore/vendor/allsky/allsky_image_analysis.h>
 #include <alpacacore/version.h>
 
+#include <algorithm>
 #include <atomic>
 #include <chrono>
 #include <cmath>
@@ -31,7 +32,19 @@
 #include <string>
 #include <vector>
 
-#include <jpeglib.h>
+#define STB_IMAGE_WRITE_STATIC
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+#pragma GCC diagnostic ignored "-Wsign-compare"
+#pragma GCC diagnostic ignored "-Wconversion"
+#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
+#endif
+#include "stb_image_write.h"
+#if defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
 
 #include "catch2_compat.h"
 #include "driver_rig.h"
@@ -77,33 +90,12 @@ std::string star_field_jpeg(int stars, int background = 30, unsigned seed = 7, b
             for (int x = 0; x < w; ++x)
                 if ((x - 380) * (x - 380) + (y - 260) * (y - 260) < 40 * 40) img[static_cast<std::size_t>(y) * w + x] = 255;
     }
-    std::vector<unsigned char> rgb(static_cast<std::size_t>(w) * h * 3);
-    for (std::size_t i = 0; i < img.size(); ++i) {
-        const auto v = static_cast<unsigned char>(std::clamp(img[i], 0.0f, 255.0f));
-        rgb[3 * i] = rgb[3 * i + 1] = rgb[3 * i + 2] = v;
-    }
-    jpeg_compress_struct cinfo{};
-    jpeg_error_mgr jerr{};
-    cinfo.err = jpeg_std_error(&jerr);
-    jpeg_create_compress(&cinfo);
-    unsigned char* out = nullptr;
-    unsigned long out_size = 0;
-    jpeg_mem_dest(&cinfo, &out, &out_size);
-    cinfo.image_width = w;
-    cinfo.image_height = h;
-    cinfo.input_components = 3;
-    cinfo.in_color_space = JCS_RGB;
-    jpeg_set_defaults(&cinfo);
-    jpeg_set_quality(&cinfo, 95, TRUE);
-    jpeg_start_compress(&cinfo, TRUE);
-    while (cinfo.next_scanline < cinfo.image_height) {
-        JSAMPROW row = rgb.data() + static_cast<std::size_t>(cinfo.next_scanline) * w * 3;
-        jpeg_write_scanlines(&cinfo, &row, 1);
-    }
-    jpeg_finish_compress(&cinfo);
-    std::string bytes(reinterpret_cast<char*>(out), out_size);
-    jpeg_destroy_compress(&cinfo);
-    std::free(out);
+    std::vector<unsigned char> gray(img.size());
+    for (std::size_t i = 0; i < img.size(); ++i) gray[i] = static_cast<unsigned char>(std::clamp(img[i], 0.0f, 255.0f));
+    std::string bytes;
+    stbi_write_jpg_to_func(
+        [](void* ctx, void* data, int size) { static_cast<std::string*>(ctx)->append(static_cast<char*>(data), size); },
+        &bytes, w, h, 1, gray.data(), 95);
     return bytes;
 }
 

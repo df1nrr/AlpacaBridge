@@ -9,7 +9,9 @@ OpenWeather and, optionally, the camera).
 
 The image is any JPEG an allsky camera publishes over HTTP (the Allsky software's `image.jpg`); nothing runs on the
 camera computer. It is fetched through a seam (`AllskyFetcher`; default libcurl, http/https, 16 MiB cap) and decoded
-by libjpeg to grayscale at half size.
+to grayscale at half size by the vendored `external/stb/stb_image.h`, compiled static into
+`allsky_image_analysis.cpp`. Not libjpeg: the server process already holds libjpeg builds of two ABI versions, and a
+mixed call aborts the decode ("Wrong JPEG library version: library is 90, caller expects 62", the first fork build).
 
 - Star count (`analyse_allsky_image`): Gaussian smoothing (sigma 1 px) drops single-pixel noise and hot pixels; a grey
   opening (7 px) then a 15 px box give the star-free background; a star is a 7x7 local maximum 8 robust sigma above

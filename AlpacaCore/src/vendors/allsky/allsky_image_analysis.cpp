@@ -15,29 +15,43 @@
 
 #include <algorithm>
 #include <cmath>
-#include <csetjmp>
-#include <cstdio>
+#include <cstdlib>
+#include <memory>
 #include <vector>
 
-#include <jpeglib.h>
+// stb_image, compiled into this file only and with every symbol static: no decoder symbol is
+// exported, so no libjpeg build already in the process (gphoto, a camera SDK) can collide with it.
+#define STB_IMAGE_STATIC
+#define STB_IMAGE_IMPLEMENTATION
+#define STBI_ONLY_JPEG
+#define STBI_NO_STDIO
+#define STBI_NO_LINEAR
+#define STBI_NO_HDR
+#define STBI_MAX_DIMENSIONS 16384
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+#pragma GCC diagnostic ignored "-Wsign-compare"
+#pragma GCC diagnostic ignored "-Wconversion"
+#pragma GCC diagnostic ignored "-Wshadow"
+#pragma GCC diagnostic ignored "-Wdouble-promotion"
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#pragma GCC diagnostic ignored "-Wold-style-cast"
+#pragma GCC diagnostic ignored "-Wuseless-cast"
+#pragma GCC diagnostic ignored "-Wsign-conversion"
+#pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
+#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
+#endif
+#include "stb_image.h"
+#if defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
 
 namespace alpacacore::vendor::allsky {
 
 namespace {
 
 using Plane = std::vector<float>;
-
-struct JpegError {
-    jpeg_error_mgr mgr;
-    std::jmp_buf jump;
-    char message[JMSG_LENGTH_MAX];
-};
-
-void on_jpeg_error(j_common_ptr cinfo) {
-    auto* err = reinterpret_cast<JpegError*>(cinfo->err);
-    (*cinfo->err->format_message)(cinfo, err->message);
-    std::longjmp(err->jump, 1);
-}
 
 // Separable 1-D pass along rows (horizontal) or columns, each output pixel from a window of radius r.
 template <typename Op>
@@ -118,44 +132,39 @@ double median_of(std::vector<float> v) {
 }  // namespace
 
 GrayImage decode_allsky_jpeg(const std::string& jpeg_bytes) {
-    // A frame fetched while the camera is still writing it ends before its EOI marker. libjpeg only
-    // warns about that and fills the rest grey, which would read as a starless (cloudy) sky.
+    // A frame fetched while the camera is still writing it ends before its EOI marker. A decoder may
+    // fill the rest grey, which would read as a starless (cloudy) sky: refuse it instead.
     std::size_t end = jpeg_bytes.size();
     while (end > 0 && (jpeg_bytes[end - 1] == '\0' || jpeg_bytes[end - 1] == '\n' || jpeg_bytes[end - 1] == '\r')) --end;
     if (end < 4 || static_cast<unsigned char>(jpeg_bytes[0]) != 0xFF || static_cast<unsigned char>(jpeg_bytes[1]) != 0xD8 ||
         static_cast<unsigned char>(jpeg_bytes[end - 2]) != 0xFF || static_cast<unsigned char>(jpeg_bytes[end - 1]) != 0xD9) {
         throw AlpacaException("Allsky image is incomplete or not a JPEG (caught mid-write?)", AlpacaError::DriverException);
     }
-    jpeg_decompress_struct cinfo{};
-    JpegError err{};
-    cinfo.err = jpeg_std_error(&err.mgr);
-    err.mgr.error_exit = on_jpeg_error;
-    GrayImage image;
-    if (setjmp(err.jump) != 0) {
-        jpeg_destroy_decompress(&cinfo);
-        throw AlpacaException(std::string("Allsky image is not a readable JPEG: ") + err.message,
+    int w = 0;
+    int h = 0;
+    int components = 0;
+    std::unique_ptr<stbi_uc, void (*)(void*)> full(
+        stbi_load_from_memory(reinterpret_cast<const stbi_uc*>(jpeg_bytes.data()), static_cast<int>(end), &w, &h,
+                              &components, 1),
+        stbi_image_free);
+    if (!full) {
+        throw AlpacaException(std::string("Allsky image is not a readable JPEG: ") + stbi_failure_reason(),
                               AlpacaError::DriverException);
     }
-    jpeg_create_decompress(&cinfo);
-    jpeg_mem_src(&cinfo, reinterpret_cast<const unsigned char*>(jpeg_bytes.data()),
-                 static_cast<unsigned long>(jpeg_bytes.size()));
-    if (jpeg_read_header(&cinfo, TRUE) != JPEG_HEADER_OK) {
-        jpeg_destroy_decompress(&cinfo);
-        throw AlpacaException("Allsky image is not a JPEG", AlpacaError::DriverException);
-    }
-    cinfo.out_color_space = JCS_GRAYSCALE;
-    cinfo.scale_num = 1;
-    cinfo.scale_denom = 2;
-    jpeg_start_decompress(&cinfo);
-    image.width = static_cast<int>(cinfo.output_width);
-    image.height = static_cast<int>(cinfo.output_height);
+    // Half size, each output pixel the mean of a 2x2 block (as the libjpeg 1/2 DCT scaling did).
+    GrayImage image;
+    image.width = w / 2;
+    image.height = h / 2;
     image.pixels.resize(static_cast<std::size_t>(image.width) * static_cast<std::size_t>(image.height));
-    while (cinfo.output_scanline < cinfo.output_height) {
-        JSAMPROW row = image.pixels.data() + static_cast<std::size_t>(cinfo.output_scanline) * image.width;
-        jpeg_read_scanlines(&cinfo, &row, 1);
+    const stbi_uc* src = full.get();
+    for (int y = 0; y < image.height; ++y) {
+        const stbi_uc* r0 = src + static_cast<std::size_t>(2 * y) * w;
+        const stbi_uc* r1 = r0 + w;
+        std::uint8_t* out = image.pixels.data() + static_cast<std::size_t>(y) * image.width;
+        for (int x = 0; x < image.width; ++x) {
+            out[x] = static_cast<std::uint8_t>((r0[2 * x] + r0[2 * x + 1] + r1[2 * x] + r1[2 * x + 1] + 2) / 4);
+        }
     }
-    jpeg_finish_decompress(&cinfo);
-    jpeg_destroy_decompress(&cinfo);
     return image;
 }
 
