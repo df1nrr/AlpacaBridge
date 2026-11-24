@@ -75,7 +75,7 @@ jobs:
           chown -R builder "$GITHUB_WORKSPACE" "$OUT"
           as_builder() { runuser -u builder -- env OUT="$OUT" bash -c "$1"; }
           rc=0
-          as_builder 'AlpacaHTTP/build/AlpacaCore/tests/alpacacore_tests "[deepskydad]" 2>&1 | tail -60 > "$OUT/test-vendor.log"' || rc=1
+          as_builder 'AlpacaHTTP/build/AlpacaCore/tests/alpacacore_tests "[deepskydad],[simulator]" 2>&1 | tail -60 > "$OUT/test-vendor.log"' || rc=1
           tail -5 "$OUT/test-vendor.log"
           as_builder 'ctest --test-dir AlpacaHTTP/build --output-on-failure --timeout 600 -j "$(nproc)" -R "Contract sweep|[Rr]outing|catalog" > "$OUT/test-sweep.log" 2>&1' || rc=1
           tail -40 "$OUT/test-sweep.log"
@@ -96,8 +96,17 @@ jobs:
           set -euo pipefail
           rm -rf AlpacaHTTP/build
           scripts/build_deb.sh > "$OUT/build-deb.log" 2>&1 || { tail -60 "$OUT/build-deb.log"; exit 1; }
-          cp ../alpacabridge_*_arm64.deb "$OUT/"
-          dpkg-deb --info "$OUT"/alpacabridge_*_arm64.deb | head -20
+          # Repack with a fork version above the upstream one it is built from
+          # (6.0.0~beta4 -> 6.0.0~beta4+df1nrr.<UTC stamp>), so apt installs it as an
+          # upgrade over upstream and over an older fork build.
+          deb="$(ls ../alpacabridge_*_arm64.deb)"
+          base="$(dpkg-deb -f "$deb" Version)"
+          ver="${base}+df1nrr.$(date -u +%Y%m%d%H%M)"
+          rm -rf /tmp/repack && dpkg-deb -R "$deb" /tmp/repack
+          sed -i "s/^Version: .*/Version: ${ver}/" /tmp/repack/DEBIAN/control
+          dpkg-deb -Zxz -b /tmp/repack "$OUT/alpacabridge_${ver}_arm64.deb" > /dev/null
+          dpkg-deb --info "$OUT/alpacabridge_${ver}_arm64.deb" > "$OUT/deb-info.txt"
+          grep -E "Package|Version|Architecture" "$OUT/deb-info.txt" || true
 
       - name: Upload artifacts
         if: always()
