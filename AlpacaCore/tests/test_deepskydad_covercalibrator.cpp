@@ -373,7 +373,13 @@ TEST_CASE("Deep Sky Dad CoverCalibrator Driver - Deferred connect resolves the p
         throw alpacacore::AlpacaException("no panel found", AlpacaError::NotConnected);
     });
     std::string message;
-    CHECK(alpacacore::test::error_code_of([&]() { refused->set_connected(true); }, &message) ==
-          static_cast<int>(AlpacaError::NotConnected));
+    int code = 0;
+    try {
+        refused->set_connected(true);
+    } catch (const alpacacore::AlpacaException& e) {
+        code = e.error_code();
+        message = e.what();
+    }
+    CHECK(code == static_cast<int>(AlpacaError::NotConnected));
     CHECK(message == "no panel found");
 }

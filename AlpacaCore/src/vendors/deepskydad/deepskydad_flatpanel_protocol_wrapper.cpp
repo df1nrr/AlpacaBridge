@@ -115,7 +115,7 @@ bool probe_link(util::SerialLink& link, std::string& firmware) {
         // A native-USB MCU can still be enumerating its CDC interface right after the open.
         std::this_thread::sleep_for(std::chrono::milliseconds(attempt == 0 ? 100 : 800));
         tcflush(link.fd(), TCIOFLUSH);
-        if (!link.write_all(std::string("[GFRM]"))) {
+        if (!util::tty_write_all(link.fd(), std::string("[GFRM]"))) {
             return false;
         }
         util::ReadSpec spec;
@@ -123,7 +123,7 @@ bool probe_link(util::SerialLink& link, std::string& firmware) {
         spec.terminators = ")";
         spec.max_len = kMaxReplyLen;
         const auto r = util::read_until(
-            link, spec, std::chrono::steady_clock::now() + std::chrono::milliseconds(kHandshakeReadTimeoutMs));
+            link.fd(), spec, std::chrono::steady_clock::now() + std::chrono::milliseconds(kHandshakeReadTimeoutMs));
         if (r.outcome == util::ReadOutcome::LinkDead) {
             return false;
         }
@@ -142,7 +142,11 @@ bool raw_port_is_candidate(const std::string& port_path) {
     // A raw ttyACM node with no by-id name: only a descriptor naming the vendor
     // qualifies, so the scan never writes to an unrelated CDC device.
     const auto descriptor = util::read_raw_tty_usb_descriptor(port_path);
-    return descriptor && util::usb_tty_descriptor_matches(*descriptor, deepskydad_flatpanel_usb_tokens());
+    if (!descriptor) return false;
+    for (const auto& token : deepskydad_flatpanel_usb_tokens()) {
+        if (util::usb_tty_descriptor_matches(*descriptor, {token})) return true;
+    }
+    return false;
 }
 
 }  // namespace
@@ -273,7 +277,7 @@ public:
                                   AlpacaError::NotConnected);
         }
         // A hangup the retries absorbed is not a loss (#2262).
-        link_.clear_loss();
+        clear_loss();
         model_.store(model);
         connected_ = true;
         ALPACA_LOG_INFO("DeepSkyDad", "Flat panel connected on " + config_.serial_port + " (" + firmware + ")");
@@ -287,7 +291,7 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
         disconnect_locked();
 #ifndef _WIN32
-        link_.clear_loss();
+        clear_loss();
 #endif
     }
 
@@ -295,7 +299,7 @@ public:
 
     bool link_alive() const noexcept {
 #ifndef _WIN32
-        return !link_.lost();
+        return !lost_.load();
 #else
         return true;
 #endif
@@ -303,7 +307,7 @@ public:
 
     std::string link_fault() const {
 #ifndef _WIN32
-        return link_.lost() ? link_.fault() : std::string();
+        return lost_.load() ? fault_text() : std::string();
 #else
         return {};
 #endif
@@ -350,8 +354,8 @@ private:
             throw AlpacaException("Deep Sky Dad flat panel not connected", AlpacaError::NotConnected);
         }
 #ifndef _WIN32
-        if (link_.lost()) {
-            throw AlpacaException(link_.fault(), AlpacaError::NotConnected);
+        if (lost_.load()) {
+            throw AlpacaException(fault_text(), AlpacaError::NotConnected);
         }
 #endif
     }
@@ -366,7 +370,7 @@ private:
 #ifndef _WIN32
     // The port is gone: release it so a replugged panel can be reopened, and fail NotConnected.
     [[noreturn]] void fail_link_locked() {
-        const std::string reason = link_.fault();
+        const std::string reason = fault_text();
         if (connected_) {
             ALPACA_LOG_ERROR("DeepSkyDad",
                              "Flat panel link lost on " + config_.serial_port + ": " + reason + " (port released)");
@@ -382,8 +386,11 @@ private:
 #ifndef _WIN32
         ALPACA_LOG_TRACE("DeepSkyDad", "Flat panel command: " + cmd);
         tcflush(link_.fd(), TCIOFLUSH);
-        if (!link_.write_all(cmd)) {
-            if (link_.lost()) fail_link_locked();
+        if (!util::tty_write_all(link_.fd(), cmd)) {
+            if (!link_.node_present()) {
+                mark_lost("Flat panel unplugged (" + config_.serial_port + " is gone)");
+                fail_link_locked();
+            }
             throw AlpacaException("Flat panel write failed", AlpacaError::DriverException);
         }
         util::ReadSpec spec;
@@ -391,11 +398,12 @@ private:
         spec.terminators = ")";
         spec.max_len = kMaxReplyLen;
         const auto r =
-            util::read_until(link_, spec, std::chrono::steady_clock::now() + std::chrono::milliseconds(timeout_ms));
+            util::read_until(link_.fd(), spec, std::chrono::steady_clock::now() + std::chrono::milliseconds(timeout_ms));
         switch (r.outcome) {
             case util::ReadOutcome::Terminator:
                 break;
             case util::ReadOutcome::LinkDead:
+                mark_lost("Flat panel link lost on " + config_.serial_port + " (the port hung up)");
                 fail_link_locked();
             case util::ReadOutcome::Overflow:
                 throw AlpacaException("Flat panel reply to " + cmd + " too long", AlpacaError::DriverException);
@@ -431,7 +439,29 @@ private:
         }
     }
 
+    // The loss verdict, readable without the I/O lock: set when the port hangs up or
+    // disappears, cleared by a connect and a disconnect.
+    void mark_lost(const std::string& why) {
+        {
+            std::lock_guard<std::mutex> lock(fault_mutex_);
+            if (!lost_.load()) fault_ = why;
+        }
+        lost_.store(true);
+    }
+    void clear_loss() {
+        std::lock_guard<std::mutex> lock(fault_mutex_);
+        lost_.store(false);
+        fault_.clear();
+    }
+    std::string fault_text() const {
+        std::lock_guard<std::mutex> lock(fault_mutex_);
+        return fault_;
+    }
+
     mutable std::mutex mutex_;  // the per-link I/O lock: one exchange at a time
+    std::atomic<bool> lost_{false};
+    mutable std::mutex fault_mutex_;  // leaf: guards fault_ only
+    std::string fault_;
     FlatPanelConnectionConfig config_;
     bool connected_ = false;
     std::atomic<FlatPanelModel> model_{FlatPanelModel::FP2};

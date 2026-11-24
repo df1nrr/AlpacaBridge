@@ -38,9 +38,6 @@ void register_deepskydad_factory(DeviceCatalog& catalog) {
     };
     catalog.add(std::move(panel));
 
-    catalog.add_usb_serial_identity({DeviceKey{"deepskydad", DeviceType::CoverCalibrator},
-                                     vendor::deepskydad::deepskydad_flatpanel_usb_tokens(),
-                                     {}});
 }
 
 }  // namespace alpacacore::catalog
