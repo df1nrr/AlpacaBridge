@@ -3875,7 +3875,7 @@ int main() {
         EXPECT(cfg.value("portPath", "") == "/dev/ttyACM3");
         const auto name = route_request(router, "GET", "/api/v1/covercalibrator/9771/name");
         EXPECT(name.status_code() == 200);
-        EXPECT(nlohmann::json::parse(name.body()).value("Value", "") == "Deep Sky Dad FP2");
+        EXPECT(nlohmann::json::parse(name.body(), nullptr, false).value("Value", "") == "Deep Sky Dad FP2");
         remove_device(router, "deepskydad", "covercalibrator", 9771);
     }
     {

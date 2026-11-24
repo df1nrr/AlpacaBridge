@@ -73,15 +73,18 @@ jobs:
           rc=0
           "$T" "[deepskydad]" 2>&1 | tail -60 | tee "$OUT/test-vendor.log" || rc=1
           ctest --test-dir AlpacaHTTP/build --output-on-failure --timeout 600 -j "$(nproc)" \
-            -R "Contract sweep|[Rr]outing|catalog" 2>&1 | tail -80 | tee "$OUT/test-sweep.log" || rc=1
+            -R "Contract sweep|[Rr]outing|catalog" > "$OUT/test-sweep.log" 2>&1 || rc=1
+          tail -40 "$OUT/test-sweep.log"
+          # test_routing is one process for every case: keep its whole output.
+          ( cd AlpacaHTTP/build/test_routing_cwd && ../test_routing ) > "$OUT/test-routing.log" 2>&1 || { rc=1; tail -60 "$OUT/test-routing.log"; }
           exit $rc
 
       - name: Test (full suite)
         shell: bash
         run: |
           set -o pipefail
-          ctest --test-dir AlpacaHTTP/build --output-on-failure --timeout 600 -j "$(nproc)" -E "\[stress\]" 2>&1 \
-            | tail -120 | tee "$OUT/test-full.log"
+          ctest --test-dir AlpacaHTTP/build --output-on-failure --timeout 600 -j "$(nproc)" -E "\[stress\]" > "$OUT/test-full.log" 2>&1 \
+            || { tail -120 "$OUT/test-full.log"; exit 1; }
 
       - name: Build the .deb
         if: success()
