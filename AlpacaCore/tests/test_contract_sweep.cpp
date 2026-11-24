@@ -4145,6 +4145,20 @@ constexpr double kSnapshotValueMargin = 0.01;
     return g;
 }
 
+// The cover and calibrator state the Deep Sky Dad panel serves from its frame.
+[[maybe_unused]] std::vector<SnapshotGetter> snapshot_covercalibrator_getters() {
+    using alpacacore::CoverCalibratorDriver;
+    std::vector<SnapshotGetter> g;
+#define SNAP_CC(label, call) \
+    g.push_back({label, [](AlpacaDriver& d) { return snap_text(static_cast<CoverCalibratorDriver&>(d).call); }});
+    SNAP_CC("CoverState", get_cover_state())
+    SNAP_CC("CoverMoving", get_cover_moving())
+    SNAP_CC("CalibratorState", get_calibrator_state())
+    SNAP_CC("Brightness", get_brightness())
+#undef SNAP_CC
+    return g;
+}
+
 bool snapshot_has_time_stamp(const AlpacaDriver& driver) {
     const auto state = driver.get_device_state();
     return std::any_of(state.begin(), state.end(), [](const auto& e) { return e.name == "TimeStamp"; });
@@ -4475,6 +4489,21 @@ std::unique_ptr<SnapshotRig> snapshot_rig_qhy_focuser() {
 }
 #endif
 
+#ifdef ALPACACORE_ENABLE_DEEPSKYDAD
+// Recipe of test_deepskydad_covercalibrator.cpp: a muted panel holds the frame (each poll waits out its reply timeout).
+std::unique_ptr<SnapshotRig> snapshot_rig_deepskydad_covercalibrator() {
+    auto rig_owner = std::make_unique<SnapshotRig>();
+    SnapshotRig& rig = *rig_owner;
+    auto fake = std::make_shared<alpacacore::test::FakeDeepSkyDadFlatPanel>();
+    rig.fake = fake;
+    rig.driver = alpacacore::vendor::deepskydad::create_deepskydad_covercalibrator(0, fake->slave_path(), *rig.clock);
+    rig.driver->set_connected(true);
+    rig.await_poll();
+    rig.hold_frame = [fake] { fake->set_muted(true); };
+    return rig_owner;
+}
+#endif
+
 #ifdef ALPACACORE_ENABLE_ASTROASIS
 // Recipe of test_astroasis_focuser.cpp: the HID fake with its reads timing out ("dead") holds the frame.
 std::unique_ptr<SnapshotRig> snapshot_rig_astroasis_focuser() {
@@ -4577,9 +4606,14 @@ std::unique_ptr<SnapshotRig> snapshot_rig_zwo_telescope() {
 #else
 #define CS3_ASTROASIS(X)
 #endif
+#ifdef ALPACACORE_ENABLE_DEEPSKYDAD
+#define CS3_DEEPSKYDAD(X) X(deepskydad_covercalibrator, snapshot_covercalibrator_getters())
+#else
+#define CS3_DEEPSKYDAD(X)
+#endif
 #define CONTRACT_SWEEP_SNAPSHOT_ADOPTERS(X) \
     CS3_ZWO(X) CS3_SKYWATCHER(X) CS3_CELESTRON(X) CS3_BISQUE(X) CS3_SYNSCAN(X) CS3_ONSTEP(X) CS3_GEMINI(X) CS3_QHY(X) \
-        CS3_ASTROASIS(X)
+        CS3_ASTROASIS(X) CS3_DEEPSKYDAD(X)
 // clang-format on
 
 // Every getter must answer on the live link first: a getter that throws here is a setup defect of the hook,

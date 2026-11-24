@@ -1049,6 +1049,8 @@ inline constexpr SnapshotAdopterRow kSnapshotAdopterRoster[] = {
     {"astroasis_focuser", "astroasis", "AlpacaCore/src/vendors/astroasis/astroasis_focuser_driver.cpp"},
     {"celestron_focuser", "celestron", "AlpacaCore/src/vendors/celestron/celestron_focuser_driver.cpp"},
     {"celestron_cgx_telescope", "celestron", "AlpacaCore/src/vendors/celestron/celestron_cgx_telescope_driver.cpp"},
+    {"deepskydad_covercalibrator", "deepskydad",
+     "AlpacaCore/src/vendors/deepskydad/deepskydad_covercalibrator_driver.cpp"},
 };
 
 }  // namespace alpacacore::test::contract
