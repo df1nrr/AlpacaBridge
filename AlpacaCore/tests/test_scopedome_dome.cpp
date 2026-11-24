@@ -42,6 +42,7 @@ using alpacacore::test::require_alpaca_error;
 namespace sd = alpacacore::vendor::scopedome;
 using Cmd = sd::ScopeDomeCommand;
 using Ch = sd::ScopeDomeChannel;
+using Catch::Approx;
 
 constexpr auto kPeriod = std::chrono::milliseconds(500);
 constexpr auto kBound = std::chrono::milliseconds(5000);
