@@ -25,13 +25,17 @@ jobs:
     timeout-minutes: 150
     env:
       DEBIAN_FRONTEND: noninteractive
+      OUT: /tmp/out   # outside the workspace, which actions/checkout cleans
     steps:
       - name: Install tools
+        shell: bash
         run: |
           set -euo pipefail
-          apt-get update -qq
-          apt-get install -y -qq --no-install-recommends ca-certificates git python3 dpkg-dev binutils \
-            build-essential catch2 file
+          mkdir -p "$OUT"
+          { apt-get update -qq
+            apt-get install -y -qq --no-install-recommends ca-certificates git python3 dpkg-dev binutils \
+              build-essential catch2 file
+          } > "$OUT/setup.log" 2>&1 || { tail -50 "$OUT/setup.log"; exit 1; }
           git config --global --add safe.directory '*'
 
       - name: Checkout
@@ -40,16 +44,19 @@ jobs:
           persist-credentials: false
 
       - name: Install build dependencies
-        run: apt-get build-dep -y ./
+        shell: bash
+        run: |
+          set -o pipefail
+          apt-get build-dep -y ./ 2>&1 | tail -60 > "$OUT/build-dep.log"
+          test "${PIPESTATUS[0]}" -eq 0
 
       - name: Build (all vendors, tests on)
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p out
-          cmake -S AlpacaHTTP -B AlpacaHTTP/build -DALPACAHTTP_BUILD_TESTS=ON -DALPACACORE_BUILD_TESTS=ON \
+                    cmake -S AlpacaHTTP -B AlpacaHTTP/build -DALPACAHTTP_BUILD_TESTS=ON -DALPACACORE_BUILD_TESTS=ON \
             -DALPACACORE_ENABLE_ALL_VENDORS=ON 2>&1 | tail -20
-          cmake --build AlpacaHTTP/build --parallel "$(nproc)" 2>&1 | tee out/build.log | grep -E "error|warning: " || true
+          cmake --build AlpacaHTTP/build --parallel "$(nproc)" 2>&1 | tee "$OUT/build.log" | grep -E "error|warning: " || true
           test "${PIPESTATUS[0]}" -eq 0
 
       - name: Test (new vendor, contract sweep, routing)
@@ -58,9 +65,9 @@ jobs:
           set -o pipefail
           T=AlpacaHTTP/build/AlpacaCore/tests/alpacacore_tests
           rc=0
-          "$T" "[deepskydad]" 2>&1 | tail -60 | tee out/test-vendor.log || rc=1
+          "$T" "[deepskydad]" 2>&1 | tail -60 | tee "$OUT/test-vendor.log" || rc=1
           ctest --test-dir AlpacaHTTP/build --output-on-failure --timeout 600 -j "$(nproc)" \
-            -R "Contract sweep|[Rr]outing|catalog" 2>&1 | tail -80 | tee out/test-sweep.log || rc=1
+            -R "Contract sweep|[Rr]outing|catalog" 2>&1 | tail -80 | tee "$OUT/test-sweep.log" || rc=1
           exit $rc
 
       - name: Test (full suite)
@@ -68,7 +75,7 @@ jobs:
         run: |
           set -o pipefail
           ctest --test-dir AlpacaHTTP/build --output-on-failure --timeout 600 -j "$(nproc)" -E "\[stress\]" 2>&1 \
-            | tail -120 | tee out/test-full.log
+            | tail -120 | tee "$OUT/test-full.log"
 
       - name: Build the .deb
         if: success()
@@ -76,16 +83,16 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf AlpacaHTTP/build
-          scripts/build_deb.sh 2>&1 | tail -30
-          cp ../alpacabridge_*_arm64.deb out/
-          dpkg-deb --info out/alpacabridge_*_arm64.deb | head -20
+          scripts/build_deb.sh > "$OUT/build-deb.log" 2>&1 || { tail -60 "$OUT/build-deb.log"; exit 1; }
+          cp ../alpacabridge_*_arm64.deb "$OUT/"
+          dpkg-deb --info "$OUT"/alpacabridge_*_arm64.deb | head -20
 
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: fork-build
-          path: out/
+          path: /tmp/out/
 
       - name: Commit outputs to fork-build-output branch
         if: always()
@@ -98,11 +105,10 @@ jobs:
           REF: ${{ github.ref_name }}
         run: |
           set -euo pipefail
-          src_sha="$(git rev-parse HEAD)"
-          ws="$PWD"
-          mkdir -p out ../publish-out && cd ../publish-out
+          src_sha="$(git rev-parse HEAD 2>/dev/null || echo unknown)"
+          mkdir -p "$OUT" /tmp/publish-out && cd /tmp/publish-out
           git init -q -b fork-build-output
-          for f in "$ws"/out/*; do
+          for f in "$OUT"/*; do
             [ -f "$f" ] || continue
             if [ "$(stat -c %s "$f")" -gt 95000000 ]; then
               split -b 90m -d "$f" "$(basename "$f").part"
