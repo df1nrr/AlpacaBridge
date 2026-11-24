@@ -106,6 +106,7 @@ Symbol: `StateSnapshot`
 | QHY Q-Focuser | `PolledState` | `AlpacaCore/src/vendors/qhy/qhy_focuser_driver.cpp` | adopted | #1310 | 250 ms; [QHY instructions](../../.github/instructions/qhy.instructions.md) |
 | Astroasis focuser | `PolledState` | `AlpacaCore/src/vendors/astroasis/astroasis_focuser_driver.cpp` | adopted | #1327 | 100 ms; [Astroasis instructions](../../.github/instructions/astroasis.instructions.md) |
 | Deep Sky Dad flat panel | `PolledState` | `AlpacaCore/src/vendors/deepskydad/deepskydad_covercalibrator_driver.cpp` | adopted |  | 500 ms; [Deep Sky Dad instructions](../../.github/instructions/deepskydad.instructions.md) |
+| ScopeDome dome | `PolledState` | `AlpacaCore/src/vendors/scopedome/scopedome_dome_driver.cpp` | adopted |  | 500 ms; the poll body also finishes and refines moves; [ScopeDome instructions](../../.github/instructions/scopedome.instructions.md) |
 | Celestron focus motor | `PolledState` | `AlpacaCore/src/vendors/celestron/celestron_focuser_driver.cpp` | adopted | #1320, #1643 | 250 ms; [Celestron instructions](../../.github/instructions/celestron.instructions.md) |
 | Celestron CGX telescope | `PolledState` | `AlpacaCore/src/vendors/celestron/celestron_cgx_telescope_driver.cpp` | adopted | #1940 | 250 ms; Celestron CGX telescope adoption above |
 | OnStep telescope | `StateSnapshot` | `AlpacaCore/src/vendors/onstep/onstep_telescope_driver.cpp` | adopted | #1783 | 1 s; OnStep telescope adoption above |

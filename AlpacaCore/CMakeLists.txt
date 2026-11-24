@@ -40,6 +40,7 @@ option(ALPACACORE_ENABLE_WANDERERASTRO "Enable WandererAstro CoverCalibrator ven
 option(ALPACACORE_ENABLE_ASTROASIS "Enable Astroasis Oasis Focuser vendor support" OFF)
 option(ALPACACORE_ENABLE_DEEPSKYDAD "Enable Deep Sky Dad flat panel (CoverCalibrator) vendor support" OFF)
 option(ALPACACORE_ENABLE_SIMULATOR "Enable simulated devices (Dome simulator)" OFF)
+option(ALPACACORE_ENABLE_SCOPEDOME "Enable ScopeDome USB Card 2.1 dome support" OFF)
 option(ALPACACORE_ENABLE_GPHOTO "Enable libgphoto2 DSLR/mirrorless camera vendor support" OFF)
 # The gphoto driver links the bundled libgphoto2 built by
 # scripts/build_bundled_gphoto.sh from AlpacaCore/external/libgphoto2/. PREFIX is
@@ -71,6 +72,7 @@ if(ALPACACORE_ENABLE_ALL_VENDORS)
     set(ALPACACORE_ENABLE_ASTROASIS ON)
     set(ALPACACORE_ENABLE_DEEPSKYDAD ON)
     set(ALPACACORE_ENABLE_SIMULATOR ON)
+    set(ALPACACORE_ENABLE_SCOPEDOME ON)
     set(ALPACACORE_ENABLE_GPHOTO ON)
 endif()
 
@@ -132,6 +134,7 @@ add_library(alpacacore_builtins STATIC
     src/vendors/astroasis/astroasis_schema.cpp
     src/vendors/deepskydad/deepskydad_schema.cpp
     src/vendors/simulator/simulator_schema.cpp
+    src/vendors/scopedome/scopedome_schema.cpp
     src/vendors/skywatcher/skywatcher_schema.cpp
     src/vendors/weewx/weewx_schema.cpp
     src/vendors/svbony/svbony_schema.cpp
@@ -339,6 +342,14 @@ if(ALPACACORE_ENABLE_SIMULATOR)
         # register_builtin_factories() guards its simulator factory behind this macro.
         target_compile_definitions(alpacacore_builtins PRIVATE ALPACACORE_ENABLE_SIMULATOR)
     endif()
+
+if(ALPACACORE_ENABLE_SCOPEDOME)
+    add_subdirectory(src/vendors/scopedome)
+    if(TARGET alpacacore_scopedome)
+        target_link_libraries(alpacacore_builtins PRIVATE alpacacore_scopedome)
+        # register_builtin_factories() guards its scopedome factory behind this macro.
+        target_compile_definitions(alpacacore_builtins PRIVATE ALPACACORE_ENABLE_SCOPEDOME)
+    endif()
 endif()
 
 # Custom target to clean everything including CMake cache
@@ -488,6 +499,14 @@ endif()
 
 if(ALPACACORE_ENABLE_SIMULATOR AND TARGET alpacacore_simulator)
     install(TARGETS alpacacore_simulator
+        EXPORT AlpacaCoreTargets
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin
+    )
+endif()
+if(ALPACACORE_ENABLE_SCOPEDOME AND TARGET alpacacore_scopedome)
+    install(TARGETS alpacacore_scopedome
         EXPORT AlpacaCoreTargets
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib

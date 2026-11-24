@@ -352,6 +352,20 @@
     ]
   },
   {
+    "vendor": "scopedome",
+    "deviceType": "dome",
+    "displayName": "ScopeDome (USB Card 2.1)",
+    "available": true,
+    "buildOption": "ALPACACORE_ENABLE_SCOPEDOME",
+    "fields": [
+      {"key": "portPath", "type": "string", "default": "", "required": false, "secret": false, "role": "PortPath"},
+      {"key": "homeAzimuth", "type": "double", "default": 0.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 359.99}},
+      {"key": "parkAzimuth", "type": "double", "default": 0.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 359.99}},
+      {"key": "azimuthTolerance", "type": "double", "default": 1.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.1, "max": 10.0}},
+      {"key": "shutterTimeoutSec", "type": "double", "default": 180.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 10.0, "max": 600.0}}
+    ]
+  },
+  {
     "vendor": "simulator",
     "deviceType": "dome",
     "displayName": "Dome Simulator",

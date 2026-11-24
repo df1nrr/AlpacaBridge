@@ -48,6 +48,7 @@ These hold the cross-vendor rules. Read every one the task touches.
 | Astroasis Oasis | [Astroasis](../.github/instructions/astroasis.instructions.md) |
 | Deep Sky Dad FP1/FP2 flat panels | [Deep Sky Dad](../.github/instructions/deepskydad.instructions.md) |
 | Simulated devices (Dome simulator) | [Simulator](../.github/instructions/simulator.instructions.md) |
+| ScopeDome domes (USB Card 2.1) | [ScopeDome](../.github/instructions/scopedome.instructions.md) |
 | Gemini focuser, covers, flat panels, PDH | [Gemini](../.github/instructions/gemini.instructions.md) |
 | WandererAstro covers, rotators, SFW wheels, boxes | [WandererAstro](../.github/instructions/wandererastro.instructions.md) |
 | WeeWX weather integration | [WeeWX](../.github/instructions/weewx.instructions.md) |

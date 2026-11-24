@@ -132,6 +132,9 @@
 #ifdef ALPACACORE_ENABLE_SIMULATOR
 #include <alpacacore/vendor/simulator/simulator_dome_driver.h>
 #endif
+#ifdef ALPACACORE_ENABLE_SCOPEDOME
+#include <alpacacore/vendor/scopedome/scopedome_dome_driver.h>
+#endif
 #ifdef ALPACACORE_ENABLE_GPHOTO
 #include <alpacacore/vendor/gphoto/gphoto_camera_driver.h>
 #endif
@@ -781,6 +784,17 @@ inline ContractEntry contract_entry_simulator_dome() {
 }
 #endif
 
+#ifdef ALPACACORE_ENABLE_SCOPEDOME
+inline ContractEntry contract_entry_scopedome_dome() {
+    return make_entry(
+        "scopedome_dome", "scopedome", "dome", DeviceType::Dome,
+        [](int n) -> std::unique_ptr<AlpacaDriver> {
+            return vendor::scopedome::create_scopedome_dome(n, vendor::scopedome::ScopeDomeDomeConfig{"/dev/ttyUSB0"});
+        },
+        kSrcAgents);
+}
+#endif
+
 #ifdef ALPACACORE_ENABLE_DEEPSKYDAD
 inline ContractEntry contract_entry_deepskydad_covercalibrator() {
     return make_entry(
@@ -938,6 +952,11 @@ inline ContractEntry contract_entry_astroasis_focuser() {
 #else
 #define CS_SIMULATOR(X)
 #endif
+#ifdef ALPACACORE_ENABLE_SCOPEDOME
+#define CS_SCOPEDOME(X) X(scopedome_dome)
+#else
+#define CS_SCOPEDOME(X)
+#endif
 
 // The formatter does not reach a fixed point on this continuation list.
 // clang-format off
@@ -962,7 +981,8 @@ inline ContractEntry contract_entry_astroasis_focuser() {
     CS_WANDERERASTRO(X) \
     CS_ASTROASIS(X) \
     CS_DEEPSKYDAD(X) \
-    CS_SIMULATOR(X)
+    CS_SIMULATOR(X) \
+    CS_SCOPEDOME(X)
 // clang-format on
 
 namespace alpacacore::test::contract {
@@ -1021,6 +1041,7 @@ inline constexpr FakeRosterRow kFakeConnectableRoster[] = {
     {"iguider", "camera", "fake_iguider_v4l2.h"},
     {"astroasis", "focuser", "fake_astroasis_hid.h"},
     {"deepskydad", "covercalibrator", "fake_deepskydad_flatpanel.h"},
+    {"scopedome", "dome", "fake_scopedome_card.h"},
     {"gemini", "focuser", "fake_gemini_focuser.h"},
     {"gemini", "covercalibrator", "fake_gemini_flatpanel.h"},  // Pro firmware only: gemini_covercalibrator_pro
     {"gemini", "switch", "fake_gemini_pdh.h"},
@@ -1069,6 +1090,7 @@ inline constexpr SnapshotAdopterRow kSnapshotAdopterRoster[] = {
     {"celestron_cgx_telescope", "celestron", "AlpacaCore/src/vendors/celestron/celestron_cgx_telescope_driver.cpp"},
     {"deepskydad_covercalibrator", "deepskydad",
      "AlpacaCore/src/vendors/deepskydad/deepskydad_covercalibrator_driver.cpp"},
+    {"scopedome_dome", "scopedome", "AlpacaCore/src/vendors/scopedome/scopedome_dome_driver.cpp"},
 };
 
 }  // namespace alpacacore::test::contract

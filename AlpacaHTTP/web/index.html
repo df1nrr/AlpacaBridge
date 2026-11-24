@@ -86,6 +86,7 @@
                         <option value="playerone">Player One</option>
                         <option value="onstep">OnStep</option>
                         <option value="qhy">QHY</option>
+                        <option value="scopedome">ScopeDome</option>
                         <option value="simulator">Simulator</option>
                         <option value="synscan">Sky-Watcher</option>
                         <option value="skywatcher">Sky-Watcher</option>
@@ -155,6 +156,40 @@
                     <div class="form-group">
                         <label for="simulator-dome-park-azimuth">Park azimuth (degrees):</label>
                         <input type="number" id="simulator-dome-park-azimuth" name="simulatorDomeParkAzimuth" data-config-key="parkAzimuth" value="180" min="0" max="359.99" step="0.01">
+                    </div>
+                </div>
+
+                <!-- ScopeDome USB Card 2.1 (Dome) -->
+                <div id="scopedome-config" data-vendor="scopedome" data-device-type="dome" class="vendor-config" style="display: none;">
+                    <h3>ScopeDome (USB Card 2.1)</h3>
+                    <p><small>ScopeDome observatory dome through its USB Card 2.1 (FTDI serial, 115200 baud).
+                       Rotation, home, park and the main shutter. Calibrate the dome once in the ScopeDome software:
+                       the driver reads the steps per turn from the card. Protocol from the INDI ScopeDome driver,
+                       not yet confirmed on hardware by this project.</small></p>
+
+                    <div class="form-group">
+                        <label for="scopedome-port-path">Serial Port:</label>
+                        <input type="text" id="scopedome-port-path" name="scopedomePortPath" data-config-key="portPath" placeholder="/dev/serial/by-id/usb-FTDI_...">
+                        <small>A /dev/serial/by-id/... path survives replugging; /dev/ttyUSB0 works too.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="scopedome-home-azimuth">Home sensor azimuth (degrees):</label>
+                        <input type="number" id="scopedome-home-azimuth" name="scopedomeHomeAzimuth" data-config-key="homeAzimuth" value="0" min="0" max="359.99" step="0.01">
+                        <small>Where the home sensor sits; the dome's azimuth is counted from there.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="scopedome-park-azimuth">Park azimuth (degrees):</label>
+                        <input type="number" id="scopedome-park-azimuth" name="scopedomeParkAzimuth" data-config-key="parkAzimuth" value="0" min="0" max="359.99" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="scopedome-azimuth-tolerance">Azimuth tolerance (degrees):</label>
+                        <input type="number" id="scopedome-azimuth-tolerance" name="scopedomeAzimuthTolerance" data-config-key="azimuthTolerance" value="1" min="0.1" max="10" step="0.1">
+                        <small>A slew ends once the dome is this close to its target.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="scopedome-shutter-timeout">Shutter timeout (seconds):</label>
+                        <input type="number" id="scopedome-shutter-timeout" name="scopedomeShutterTimeout" data-config-key="shutterTimeoutSec" value="180" min="10" max="600" step="1">
+                        <small>A shutter that has not reached its limit switch by then is stopped and reported as Error.</small>
                     </div>
                 </div>
 

@@ -3082,6 +3082,8 @@ document.getElementById('vendor').addEventListener('change', function() {
         document.getElementById('deepskydad-config').style.display = 'block';
     } else if (vendor === 'simulator') {
         document.getElementById('simulator-config').style.display = 'block';
+    } else if (vendor === 'scopedome') {
+        document.getElementById('scopedome-config').style.display = 'block';
     } else if (vendor === 'ioptron') {
         document.getElementById('ioptron-config').style.display = 'block';
         updateIoptronConfigFields();
@@ -4873,6 +4875,16 @@ document.getElementById('device-form').addEventListener('submit', async function
         deviceData.shutterTimeSec = simNumber('simulatorDomeShutterTime', 10);
         deviceData.homeAzimuth = simNumber('simulatorDomeHomeAzimuth', 0);
         deviceData.parkAzimuth = simNumber('simulatorDomeParkAzimuth', 180);
+    } else if (deviceData.vendor === 'scopedome') {
+        const sdNumber = (name, fallback) => {
+            const value = readOptionalNumber(formData, name);
+            return value !== null ? value : fallback;
+        };
+        deviceData.portPath = (formData.get('scopedomePortPath') || '').trim();
+        deviceData.homeAzimuth = sdNumber('scopedomeHomeAzimuth', 0);
+        deviceData.parkAzimuth = sdNumber('scopedomeParkAzimuth', 0);
+        deviceData.azimuthTolerance = sdNumber('scopedomeAzimuthTolerance', 1);
+        deviceData.shutterTimeoutSec = sdNumber('scopedomeShutterTimeout', 180);
     } else if (deviceData.vendor === 'astroasis') {
         const astroasisHidPath = (formData.get('astroasisHidPath') || '').trim();
         if (astroasisHidPath !== '') {

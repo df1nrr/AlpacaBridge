@@ -130,6 +130,11 @@
 
 #include "fake_deepskydad_flatpanel.h"
 #endif
+#ifdef ALPACACORE_ENABLE_SCOPEDOME
+#include <alpacacore/vendor/scopedome/scopedome_dome_driver.h>
+
+#include "fake_scopedome_card.h"
+#endif
 #ifdef ALPACACORE_ENABLE_ASTROASIS
 #include <alpacacore/vendor/astroasis/astroasis_focuser_driver.h>
 
@@ -1809,6 +1814,30 @@ Tier2Host tier2_host_iguider_camera() {
 }
 #endif
 
+#ifdef ALPACACORE_ENABLE_SCOPEDOME
+Tier2Host tier2_host_scopedome_dome() {
+    Tier2Host h{"scopedome_dome", "scopedome", "dome", "fake_scopedome_card.h", DeviceType::Dome, "scopedome_dome",
+                {}, false, {}, ""};
+    h.connecting_unobservable =
+        "FakeScopeDomeCard answers ConnectionTest at once and has no reply-delay knob (fake_scopedome_card.h "
+        "handle(), scopedome_usb21_protocol_wrapper.cpp Impl::connect())";
+    h.connectable = [](bool) {
+        auto card = std::make_shared<alpacacore::test::FakeScopeDomeCard>();
+        return host_over(card, [](const alpacacore::test::FakeScopeDomeCard& f) -> std::unique_ptr<AlpacaDriver> {
+            return alpacacore::vendor::scopedome::create_scopedome_dome(
+                0, alpacacore::vendor::scopedome::ScopeDomeDomeConfig{f.slave_path()});
+        });
+    };
+    h.failing = []() {
+        Hosted hosted;
+        hosted.driver = alpacacore::vendor::scopedome::create_scopedome_dome(
+            0, alpacacore::vendor::scopedome::ScopeDomeDomeConfig{kAbsentPort});
+        return hosted;
+    };
+    return h;
+}
+#endif
+
 #ifdef ALPACACORE_ENABLE_DEEPSKYDAD
 Tier2Host tier2_host_deepskydad_covercalibrator() {
     Tier2Host h{"deepskydad_covercalibrator",
@@ -2482,6 +2511,11 @@ Tier2Host tier2_host_wandererastro_switch() {
 #else
 #define CS2_DEEPSKYDAD(X)
 #endif
+#ifdef ALPACACORE_ENABLE_SCOPEDOME
+#define CS2_SCOPEDOME(X) X(scopedome_dome, PRB)
+#else
+#define CS2_SCOPEDOME(X)
+#endif
 #ifdef ALPACACORE_ENABLE_QHY
 #define CS2_QHY(X) X(qhy_camera, CAM) X(qhy_filterwheel, PRB) X(qhy_focuser, NPR)
 #else
@@ -2531,6 +2565,7 @@ Tier2Host tier2_host_wandererastro_switch() {
     CS2_IOPTRON(X) \
     CS2_ASTROASIS(X) \
     CS2_DEEPSKYDAD(X) \
+    CS2_SCOPEDOME(X) \
     CS2_GEMINI(X) \
     CS2_QHY(X) \
     CS2_TOUPTEK(X) \
@@ -3819,6 +3854,9 @@ TEST_CASE("Contract sweep tier 2 - hosts match kFakeConnectableRoster", "[contra
 #ifdef ALPACACORE_ENABLE_DEEPSKYDAD
     CS2_ENABLED("deepskydad")
 #endif
+#ifdef ALPACACORE_ENABLE_SCOPEDOME
+    CS2_ENABLED("scopedome")
+#endif
 #ifdef ALPACACORE_ENABLE_GEMINI
     CS2_ENABLED("gemini")
 #endif
@@ -4529,6 +4567,36 @@ std::unique_ptr<SnapshotRig> snapshot_rig_qhy_focuser() {
 }
 #endif
 
+// The rotation and shutter state the ScopeDome dome serves from its frame.
+[[maybe_unused]] std::vector<SnapshotGetter> snapshot_dome_getters() {
+    using alpacacore::DomeDriver;
+    std::vector<SnapshotGetter> g;
+#define SNAP_DOME(label, call) \
+    g.push_back({label, [](AlpacaDriver& d) { return snap_text(static_cast<DomeDriver&>(d).call); }});
+    SNAP_DOME("Azimuth", get_azimuth())
+    SNAP_DOME("Slewing", get_slewing())
+    SNAP_DOME("ShutterStatus", get_shutter_status())
+    SNAP_DOME("AtPark", get_at_park())
+#undef SNAP_DOME
+    return g;
+}
+
+#ifdef ALPACACORE_ENABLE_SCOPEDOME
+// Recipe of test_scopedome_dome.cpp: a muted card holds the frame (each poll waits out its reply timeout).
+std::unique_ptr<SnapshotRig> snapshot_rig_scopedome_dome() {
+    auto rig_owner = std::make_unique<SnapshotRig>();
+    SnapshotRig& rig = *rig_owner;
+    auto fake = std::make_shared<alpacacore::test::FakeScopeDomeCard>();
+    rig.fake = fake;
+    rig.driver = alpacacore::vendor::scopedome::create_scopedome_dome(
+        0, alpacacore::vendor::scopedome::ScopeDomeDomeConfig{fake->slave_path()}, *rig.clock);
+    rig.driver->set_connected(true);
+    rig.await_poll();
+    rig.hold_frame = [fake] { fake->set_muted(true); };
+    return rig_owner;
+}
+#endif
+
 #ifdef ALPACACORE_ENABLE_DEEPSKYDAD
 // Recipe of test_deepskydad_covercalibrator.cpp: a muted panel holds the frame (each poll waits out its reply timeout).
 std::unique_ptr<SnapshotRig> snapshot_rig_deepskydad_covercalibrator() {
@@ -4651,9 +4719,14 @@ std::unique_ptr<SnapshotRig> snapshot_rig_zwo_telescope() {
 #else
 #define CS3_DEEPSKYDAD(X)
 #endif
+#ifdef ALPACACORE_ENABLE_SCOPEDOME
+#define CS3_SCOPEDOME(X) X(scopedome_dome, snapshot_dome_getters())
+#else
+#define CS3_SCOPEDOME(X)
+#endif
 #define CONTRACT_SWEEP_SNAPSHOT_ADOPTERS(X) \
     CS3_ZWO(X) CS3_SKYWATCHER(X) CS3_CELESTRON(X) CS3_BISQUE(X) CS3_SYNSCAN(X) CS3_ONSTEP(X) CS3_GEMINI(X) CS3_QHY(X) \
-        CS3_ASTROASIS(X) CS3_DEEPSKYDAD(X)
+        CS3_ASTROASIS(X) CS3_DEEPSKYDAD(X) CS3_SCOPEDOME(X)
 // clang-format on
 
 // Every getter must answer on the live link first: a getter that throws here is a setup defect of the hook,

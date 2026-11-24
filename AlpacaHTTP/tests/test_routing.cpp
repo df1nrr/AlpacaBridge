@@ -3896,6 +3896,34 @@ int main() {
     }
 #endif
 
+#ifdef ALPACACORE_ENABLE_SCOPEDOME
+    {
+        // case: scopedome dome port, azimuths, tolerance and shutter timeout survive the config round-trip
+        // scopedome / dome — every field persists through sanitize_device_config and the
+        // factory builds the driver with no card attached.
+        const auto cfg = roundtrip_config(router,
+                                          {{"vendor", "scopedome"},
+                                           {"deviceType", "dome"},
+                                           {"deviceNumber", 9774},
+                                           {"portPath", "/dev/ttyUSB3"},
+                                           {"homeAzimuth", 12.5},
+                                           {"parkAzimuth", 180.0},
+                                           {"azimuthTolerance", 2.0},
+                                           {"shutterTimeoutSec", 240.0}},
+                                          "Dome", 9774);
+        EXPECT(cfg.is_object() && !cfg.empty());
+        EXPECT(cfg.value("portPath", "") == "/dev/ttyUSB3");
+        EXPECT(cfg.value("homeAzimuth", -1.0) == 12.5);
+        EXPECT(cfg.value("parkAzimuth", -1.0) == 180.0);
+        EXPECT(cfg.value("azimuthTolerance", -1.0) == 2.0);
+        EXPECT(cfg.value("shutterTimeoutSec", -1.0) == 240.0);
+        const auto name = route_request(router, "GET", "/api/v1/dome/9774/name");
+        EXPECT(name.status_code() == 200);
+        EXPECT(nlohmann::json::parse(name.body(), nullptr, false).value("Value", "") == "ScopeDome USB Card 2.1");
+        remove_device(router, "scopedome", "dome", 9774);
+    }
+#endif
+
 #ifdef ALPACACORE_ENABLE_SIMULATOR
     {
         // case: simulator dome rates and positions survive the config round-trip
@@ -8966,7 +8994,7 @@ int main() {
         std::ifstream fixture_in(fixture_path);
         EXPECT(fixture_in.good());
         nlohmann::json fixture = nlohmann::json::parse(fixture_in, nullptr, false);
-        EXPECT(!fixture.is_discarded() && fixture.is_array() && fixture.size() == 45);
+        EXPECT(!fixture.is_discarded() && fixture.is_array() && fixture.size() == 46);
         // The fixture is written for the all-vendors build. `available` is the
         // one value that depends on the build (true with the vendor on, false
         // with ALPACACORE_ENABLE_<VENDOR>=OFF), so it is set from this build
@@ -9121,6 +9149,13 @@ int main() {
             }
             if (entry.value("vendor", "") == "simulator") {
 #ifdef ALPACACORE_ENABLE_SIMULATOR
+                entry["available"] = true;
+#else
+                entry["available"] = false;
+#endif
+            }
+            if (entry.value("vendor", "") == "scopedome") {
+#ifdef ALPACACORE_ENABLE_SCOPEDOME
                 entry["available"] = true;
 #else
                 entry["available"] = false;
