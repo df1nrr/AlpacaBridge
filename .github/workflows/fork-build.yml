@@ -66,24 +66,27 @@ jobs:
           test "${PIPESTATUS[0]}" -eq 0
 
       - name: Test (new vendor, contract sweep, routing)
+        # Tests run as an unprivileged user: root ignores file permissions, and
+        # test_routing checks that a read-only config directory refuses a write.
         shell: bash
         run: |
           set -o pipefail
-          T=AlpacaHTTP/build/AlpacaCore/tests/alpacacore_tests
+          id builder >/dev/null 2>&1 || useradd -m builder
+          chown -R builder "$GITHUB_WORKSPACE" "$OUT"
+          as_builder() { runuser -u builder -- env OUT="$OUT" bash -c "$1"; }
           rc=0
-          "$T" "[deepskydad]" 2>&1 | tail -60 | tee "$OUT/test-vendor.log" || rc=1
-          ctest --test-dir AlpacaHTTP/build --output-on-failure --timeout 600 -j "$(nproc)" \
-            -R "Contract sweep|[Rr]outing|catalog" > "$OUT/test-sweep.log" 2>&1 || rc=1
+          as_builder 'AlpacaHTTP/build/AlpacaCore/tests/alpacacore_tests "[deepskydad]" 2>&1 | tail -60 > "$OUT/test-vendor.log"' || rc=1
+          tail -5 "$OUT/test-vendor.log"
+          as_builder 'ctest --test-dir AlpacaHTTP/build --output-on-failure --timeout 600 -j "$(nproc)" -R "Contract sweep|[Rr]outing|catalog" > "$OUT/test-sweep.log" 2>&1' || rc=1
           tail -40 "$OUT/test-sweep.log"
           # test_routing is one process for every case: keep its whole output.
-          ( cd AlpacaHTTP/build/test_routing_cwd && ../test_routing ) > "$OUT/test-routing.log" 2>&1 || { rc=1; tail -60 "$OUT/test-routing.log"; }
+          as_builder 'cd AlpacaHTTP/build/test_routing_cwd && ../test_routing > "$OUT/test-routing.log" 2>&1' || { rc=1; grep -A3 "EXPECT failed" "$OUT/test-routing.log" | tail -20; }
           exit $rc
 
       - name: Test (full suite)
         shell: bash
         run: |
-          set -o pipefail
-          ctest --test-dir AlpacaHTTP/build --output-on-failure --timeout 600 -j "$(nproc)" -E "\[stress\]" > "$OUT/test-full.log" 2>&1 \
+          runuser -u builder -- env OUT="$OUT" bash -c 'ctest --test-dir AlpacaHTTP/build --output-on-failure --timeout 600 -j "$(nproc)" -E "\[stress\]" > "$OUT/test-full.log" 2>&1' \
             || { tail -120 "$OUT/test-full.log"; exit 1; }
 
       - name: Build the .deb
