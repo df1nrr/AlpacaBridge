@@ -77,6 +77,7 @@
                         <option value="altair">Altair</option>
                         <option value="astroasis">Astroasis</option>
                         <option value="celestron">Celestron</option>
+                        <option value="deepskydad">Deep Sky Dad</option>
                         <option value="gemini">Gemini</option>
                         <option value="gphoto">DSLR / Mirrorless</option>
                         <option value="ioptron">iOptron</option>
@@ -102,6 +103,34 @@
                         <option value="synscan">Hand controller (SynScan)</option>
                         <option value="skywatcher">Direct cable (EQMOD)</option>
                     </select>
+                </div>
+
+                <!-- Deep Sky Dad FP1/FP2 flat panel (CoverCalibrator) -->
+                <div id="deepskydad-config" data-vendor="deepskydad" data-device-type="covercalibrator" class="vendor-config" style="display: none;">
+                    <h3>Deep Sky Dad Flat Panel (FP1/FP2)</h3>
+                    <p><small>Motorized flap with LED panel, USB serial at 115200 baud. Protocol from the INDI
+                       deepskydad_fp driver; not yet validated with ConformU on hardware.</small></p>
+
+                    <div class="form-group">
+                        <label for="deepskydad-connection-type">Connection Type:</label>
+                        <select id="deepskydad-connection-type" name="deepskydadConnectionType" data-config-key="connectionType">
+                            <option value="auto" selected>Auto-detect</option>
+                            <option value="serial">Serial (USB) - manual port (recommended)</option>
+                        </select>
+                        <small>Auto-detect only finds ports whose USB name mentions Deep Sky Dad; if it finds nothing, choose Serial.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deepskydad-panel-index">Panel Index:</label>
+                        <input type="number" id="deepskydad-panel-index" name="deepskydadPanelIndex" data-config-key="panelIndex" value="0" min="0">
+                        <small>0-based index if several panels are detected. Usually 0.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deepskydad-port-path">Serial Port:</label>
+                        <input type="text" id="deepskydad-port-path" name="deepskydadPortPath" data-config-key="portPath" placeholder="/dev/ttyACM0">
+                        <small>The panel appears as /dev/ttyACM0 (or a /dev/serial/by-id/... path).</small>
+                    </div>
                 </div>
 
                 <!-- Astroasis Oasis Focuser Configuration -->

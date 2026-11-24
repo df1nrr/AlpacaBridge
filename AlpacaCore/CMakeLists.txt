@@ -38,6 +38,7 @@ option(ALPACACORE_ENABLE_ALTAIR "Enable Altair Astro camera support (requires AL
 option(ALPACACORE_ENABLE_PLAYERONE "Enable Player One vendor support" OFF)
 option(ALPACACORE_ENABLE_WANDERERASTRO "Enable WandererAstro CoverCalibrator vendor support" OFF)
 option(ALPACACORE_ENABLE_ASTROASIS "Enable Astroasis Oasis Focuser vendor support" OFF)
+option(ALPACACORE_ENABLE_DEEPSKYDAD "Enable Deep Sky Dad flat panel (CoverCalibrator) vendor support" OFF)
 option(ALPACACORE_ENABLE_GPHOTO "Enable libgphoto2 DSLR/mirrorless camera vendor support" OFF)
 # The gphoto driver links the bundled libgphoto2 built by
 # scripts/build_bundled_gphoto.sh from AlpacaCore/external/libgphoto2/. PREFIX is
@@ -67,6 +68,7 @@ if(ALPACACORE_ENABLE_ALL_VENDORS)
     set(ALPACACORE_ENABLE_PLAYERONE ON)
     set(ALPACACORE_ENABLE_WANDERERASTRO ON)
     set(ALPACACORE_ENABLE_ASTROASIS ON)
+    set(ALPACACORE_ENABLE_DEEPSKYDAD ON)
     set(ALPACACORE_ENABLE_GPHOTO ON)
 endif()
 
@@ -126,6 +128,7 @@ add_library(alpacacore_builtins STATIC
     src/catalog/builtin_catalog.cpp
     src/vendors/altair/altair_schema.cpp
     src/vendors/astroasis/astroasis_schema.cpp
+    src/vendors/deepskydad/deepskydad_schema.cpp
     src/vendors/skywatcher/skywatcher_schema.cpp
     src/vendors/weewx/weewx_schema.cpp
     src/vendors/svbony/svbony_schema.cpp
@@ -317,6 +320,15 @@ if(ALPACACORE_ENABLE_ASTROASIS)
     endif()
 endif()
 
+if(ALPACACORE_ENABLE_DEEPSKYDAD)
+    add_subdirectory(src/vendors/deepskydad)
+    if(TARGET alpacacore_deepskydad)
+        target_link_libraries(alpacacore_builtins PRIVATE alpacacore_deepskydad)
+        # register_builtin_factories() guards its Deep Sky Dad factory behind this macro.
+        target_compile_definitions(alpacacore_builtins PRIVATE ALPACACORE_ENABLE_DEEPSKYDAD)
+    endif()
+endif()
+
 # Custom target to clean everything including CMake cache
 # Usage: cmake --build . --target alpacacore-clean-all
 # Note: Named with project prefix to avoid conflicts when used as subdirectory
@@ -446,6 +458,15 @@ endif()
 
 if(ALPACACORE_ENABLE_ASTROASIS AND TARGET alpacacore_astroasis)
     install(TARGETS alpacacore_astroasis
+        EXPORT AlpacaCoreTargets
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin
+    )
+endif()
+
+if(ALPACACORE_ENABLE_DEEPSKYDAD AND TARGET alpacacore_deepskydad)
+    install(TARGETS alpacacore_deepskydad
         EXPORT AlpacaCoreTargets
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib

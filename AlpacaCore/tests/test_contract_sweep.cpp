@@ -124,6 +124,11 @@
 #include "fake_gemini_focuser.h"
 #include "fake_gemini_pdh.h"
 #endif
+#ifdef ALPACACORE_ENABLE_DEEPSKYDAD
+#include <alpacacore/vendor/deepskydad/deepskydad_covercalibrator_driver.h>
+
+#include "fake_deepskydad_flatpanel.h"
+#endif
 #ifdef ALPACACORE_ENABLE_ASTROASIS
 #include <alpacacore/vendor/astroasis/astroasis_focuser_driver.h>
 
@@ -1767,6 +1772,37 @@ Tier2Host tier2_host_iguider_camera() {
 }
 #endif
 
+#ifdef ALPACACORE_ENABLE_DEEPSKYDAD
+Tier2Host tier2_host_deepskydad_covercalibrator() {
+    Tier2Host h{"deepskydad_covercalibrator",
+                "deepskydad",
+                "covercalibrator",
+                "fake_deepskydad_flatpanel.h",
+                DeviceType::CoverCalibrator,
+                "deepskydad_covercalibrator",
+                {},
+                false,
+                {},
+                ""};
+    h.connecting_unobservable =
+        "FakeDeepSkyDadFlatPanel answers [GFRM] at once and has no reply-delay knob (fake_deepskydad_flatpanel.h "
+        "handle(), deepskydad_flatpanel_protocol_wrapper.cpp Impl::connect())";
+    h.connectable = [](bool) {
+        auto panel = std::make_shared<alpacacore::test::FakeDeepSkyDadFlatPanel>();
+        return host_over(
+            panel, [](const alpacacore::test::FakeDeepSkyDadFlatPanel& f) -> std::unique_ptr<AlpacaDriver> {
+                return alpacacore::vendor::deepskydad::create_deepskydad_covercalibrator(0, f.slave_path());
+            });
+    };
+    h.failing = []() {
+        Hosted hosted;
+        hosted.driver = alpacacore::vendor::deepskydad::create_deepskydad_covercalibrator(0, kAbsentPort);
+        return hosted;
+    };
+    return h;
+}
+#endif
+
 #ifdef ALPACACORE_ENABLE_ASTROASIS
 // FakeHidTransport behind the Locked decorator, over the by-path factory's driver. The fake answers every
 // exchange at once, so the handshake cannot be held open.
@@ -2404,6 +2440,11 @@ Tier2Host tier2_host_wandererastro_switch() {
 #else
 #define CS2_ASTROASIS(X)
 #endif
+#ifdef ALPACACORE_ENABLE_DEEPSKYDAD
+#define CS2_DEEPSKYDAD(X) X(deepskydad_covercalibrator, PRB)
+#else
+#define CS2_DEEPSKYDAD(X)
+#endif
 #ifdef ALPACACORE_ENABLE_QHY
 #define CS2_QHY(X) X(qhy_camera, CAM) X(qhy_filterwheel, PRB) X(qhy_focuser, NPR)
 #else
@@ -2452,6 +2493,7 @@ Tier2Host tier2_host_wandererastro_switch() {
     CS2_SKYWATCHER(X) \
     CS2_IOPTRON(X) \
     CS2_ASTROASIS(X) \
+    CS2_DEEPSKYDAD(X) \
     CS2_GEMINI(X) \
     CS2_QHY(X) \
     CS2_TOUPTEK(X) \

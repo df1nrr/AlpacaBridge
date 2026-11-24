@@ -35,6 +35,8 @@ void register_altair_schema(DeviceCatalog& catalog);
 void register_altair_factory(DeviceCatalog& catalog);
 void register_astroasis_schema(DeviceCatalog& catalog);
 void register_astroasis_factory(DeviceCatalog& catalog);
+void register_deepskydad_schema(DeviceCatalog& catalog);
+void register_deepskydad_factory(DeviceCatalog& catalog);
 void register_skywatcher_schema(DeviceCatalog& catalog);
 void register_skywatcher_factory(DeviceCatalog& catalog);
 void register_weewx_schema(DeviceCatalog& catalog);

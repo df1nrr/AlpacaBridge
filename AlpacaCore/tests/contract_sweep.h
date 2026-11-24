@@ -126,6 +126,9 @@
 #ifdef ALPACACORE_ENABLE_ASTROASIS
 #include <alpacacore/vendor/astroasis/astroasis_focuser_driver.h>
 #endif
+#ifdef ALPACACORE_ENABLE_DEEPSKYDAD
+#include <alpacacore/vendor/deepskydad/deepskydad_covercalibrator_driver.h>
+#endif
 #ifdef ALPACACORE_ENABLE_GPHOTO
 #include <alpacacore/vendor/gphoto/gphoto_camera_driver.h>
 #endif
@@ -766,6 +769,17 @@ inline ContractEntry contract_entry_wandererastro_switch() {
 }
 #endif
 
+#ifdef ALPACACORE_ENABLE_DEEPSKYDAD
+inline ContractEntry contract_entry_deepskydad_covercalibrator() {
+    return make_entry(
+        "deepskydad_covercalibrator", "deepskydad", "covercalibrator", DeviceType::CoverCalibrator,
+        [](int n) -> std::unique_ptr<AlpacaDriver> {
+            return vendor::deepskydad::create_deepskydad_covercalibrator(n, "/dev/ttyACM0");
+        },
+        kSrcAgents);
+}
+#endif
+
 #ifdef ALPACACORE_ENABLE_ASTROASIS
 inline ContractEntry contract_entry_astroasis_focuser() {
     return with_clamping_focuser(
@@ -902,6 +916,11 @@ inline ContractEntry contract_entry_astroasis_focuser() {
 #else
 #define CS_ASTROASIS(X)
 #endif
+#ifdef ALPACACORE_ENABLE_DEEPSKYDAD
+#define CS_DEEPSKYDAD(X) X(deepskydad_covercalibrator)
+#else
+#define CS_DEEPSKYDAD(X)
+#endif
 
 // The formatter does not reach a fixed point on this continuation list.
 // clang-format off
@@ -924,7 +943,8 @@ inline ContractEntry contract_entry_astroasis_focuser() {
     CS_TOUPTEK_STELLAVITA(X) \
     CS_ALTAIR(X) \
     CS_WANDERERASTRO(X) \
-    CS_ASTROASIS(X)
+    CS_ASTROASIS(X) \
+    CS_DEEPSKYDAD(X)
 // clang-format on
 
 namespace alpacacore::test::contract {
@@ -982,6 +1002,7 @@ inline constexpr FakeRosterRow kFakeConnectableRoster[] = {
     {"ioptron", "switch", "fake_ioptron_gpio.h"},
     {"iguider", "camera", "fake_iguider_v4l2.h"},
     {"astroasis", "focuser", "fake_astroasis_hid.h"},
+    {"deepskydad", "covercalibrator", "fake_deepskydad_flatpanel.h"},
     {"gemini", "focuser", "fake_gemini_focuser.h"},
     {"gemini", "covercalibrator", "fake_gemini_flatpanel.h"},  // Pro firmware only: gemini_covercalibrator_pro
     {"gemini", "switch", "fake_gemini_pdh.h"},

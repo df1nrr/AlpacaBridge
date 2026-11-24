@@ -46,6 +46,7 @@ These hold the cross-vendor rules. Read every one the task touches.
 | Celestron NexStar | [Celestron](../.github/instructions/celestron.instructions.md) |
 | Bisque, Paramount, TheSkyX | [Bisque](../.github/instructions/bisque.instructions.md) |
 | Astroasis Oasis | [Astroasis](../.github/instructions/astroasis.instructions.md) |
+| Deep Sky Dad FP1/FP2 flat panels | [Deep Sky Dad](../.github/instructions/deepskydad.instructions.md) |
 | Gemini focuser, covers, flat panels, PDH | [Gemini](../.github/instructions/gemini.instructions.md) |
 | WandererAstro covers, rotators, SFW wheels, boxes | [WandererAstro](../.github/instructions/wandererastro.instructions.md) |
 | WeeWX weather integration | [WeeWX](../.github/instructions/weewx.instructions.md) |
