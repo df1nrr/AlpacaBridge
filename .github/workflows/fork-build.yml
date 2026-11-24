@@ -1,0 +1,116 @@
+# Fork-only build (df1nrr/AlpacaBridge): on a push to a driver/** or fork/** branch,
+# build every vendor with the tests on arm64 Debian 13, run the suite, then build the
+# .deb. The test log and the .deb are uploaded as artifacts and committed to the
+# `fork-build-output` branch so they can be fetched with plain git.
+name: Fork build
+
+on:
+  push:
+    branches:
+      - 'driver/**'
+      - 'fork/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write   # to push the output branch
+
+concurrency:
+  group: fork-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04-arm
+    container: debian:trixie
+    timeout-minutes: 150
+    env:
+      DEBIAN_FRONTEND: noninteractive
+    steps:
+      - name: Install tools
+        run: |
+          set -euo pipefail
+          apt-get update -qq
+          apt-get install -y -qq --no-install-recommends ca-certificates git python3 dpkg-dev binutils \
+            build-essential catch2 file
+          git config --global --add safe.directory '*'
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v4.x pinned
+        with:
+          persist-credentials: false
+
+      - name: Install build dependencies
+        run: apt-get build-dep -y ./
+
+      - name: Build (all vendors, tests on)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          cmake -S AlpacaHTTP -B AlpacaHTTP/build -DALPACAHTTP_BUILD_TESTS=ON -DALPACACORE_BUILD_TESTS=ON \
+            -DALPACACORE_ENABLE_ALL_VENDORS=ON 2>&1 | tail -20
+          cmake --build AlpacaHTTP/build --parallel "$(nproc)" 2>&1 | tee out/build.log | grep -E "error|warning: " || true
+          test "${PIPESTATUS[0]}" -eq 0
+
+      - name: Test (new vendor, contract sweep, routing)
+        shell: bash
+        run: |
+          set -o pipefail
+          T=AlpacaHTTP/build/AlpacaCore/tests/alpacacore_tests
+          rc=0
+          "$T" "[deepskydad]" 2>&1 | tail -60 | tee out/test-vendor.log || rc=1
+          ctest --test-dir AlpacaHTTP/build --output-on-failure --timeout 600 -j "$(nproc)" \
+            -R "Contract sweep|[Rr]outing|catalog" 2>&1 | tail -80 | tee out/test-sweep.log || rc=1
+          exit $rc
+
+      - name: Test (full suite)
+        shell: bash
+        run: |
+          set -o pipefail
+          ctest --test-dir AlpacaHTTP/build --output-on-failure --timeout 600 -j "$(nproc)" -E "\[stress\]" 2>&1 \
+            | tail -120 | tee out/test-full.log
+
+      - name: Build the .deb
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf AlpacaHTTP/build
+          scripts/build_deb.sh 2>&1 | tail -30
+          cp ../alpacabridge_*_arm64.deb out/
+          dpkg-deb --info out/alpacabridge_*_arm64.deb | head -20
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
+        with:
+          name: fork-build
+          path: out/
+
+      - name: Commit outputs to fork-build-output branch
+        if: always()
+        shell: bash
+        env:
+          TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          JOB_STATUS: ${{ job.status }}
+          REF: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          src_sha="$(git rev-parse HEAD)"
+          ws="$PWD"
+          mkdir -p out ../publish-out && cd ../publish-out
+          git init -q -b fork-build-output
+          for f in "$ws"/out/*; do
+            [ -f "$f" ] || continue
+            if [ "$(stat -c %s "$f")" -gt 95000000 ]; then
+              split -b 90m -d "$f" "$(basename "$f").part"
+            else
+              cp "$f" .
+            fi
+          done
+          { echo "source: $REF $src_sha"; echo "run: $RUN_URL"; echo "job status: $JOB_STATUS"; } > BUILD_INFO.txt
+          git add -A
+          git -c user.name=github-actions -c user.email=github-actions@users.noreply.github.com commit -q -m "fork build of $REF $src_sha"
+          git push -f "https://x-access-token:${TOKEN}@github.com/${REPO}.git" fork-build-output
