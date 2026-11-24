@@ -54,8 +54,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-                    cmake -S AlpacaHTTP -B AlpacaHTTP/build -DALPACAHTTP_BUILD_TESTS=ON -DALPACACORE_BUILD_TESTS=ON \
-            -DALPACACORE_ENABLE_ALL_VENDORS=ON 2>&1 | tail -20
+          # The gphoto vendor links the bundled libgphoto2: build it and install it into
+          # its real prefix, as ci.yml does (we are root in the container).
+          scripts/build_bundled_gphoto.sh --destdir /tmp/gphoto-stage --build-dir /tmp/gphoto-src \
+            --jobs "$(nproc)" > "$OUT/gphoto.log" 2>&1 || { tail -60 "$OUT/gphoto.log"; exit 1; }
+          cp -a --no-preserve=ownership /tmp/gphoto-stage/. /
+          ldconfig
+          cmake -S AlpacaHTTP -B AlpacaHTTP/build -DALPACAHTTP_BUILD_TESTS=ON -DALPACACORE_BUILD_TESTS=ON \
+            -DALPACACORE_ENABLE_ALL_VENDORS=ON > "$OUT/configure.log" 2>&1 || { tail -60 "$OUT/configure.log"; exit 1; }
           cmake --build AlpacaHTTP/build --parallel "$(nproc)" 2>&1 | tee "$OUT/build.log" | grep -E "error|warning: " || true
           test "${PIPESTATUS[0]}" -eq 0
 
