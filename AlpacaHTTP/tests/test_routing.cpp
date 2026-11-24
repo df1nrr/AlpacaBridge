@@ -3942,6 +3942,32 @@ int main() {
     }
 #endif
 
+#ifdef ALPACACORE_ENABLE_SIMULATOR
+    {
+        // case: simulator dome rates and positions survive the config round-trip
+        // simulator / dome — every field persists through sanitize_device_config and the
+        // factory builds the simulator with no hardware.
+        const auto cfg = roundtrip_config(router,
+                                          {{"vendor", "simulator"},
+                                           {"deviceType", "dome"},
+                                           {"deviceNumber", 9773},
+                                           {"slewRateDegPerSec", 12.5},
+                                           {"shutterTimeSec", 20.0},
+                                           {"homeAzimuth", 5.0},
+                                           {"parkAzimuth", 270.0}},
+                                          "Dome", 9773);
+        EXPECT(cfg.is_object() && !cfg.empty());
+        EXPECT(cfg.value("slewRateDegPerSec", -1.0) == 12.5);
+        EXPECT(cfg.value("shutterTimeSec", -1.0) == 20.0);
+        EXPECT(cfg.value("homeAzimuth", -1.0) == 5.0);
+        EXPECT(cfg.value("parkAzimuth", -1.0) == 270.0);
+        const auto name = route_request(router, "GET", "/api/v1/dome/9773/name");
+        EXPECT(name.status_code() == 200);
+        EXPECT(nlohmann::json::parse(name.body()).value("Value", "") == "AlpacaBridge Dome Simulator");
+        remove_device(router, "simulator", "dome", 9773);
+    }
+#endif
+
 #ifdef ALPACACORE_ENABLE_ASTROASIS
     {
         // astroasis / focuser — explicit hidPath persists through

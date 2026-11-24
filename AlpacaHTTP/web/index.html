@@ -91,6 +91,7 @@
                         <option value="onstep">OnStep</option>
                         <option value="qhy">QHY</option>
                         <option value="remotealpaca">Remote Alpaca</option>
+                        <option value="simulator">Simulator</option>
                         <option value="synscan">Sky-Watcher</option>
                         <option value="skywatcher">Sky-Watcher</option>
                         <option value="svbony">SVBONY</option>
@@ -135,6 +136,30 @@
                         <label for="deepskydad-port-path">Serial Port:</label>
                         <input type="text" id="deepskydad-port-path" name="deepskydadPortPath" data-config-key="portPath" placeholder="/dev/ttyACM0">
                         <small>The panel appears as /dev/ttyACM0 (or a /dev/serial/by-id/... path).</small>
+                    </div>
+                </div>
+
+                <!-- Simulator: Dome (no hardware) -->
+                <div id="simulator-config" data-vendor="simulator" data-device-type="dome" class="vendor-config" style="display: none;">
+                    <h3>Dome Simulator</h3>
+                    <p><small>A simulated observatory dome with no hardware: it rotates, opens and closes its shutter,
+                       parks and finds home. Use it to try a client (ARA, NINA) before a real dome is connected.</small></p>
+
+                    <div class="form-group">
+                        <label for="simulator-dome-slew-rate">Rotation speed (degrees per second):</label>
+                        <input type="number" id="simulator-dome-slew-rate" name="simulatorDomeSlewRate" data-config-key="slewRateDegPerSec" value="6" min="0.5" max="60" step="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="simulator-dome-shutter-time">Shutter open/close time (seconds):</label>
+                        <input type="number" id="simulator-dome-shutter-time" name="simulatorDomeShutterTime" data-config-key="shutterTimeSec" value="10" min="0.5" max="300" step="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="simulator-dome-home-azimuth">Home azimuth (degrees):</label>
+                        <input type="number" id="simulator-dome-home-azimuth" name="simulatorDomeHomeAzimuth" data-config-key="homeAzimuth" value="0" min="0" max="359.99" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="simulator-dome-park-azimuth">Park azimuth (degrees):</label>
+                        <input type="number" id="simulator-dome-park-azimuth" name="simulatorDomeParkAzimuth" data-config-key="parkAzimuth" value="180" min="0" max="359.99" step="0.01">
                     </div>
                 </div>
 

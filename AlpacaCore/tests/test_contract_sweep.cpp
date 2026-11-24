@@ -22,6 +22,7 @@
 #include <alpacacore/camera_driver.h>
 #include <alpacacore/catalog/builtin_catalog.h>
 #include <alpacacore/covercalibrator_driver.h>
+#include <alpacacore/dome_driver.h>
 #include <alpacacore/filterwheel_driver.h>
 #include <alpacacore/focuser_driver.h>
 #include <alpacacore/observingconditions_driver.h>
@@ -275,6 +276,14 @@ std::vector<Probe> invalid_value_probes(AlpacaDriver& d, DeviceType type) {
         case DeviceType::CoverCalibrator: {
             auto& c = dynamic_cast<alpacacore::CoverCalibratorDriver&>(d);
             p.push_back({"calibrator_on(-1)", [&] { c.calibrator_on(-1); }});
+            break;
+        }
+        case DeviceType::Dome: {
+            // IDomeV3: azimuth outside [0, 360) is InvalidValue, before the connection check.
+            auto& m = dynamic_cast<alpacacore::DomeDriver&>(d);
+            p.push_back({"slew_to_azimuth(-1)", [&] { m.slew_to_azimuth(-1.0); }});
+            p.push_back({"slew_to_azimuth(360)", [&] { m.slew_to_azimuth(360.0); }});
+            p.push_back({"sync_to_azimuth(361)", [&] { m.sync_to_azimuth(361.0); }});
             break;
         }
         case DeviceType::ObservingConditions: {
@@ -842,6 +851,16 @@ std::vector<Probe> not_connected_probes(AlpacaDriver& d, DeviceType type, const 
             // No open_cover probe: the Gemini Cover Lite has no cover and answers NotImplemented.
             break;
         }
+        case DeviceType::Dome: {
+            auto& m = dynamic_cast<alpacacore::DomeDriver&>(d);
+            p.push_back({"get_azimuth", [&] { (void)m.get_azimuth(); }});
+            p.push_back({"get_slewing", [&] { (void)m.get_slewing(); }});
+            p.push_back({"get_shutter_status", [&] { (void)m.get_shutter_status(); }});
+            p.push_back({"get_at_park", [&] { (void)m.get_at_park(); }});
+            p.push_back({"get_at_home", [&] { (void)m.get_at_home(); }});
+            p.push_back({"get_can_set_azimuth", [&] { (void)m.get_can_set_azimuth(); }});
+            break;
+        }
         case DeviceType::ObservingConditions: {
             auto& o = dynamic_cast<alpacacore::ObservingConditionsDriver&>(d);
             p.push_back({"get_temperature", [&] { (void)o.get_temperature(); }});
@@ -986,6 +1005,16 @@ std::vector<Probe> not_implemented_probes(AlpacaDriver& d, const ContractEntry& 
             p.push_back({"open_cover", [&] { c.open_cover(); }});
             p.push_back({"close_cover", [&] { c.close_cover(); }});
             p.push_back({"halt_cover", [&] { c.halt_cover(); }});
+            break;
+        }
+        case DeviceType::Dome: {
+            auto& m = dynamic_cast<alpacacore::DomeDriver&>(d);
+            p.push_back({"slew_to_azimuth(90)", [&] { m.slew_to_azimuth(90.0); }});
+            p.push_back({"abort_slew", [&] { m.abort_slew(); }});
+            p.push_back({"open_shutter", [&] { m.open_shutter(); }});
+            p.push_back({"close_shutter", [&] { m.close_shutter(); }});
+            p.push_back({"park", [&] { m.park(); }});
+            p.push_back({"find_home", [&] { m.find_home(); }});
             break;
         }
         case DeviceType::ObservingConditions: {
@@ -1782,6 +1811,14 @@ const std::map<std::string, StateType>* ascom_device_state_types(DeviceType type
           {"CalibratorChanging", T::Bool},
           {"CoverState", T::Int},
           {"CoverMoving", T::Bool},
+          {"TimeStamp", T::String}}},
+        {DeviceType::Dome,
+         {{"Altitude", T::Double},
+          {"AtHome", T::Bool},
+          {"AtPark", T::Bool},
+          {"Azimuth", T::Double},
+          {"ShutterStatus", T::Int},
+          {"Slewing", T::Bool},
           {"TimeStamp", T::String}}},
         {DeviceType::Switch,
          {{"GetSwitch", T::Bool},
@@ -4737,6 +4774,7 @@ const std::vector<std::string>& name_brands_of(const std::string& vendor) {
         {"qhy", {"QHY"}},
         // Disconnected, "Remote Alpaca ObservingConditions"; connected, "Remote Alpaca" and the upstream's Name.
         {"remotealpaca", {"Remote Alpaca"}},
+        {"simulator", {"AlpacaBridge"}},  // "AlpacaBridge Dome Simulator": the project is the brand
         {"skywatcher", {"Sky-Watcher"}},
         {"svbony", {"SVBONY"}},
         {"synscan", {"Sky-Watcher"}},
