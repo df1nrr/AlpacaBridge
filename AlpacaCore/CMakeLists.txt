@@ -342,6 +342,7 @@ if(ALPACACORE_ENABLE_SIMULATOR)
         # register_builtin_factories() guards its simulator factory behind this macro.
         target_compile_definitions(alpacacore_builtins PRIVATE ALPACACORE_ENABLE_SIMULATOR)
     endif()
+endif()
 
 if(ALPACACORE_ENABLE_SCOPEDOME)
     add_subdirectory(src/vendors/scopedome)
