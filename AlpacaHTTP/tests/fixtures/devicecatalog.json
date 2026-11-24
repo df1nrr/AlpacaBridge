@@ -417,6 +417,19 @@
     ]
   },
   {
+    "vendor": "simulator",
+    "deviceType": "dome",
+    "displayName": "Dome Simulator",
+    "available": true,
+    "buildOption": "ALPACACORE_ENABLE_SIMULATOR",
+    "fields": [
+      {"key": "slewRateDegPerSec", "type": "double", "default": 6.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.5, "max": 60.0}},
+      {"key": "shutterTimeSec", "type": "double", "default": 10.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.5, "max": 300.0}},
+      {"key": "homeAzimuth", "type": "double", "default": 0.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 359.99}},
+      {"key": "parkAzimuth", "type": "double", "default": 180.0, "required": false, "secret": false, "role": "Plain", "range": {"min": 0.0, "max": 359.99}}
+    ]
+  },
+  {
     "vendor": "skywatcher",
     "deviceType": "telescope",
     "displayName": "Sky-Watcher (EQMOD direct)",
