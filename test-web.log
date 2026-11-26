@@ -1,0 +1,1155 @@
+TAP version 13
+# Subtest: synscan form offers auto, altaz and equatorial
+ok 1 - synscan form offers auto, altaz and equatorial
+  ---
+  duration_ms: 3.32813
+  ...
+# Subtest: synscan alignment mode is loaded on edit and sent on submit
+ok 2 - synscan alignment mode is loaded on edit and sent on submit
+  ---
+  duration_ms: 0.402539
+  ...
+# Subtest: celestron form offers auto, altaz and equatorial
+ok 3 - celestron form offers auto, altaz and equatorial
+  ---
+  duration_ms: 0.35401
+  ...
+# Subtest: celestron alignment mode is loaded on edit and sent on submit
+ok 4 - celestron alignment mode is loaded on edit and sent on submit
+  ---
+  duration_ms: 0.237423
+  ...
+# Subtest: Celestron protocol picker distinguishes the handset and direct CGX USB transports
+ok 5 - Celestron protocol picker distinguishes the handset and direct CGX USB transports
+  ---
+  duration_ms: 0.771524
+  ...
+# Subtest: Celestron direct USB config persists protocol and uses the fixed serial transport
+ok 6 - Celestron direct USB config persists protocol and uses the fixed serial transport
+  ---
+  duration_ms: 25.552958
+  ...
+# Subtest: Celestron visibility is recalculated whenever its form section is reselected
+ok 7 - Celestron visibility is recalculated whenever its form section is reselected
+  ---
+  duration_ms: 0.948665
+  ...
+# Subtest: known alignment modes pass through
+ok 8 - known alignment modes pass through
+  ---
+  duration_ms: 0.262847
+  ...
+# Subtest: absent or unknown alignment mode reads as auto
+ok 9 - absent or unknown alignment mode reads as auto
+  ---
+  duration_ms: 0.601056
+  ...
+# Subtest: four distinct GPIO lines pass
+ok 10 - four distinct GPIO lines pass
+  ---
+  duration_ms: 1.632668
+  ...
+# Subtest: one duplicated line is named in the message
+ok 11 - one duplicated line is named in the message
+  ---
+  duration_ms: 0.424291
+  ...
+# Subtest: legacy load: saved [13, 5, ...] leaves row 1 on its default 13
+ok 12 - legacy load: saved [13, 5, ...] leaves row 1 on its default 13
+  ---
+  duration_ms: 0.261575
+  ...
+# Subtest: blank or non-numeric rows are ignored
+ok 13 - blank or non-numeric rows are ignored
+  ---
+  duration_ms: 0.296304
+  ...
+# Subtest: an exact-tag release build hides the badge
+ok 14 - an exact-tag release build hides the badge
+  ---
+  duration_ms: 1.740471
+  ...
+# Subtest: a detached non-release build shows the badge, labelled by commit
+ok 15 - a detached non-release build shows the badge, labelled by commit
+  ---
+  duration_ms: 0.365729
+  ...
+# Subtest: a branch build shows branch@commit and links to the commit
+ok 16 - a branch build shows branch@commit and links to the commit
+  ---
+  duration_ms: 0.285103
+  ...
+# Subtest: a dirty tree gets a trailing asterisk and says so
+ok 17 - a dirty tree gets a trailing asterisk and says so
+  ---
+  duration_ms: 0.230782
+  ...
+# Subtest: a build with no git metadata hides the badge
+ok 18 - a build with no git metadata hides the badge
+  ---
+  duration_ms: 0.21579
+  ...
+# Subtest: no remote or no commit means no link, and no promise of one
+ok 19 - no remote or no commit means no link, and no promise of one
+  ---
+  duration_ms: 0.211686
+  ...
+# Subtest: lowercase key spellings are accepted
+ok 20 - lowercase key spellings are accepted
+  ---
+  duration_ms: 0.498158
+  ...
+# Subtest: a commit with URL-significant characters is escaped into the href
+ok 21 - a commit with URL-significant characters is escaped into the href
+  ---
+  duration_ms: 0.223054
+  ...
+# Subtest: editAssignments fills saved values, leaves absent ones to the markup, and skips record lists, secrets and manual fields
+ok 22 - editAssignments fills saved values, leaves absent ones to the markup, and skips record lists, secrets and manual fields
+  ---
+  duration_ms: 3.80867
+  ...
+# Subtest: ZWO USB Limit edits explicit values and leaves default blank without affecting switches
+ok 23 - ZWO USB Limit edits explicit values and leaves default blank without affecting switches
+  ---
+  duration_ms: 8.006287
+  ...
+# Subtest: ZWO camera controls are disabled when another vendor is selected
+ok 24 - ZWO camera controls are disabled when another vendor is selected
+  ---
+  duration_ms: 0.791574
+  ...
+# Subtest: ZWO USB Limit submit sends the parsed value and omits blank input
+ok 25 - ZWO USB Limit submit sends the parsed value and omits blank input
+  ---
+  duration_ms: 0.660058
+  ...
+# Subtest: an absent or null Discriminator opens on its catalog default
+ok 26 - an absent or null Discriminator opens on its catalog default
+  ---
+  duration_ms: 4.219385
+  ...
+# Subtest: a saved false or 0 is shown as saved, not as the markup default
+ok 27 - a saved false or 0 is shown as saved, not as the markup default
+  ---
+  duration_ms: 0.660673
+  ...
+# Subtest: a device whose vendor and type have no descriptor fills and hides nothing
+ok 28 - a device whose vendor and type have no descriptor fills and hides nothing
+  ---
+  duration_ms: 0.553222
+  ...
+# Subtest: editing a Gemini flat panel v2 on serial loads the v2 block
+ok 29 - editing a Gemini flat panel v2 on serial loads the v2 block
+  ---
+  duration_ms: 0.514422
+  ...
+# Subtest: editing a QHY CFW3 on serial loads the CFW3 block and the filter names
+ok 30 - editing a QHY CFW3 on serial loads the CFW3 block and the filter names
+  ---
+  duration_ms: 0.519806
+  ...
+# Subtest: a QHY focuser with only an index shows the form defaults for the rest
+ok 31 - a QHY focuser with only an index shows the form defaults for the rest
+  ---
+  duration_ms: 0.705155
+  ...
+# Subtest: a Sky-Watcher mount shows its saved site and backlash, and a limit it does not save stays blank
+ok 32 - a Sky-Watcher mount shows its saved site and backlash, and a limit it does not save stays blank
+  ---
+  duration_ms: 0.800941
+  ...
+# Subtest: Bisque and gphoto fall back to the values the form shows for a new device
+ok 33 - Bisque and gphoto fall back to the values the form shows for a new device
+  ---
+  duration_ms: 3.382475
+  ...
+# Subtest: the fill stays inside the vendor and type of the edited device
+ok 34 - the fill stays inside the vendor and type of the edited device
+  ---
+  duration_ms: 0.5898
+  ...
+# Subtest: Discriminators are assigned in descriptor order, so the togglers run outer branch last
+ok 35 - Discriminators are assigned in descriptor order, so the togglers run outer branch last
+  ---
+  duration_ms: 0.610096
+  ...
+# Subtest: appliesWhen hides a field when its nearest discriminator holds another value
+ok 36 - appliesWhen hides a field when its nearest discriminator holds another value
+  ---
+  duration_ms: 0.806942
+  ...
+# Subtest: appliesWhen chains: a field under a hidden discriminator is hidden too
+ok 37 - appliesWhen chains: a field under a hidden discriminator is hidden too
+  ---
+  duration_ms: 2.181818
+  ...
+# Subtest: the fields app.js fills by hand are exactly the ones marked manual
+ok 38 - the fields app.js fills by hand are exactly the ones marked manual
+  ---
+  duration_ms: 0.430748
+  ...
+# Subtest: the drift check reads app.js: startEditDevice fills by hand only the fields marked manual
+ok 39 - the drift check reads app.js: startEditDevice fills by hand only the fields marked manual
+  ---
+  duration_ms: 3.248207
+  ...
+# Subtest: startEditDevice and every discriminator change re-run the appliesWhen hiding
+ok 40 - startEditDevice and every discriminator change re-run the appliesWhen hiding
+  ---
+  duration_ms: 0.783013
+  ...
+# Subtest: every named form field maps to a catalog field, a key the router keeps for every device, or a listed UI-only id
+ok 41 - every named form field maps to a catalog field, a key the router keeps for every device, or a listed UI-only id
+  ---
+  duration_ms: 5.031319
+  ...
+# Subtest: every catalog field has a form field or a listed reason
+ok 42 - every catalog field has a form field or a listed reason
+  ---
+  duration_ms: 3.228999
+  ...
+# Subtest: the vendor select lists exactly the catalog vendors
+ok 43 - the vendor select lists exactly the catalog vendors
+  ---
+  duration_ms: 0.567895
+  ...
+# Subtest: every exemption in catalog_form_drift.json is still needed
+ok 44 - every exemption in catalog_form_drift.json is still needed
+  ---
+  duration_ms: 2.070247
+  ...
+# Subtest: each form field control fits its catalog field type and role
+ok 45 - each form field control fits its catalog field type and role
+  ---
+  duration_ms: 3.95621
+  ...
+# Subtest: every Discriminator catalog default is an option of its select
+ok 46 - every Discriminator catalog default is an option of its select
+  ---
+  duration_ms: 2.598957
+  ...
+# Subtest: catalogFromResponse returns the descriptors from the management envelope
+ok 47 - catalogFromResponse returns the descriptors from the management envelope
+  ---
+  duration_ms: 2.797067
+  ...
+# Subtest: catalogFromResponse throws the server message when ErrorNumber is not 0
+ok 48 - catalogFromResponse throws the server message when ErrorNumber is not 0
+  ---
+  duration_ms: 0.549311
+  ...
+# Subtest: catalogFromResponse throws when Value is not a descriptor array
+ok 49 - catalogFromResponse throws when Value is not a descriptor array
+  ---
+  duration_ms: 0.356281
+  ...
+# Subtest: catalogLoader fetches the catalog once and shares it
+ok 50 - catalogLoader fetches the catalog once and shares it
+  ---
+  duration_ms: 0.463973
+  ...
+# Subtest: catalogLoader surfaces a failed load and fetches again on the next call
+ok 51 - catalogLoader surfaces a failed load and fetches again on the next call
+  ---
+  duration_ms: 0.787022
+  ...
+# Subtest: offeredVendors offers each available vendor for the device types it has a descriptor for
+ok 52 - offeredVendors offers each available vendor for the device types it has a descriptor for
+  ---
+  duration_ms: 1.003955
+  ...
+# Subtest: offeredVendors drops a descriptor the build does not include
+ok 53 - offeredVendors drops a descriptor the build does not include
+  ---
+  duration_ms: 0.396787
+  ...
+# Subtest: offeredVendors keeps the vendor of the edited device when the build lacks it
+ok 54 - offeredVendors keeps the vendor of the edited device when the build lacks it
+  ---
+  duration_ms: 0.235414
+  ...
+# Subtest: with no catalog loaded no vendor is offered
+ok 55 - with no catalog loaded no vendor is offered
+  ---
+  duration_ms: 0.618392
+  ...
+# Subtest: vendorSelectState clears a vendor the device type does not offer, and keeps a Gemini switch
+ok 56 - vendorSelectState clears a vendor the device type does not offer, and keeps a Gemini switch
+  ---
+  duration_ms: 2.823259
+  ...
+# Subtest: with no catalog loaded the vendor select is disabled and empty
+ok 57 - with no catalog loaded the vendor select is disabled and empty
+  ---
+  duration_ms: 0.284368
+  ...
+# Subtest: deriveIndexFields takes EnumerationIndex number inputs and pairs the nearest DeviceId, else PortPath, field of the same appliesWhen
+ok 58 - deriveIndexFields takes EnumerationIndex number inputs and pairs the nearest DeviceId, else PortPath, field of the same appliesWhen
+  ---
+  duration_ms: 9.743093
+  ...
+# Subtest: the index fields derived from index.html and the catalog are the ones app.js kept by hand
+ok 59 - the index fields derived from index.html and the catalog are the ones app.js kept by hand
+  ---
+  duration_ms: 11.612032
+  ...
+# Subtest: app.js keeps no hand-kept INDEX_FIELDS table and derives the index fields from the catalog
+ok 60 - app.js keeps no hand-kept INDEX_FIELDS table and derives the index fields from the catalog
+  ---
+  duration_ms: 2.106473
+  ...
+# Subtest: updateVendorOptions takes the offered vendors from the catalog
+ok 61 - updateVendorOptions takes the offered vendors from the catalog
+  ---
+  duration_ms: 1.285459
+  ...
+# Subtest: app.js keeps one catalog loader on GET /management/v1/devicecatalog
+ok 62 - app.js keeps one catalog loader on GET /management/v1/devicecatalog
+  ---
+  duration_ms: 0.761964
+  ...
+# Subtest: the page starts loading the catalog before it loads the devices
+ok 63 - the page starts loading the catalog before it loads the devices
+  ---
+  duration_ms: 0.348266
+  ...
+# Subtest: a failed catalog load is shown as text and opening the Add form retries it
+ok 64 - a failed catalog load is shown as text and opening the Add form retries it
+  ---
+  duration_ms: 0.810606
+  ...
+# Subtest: startEditDevice awaits the catalog before it fills the form, and fills nothing without one
+ok 65 - startEditDevice awaits the catalog before it fills the form, and fills nothing without one
+  ---
+  duration_ms: 0.539374
+  ...
+# Subtest: startEditDevice keeps the edited vendor offered, and resetDeviceForm clears it before the options are rebuilt
+ok 66 - startEditDevice keeps the edited vendor offered, and resetDeviceForm clears it before the options are rebuilt
+  ---
+  duration_ms: 0.477533
+  ...
+# Subtest: the edit click handler awaits startEditDevice
+ok 67 - the edit click handler awaits startEditDevice
+  ---
+  duration_ms: 0.801445
+  ...
+# Subtest: catalog_schema.js writes no markup
+ok 68 - catalog_schema.js writes no markup
+  ---
+  duration_ms: 0.43078
+  ...
+# Subtest: index.html loads catalog_schema.js before app.js
+ok 69 - index.html loads catalog_schema.js before app.js
+  ---
+  duration_ms: 0.258711
+  ...
+# Subtest: startEditDevice opens the Configure tab before it waits for the catalog
+ok 70 - startEditDevice opens the Configure tab before it waits for the catalog
+  ---
+  duration_ms: 0.240222
+  ...
+# Subtest: the delegated input listener marks only index fields as user-modified
+ok 71 - the delegated input listener marks only index fields as user-modified
+  ---
+  duration_ms: 0.336985
+  ...
+# Subtest: editAssignments skips the read-only server-fixed controls, which keep their markup value
+ok 72 - editAssignments skips the read-only server-fixed controls, which keep their markup value
+  ---
+  duration_ms: 6.140548
+  ...
+# Subtest: a checkbox is checked only by a saved true
+ok 73 - a checkbox is checked only by a saved true
+  ---
+  duration_ms: 0.384682
+  ...
+# Subtest: startEditDevice collects the Discriminators, puts the CGX connection type first and dispatches change on each before hiding
+ok 74 - startEditDevice collects the Discriminators, puts the CGX connection type first and dispatches change on each before hiding
+  ---
+  duration_ms: 0.540151
+  ...
+# Subtest: startEditDevice restores the markup default for a null assignment and rebuilds the filter slot lists
+ok 75 - startEditDevice restores the markup default for a null assignment and rebuilds the filter slot lists
+  ---
+  duration_ms: 0.405339
+  ...
+# Subtest: updateFieldApplicability hides a form group shared by several fields only when none of them applies
+ok 76 - updateFieldApplicability hides a form group shared by several fields only when none of them applies
+  ---
+  duration_ms: 0.256687
+  ...
+# Subtest: the disabled cue is scoped to the vendor select
+ok 77 - the disabled cue is scoped to the vendor select
+  ---
+  duration_ms: 0.646129
+  ...
+# Subtest: readFormFields in app.js reports what the formFields helper reports for every mapped control
+ok 78 - readFormFields in app.js reports what the formFields helper reports for every mapped control
+  ---
+  duration_ms: 21.314324
+  ...
+# Subtest: offeredDeviceTypes offers every type the fixture catalog has an entry for
+ok 79 - offeredDeviceTypes offers every type the fixture catalog has an entry for
+  ---
+  duration_ms: 0.712331
+  ...
+# Subtest: offeredDeviceTypes hides a type the catalog has no entry for
+ok 80 - offeredDeviceTypes hides a type the catalog has no entry for
+  ---
+  duration_ms: 0.305224
+  ...
+# Subtest: offeredDeviceTypes hides a type whose only entries are not available, unless it is the edited type
+ok 81 - offeredDeviceTypes hides a type whose only entries are not available, unless it is the edited type
+  ---
+  duration_ms: 0.391202
+  ...
+# Subtest: offeredDeviceTypes keeps a hidden edited type
+ok 82 - offeredDeviceTypes keeps a hidden edited type
+  ---
+  duration_ms: 0.280256
+  ...
+# Subtest: offeredDeviceTypes offers nothing for an empty or failed catalog, even for the edited type
+ok 83 - offeredDeviceTypes offers nothing for an empty or failed catalog, even for the edited type
+  ---
+  duration_ms: 0.452396
+  ...
+# Subtest: app.js applies offeredDeviceTypes where the catalog loads and before an edit selects its type
+ok 84 - app.js applies offeredDeviceTypes where the catalog loads and before an edit selects its type
+  ---
+  duration_ms: 0.901849
+  ...
+# Subtest: each driver status string parses to its state
+ok 85 - each driver status string parses to its state
+  ---
+  duration_ms: 1.682661
+  ...
+# Subtest: anything else parses to unknown
+ok 86 - anything else parses to unknown
+  ---
+  duration_ms: 0.286975
+  ...
+# Subtest: Abort is offered only while a run is in progress
+ok 87 - Abort is offered only while a run is in progress
+  ---
+  duration_ms: 0.279855
+  ...
+# Subtest: a status error never offers Abort
+ok 88 - a status error never offers Abort
+  ---
+  duration_ms: 0.398987
+  ...
+# Subtest: isCalibrationRunning and mayStartCalibration
+ok 89 - isCalibrationRunning and mayStartCalibration
+  ---
+  duration_ms: 0.274583
+  ...
+# Subtest: status text and hint per state
+ok 90 - status text and hint per state
+  ---
+  duration_ms: 0.309992
+  ...
+# Subtest: the confirm text warns about end-to-end travel
+ok 91 - the confirm text warns about end-to-end travel
+  ---
+  duration_ms: 0.50587
+  ...
+# Subtest: the confirm text asks for a seated motor, not a clear path
+ok 92 - the confirm text asks for a seated motor, not a clear path
+  ---
+  duration_ms: 0.259207
+  ...
+# Subtest: controls show only on Celestron focuser devices
+ok 93 - controls show only on Celestron focuser devices
+  ---
+  duration_ms: 0.521902
+  ...
+# Subtest: the action body carries the Alpaca form fields
+ok 94 - the action body carries the Alpaca form fields
+  ---
+  duration_ms: 1.10287
+  ...
+# Subtest: app.js uses the generic focuser action route and guards Abort and polling
+ok 95 - app.js uses the generic focuser action route and guards Abort and polling
+  ---
+  duration_ms: 0.463029
+  ...
+# Subtest: collapsing a card hides info, settings, actions and calibration controls
+ok 96 - collapsing a card hides info, settings, actions and calibration controls
+  ---
+  duration_ms: 0.575463
+  ...
+# Subtest: a failed status read keeps polling only during a run
+ok 97 - a failed status read keeps polling only during a run
+  ---
+  duration_ms: 0.487054
+  ...
+# Subtest: Abort is sent only when a fresh status read says Calibrating
+ok 98 - Abort is sent only when a fresh status read says Calibrating
+  ---
+  duration_ms: 0.588152
+  ...
+# Subtest: the Not calibrated status line has a warning tint
+ok 99 - the Not calibrated status line has a warning tint
+  ---
+  duration_ms: 0.405867
+  ...
+# Subtest: Celestron is offered for both Telescope and Focuser
+ok 100 - Celestron is offered for both Telescope and Focuser
+  ---
+  duration_ms: 3.091475
+  ...
+# Subtest: the focus motor port input has a unique vendor-prefixed name
+ok 101 - the focus motor port input has a unique vendor-prefixed name
+  ---
+  duration_ms: 0.44682
+  ...
+# Subtest: the focus motor port is loaded on edit and sent on submit
+ok 102 - the focus motor port is loaded on edit and sent on submit
+  ---
+  duration_ms: 12.123741
+  ...
+# Subtest: the Celestron sub-section follows Device Type
+ok 103 - the Celestron sub-section follows Device Type
+  ---
+  duration_ms: 0.586648
+  ...
+# Subtest: renders the log lines' own YYYY-MM-DD HH:MM:SS shape with a zone label
+ok 104 - renders the log lines' own YYYY-MM-DD HH:MM:SS shape with a zone label
+  ---
+  duration_ms: 18.513873
+  ...
+# Subtest: renders the instant in the viewer's zone, not UTC
+ok 105 - renders the instant in the viewer's zone, not UTC
+  ---
+  duration_ms: 2.474339
+  ...
+# Subtest: renders in the server zone when one is given, whatever the viewer zone
+ok 106 - renders in the server zone when one is given, whatever the viewer zone
+  ---
+  duration_ms: 4.317987
+  ...
+# Subtest: an empty or missing server zone keeps the viewer-zone rendering
+ok 107 - an empty or missing server zone keeps the viewer-zone rendering
+  ---
+  duration_ms: 3.398771
+  ...
+# Subtest: a server zone this Intl does not know falls back to the viewer zone, not UTC
+ok 108 - a server zone this Intl does not know falls back to the viewer zone, not UTC
+  ---
+  duration_ms: 5.918303
+  ...
+# Subtest: the zone label follows the server zone
+ok 109 - the zone label follows the server zone
+  ---
+  duration_ms: 1.578458
+  ...
+# Subtest: local midnight does not roll the date backwards
+ok 110 - local midnight does not roll the date backwards
+  ---
+  duration_ms: 3.759365
+  ...
+# Subtest: single-digit fields are zero padded
+ok 111 - single-digit fields are zero padded
+  ---
+  duration_ms: 1.757703
+  ...
+# Subtest: falls back to a labelled UTC rendering when Intl throws
+ok 112 - falls back to a labelled UTC rendering when Intl throws
+  ---
+  duration_ms: 1.872874
+  ...
+# Subtest: falls back when Intl returns incomplete parts
+ok 113 - falls back when Intl returns incomplete parts
+  ---
+  duration_ms: 1.975845
+  ...
+# Subtest: falls back on an engine that ignores hourCycle and answers in 12-hour form
+ok 114 - falls back on an engine that ignores hourCycle and answers in 12-hour form
+  ---
+  duration_ms: 1.661516
+  ...
+# Subtest: falls back when the engine produces no zone label at all
+ok 115 - falls back when the engine produces no zone label at all
+  ---
+  duration_ms: 1.835513
+  ...
+# Subtest: localZoneLabel returns a label, and an empty string when Intl throws
+ok 116 - localZoneLabel returns a label, and an empty string when Intl throws
+  ---
+  duration_ms: 1.796656
+  ...
+# Subtest: formatServerClock does not throw on an Invalid Date (issue \#511)
+ok 117 - formatServerClock does not throw on an Invalid Date (issue \#511)
+  ---
+  duration_ms: 1.950316
+  ...
+# Subtest: isValidClockSeconds rejects non-finite and out-of-range Values (issue \#511)
+ok 118 - isValidClockSeconds rejects non-finite and out-of-range Values (issue \#511)
+  ---
+  duration_ms: 1.220089
+  ...
+# Subtest: serverClockError surfaces a synctime ErrorMessage and nothing on success (issue \#677)
+ok 119 - serverClockError surfaces a synctime ErrorMessage and nothing on success (issue \#677)
+  ---
+  duration_ms: 1.472904
+  ...
+# Subtest: deviceStatus maps Connected, LoadError, LastConnectError and unknown
+ok 120 - deviceStatus maps Connected, LoadError, LastConnectError and unknown
+  ---
+  duration_ms: 0.81355
+  ...
+# Subtest: formatSiteCoordinate prints finite numbers at 6 decimals and defers other values
+ok 121 - formatSiteCoordinate prints finite numbers at 6 decimals and defers other values
+  ---
+  duration_ms: 0.802037
+  ...
+# Subtest: deviceSettingShown hides the keys the card shows elsewhere
+ok 122 - deviceSettingShown hides the keys the card shows elsewhere
+  ---
+  duration_ms: 2.495739
+  ...
+# Subtest: each input has a unique vendor-prefixed name
+ok 123 - each input has a unique vendor-prefixed name
+  ---
+  duration_ms: 1.705486
+  ...
+# Subtest: the settle input agrees with the catalog range and default
+ok 124 - the settle input agrees with the catalog range and default
+  ---
+  duration_ms: 0.712907
+  ...
+# Subtest: the long-exposure NR select offers the catalog values and defaults to camera
+ok 125 - the long-exposure NR select offers the catalog values and defaults to camera
+  ---
+  duration_ms: 1.68995
+  ...
+# Subtest: the LENR help line names the Canon camera menu
+ok 126 - the LENR help line names the Canon camera menu
+  ---
+  duration_ms: 0.260695
+  ...
+# Subtest: edit loads both fields from the saved config
+ok 127 - edit loads both fields from the saved config
+  ---
+  duration_ms: 11.269246
+  ...
+# Subtest: submit sends both fields under their config keys
+ok 128 - submit sends both fields under their config keys
+  ---
+  duration_ms: 0.312792
+  ...
+# Subtest: a description without the fields renders no Host check rows
+ok 129 - a description without the fields renders no Host check rows
+  ---
+  duration_ms: 1.732038
+  ...
+# Subtest: the rows load the current values
+ok 130 - the rows load the current values
+  ---
+  duration_ms: 1.220897
+  ...
+# Subtest: both rows stay editable even if an older server reports them fixed
+ok 131 - both rows stay editable even if an older server reports them fixed
+  ---
+  duration_ms: 1.732463
+  ...
+# Subtest: a refused save shows the server message, not the status code
+ok 132 - a refused save shows the server message, not the status code
+  ---
+  duration_ms: 0.310608
+  ...
+# Subtest: a saved setting is no error
+ok 133 - a saved setting is no error
+  ---
+  duration_ms: 0.252999
+  ...
+# Subtest: a reply with no usable body still says something
+ok 134 - a reply with no usable body still says something
+  ---
+  duration_ms: 0.202901
+  ...
+# Subtest: the help line lists the names default.yaml says are always allowed
+ok 135 - the help line lists the names default.yaml says are always allowed
+  ---
+  duration_ms: 0.570935
+  ...
+# Subtest: discoveryPortSetting reads the reported port and hides the row otherwise
+ok 136 - discoveryPortSetting reads the reported port and hides the row otherwise
+  ---
+  duration_ms: 0.28048
+  ...
+# Subtest: downloadAllLogs shows the JSON ErrorMessage and saves no file
+ok 137 - downloadAllLogs shows the JSON ErrorMessage and saves no file
+  ---
+  duration_ms: 4.699934
+  ...
+# Subtest: downloadLogFile shows the JSON ErrorMessage and saves no file
+ok 138 - downloadLogFile shows the JSON ErrorMessage and saves no file
+  ---
+  duration_ms: 2.0646
+  ...
+# Subtest: the catalog labels both Sky-Watcher telescope descriptors "Sky-Watcher"
+ok 139 - the catalog labels both Sky-Watcher telescope descriptors "Sky-Watcher"
+  ---
+  duration_ms: 2.278478
+  ...
+# Subtest: the vendor select shows both Sky-Watcher keys as one "Sky-Watcher" name
+ok 140 - the vendor select shows both Sky-Watcher keys as one "Sky-Watcher" name
+  ---
+  duration_ms: 1.764831
+  ...
+# Subtest: the Sky-Watcher connection choice maps one option to each driver key
+ok 141 - the Sky-Watcher connection choice maps one option to each driver key
+  ---
+  duration_ms: 0.56452
+  ...
+# Subtest: vendorSelectState shows one Sky-Watcher option: the selected driver, else the first listed
+ok 142 - vendorSelectState shows one Sky-Watcher option: the selected driver, else the first listed
+  ---
+  duration_ms: 3.658034
+  ...
+# Subtest: vendorSelectState keeps a one-member group when only one Sky-Watcher driver is offered
+ok 143 - vendorSelectState keeps a one-member group when only one Sky-Watcher driver is offered
+  ---
+  duration_ms: 0.958162
+  ...
+# Subtest: vendorSelectState does not group the Sky-Watcher drivers once the catalog drops their label
+ok 144 - vendorSelectState does not group the Sky-Watcher drivers once the catalog drops their label
+  ---
+  duration_ms: 0.607945
+  ...
+# Subtest: vendorSelectState groups any two vendors of one device type that share a vendorLabel
+ok 145 - vendorSelectState groups any two vendors of one device type that share a vendorLabel
+  ---
+  duration_ms: 0.704323
+  ...
+# Subtest: only the shown Sky-Watcher option is enabled, and the connection choice swaps the two
+ok 146 - only the shown Sky-Watcher option is enabled, and the connection choice swaps the two
+  ---
+  duration_ms: 1.718862
+  ...
+# Subtest: the connection choice stays hidden when only one Sky-Watcher driver is offered and none is edited
+ok 147 - the connection choice stays hidden when only one Sky-Watcher driver is offered and none is edited
+  ---
+  duration_ms: 1.856226
+  ...
+# Subtest: the \#vendor change handler starts with updateVendorConnection, and the connection select runs selectVendorConnection
+ok 148 - the \#vendor change handler starts with updateVendorConnection, and the connection select runs selectVendorConnection
+  ---
+  duration_ms: 0.755068
+  ...
+# Subtest: the grouping and connection code names no vendor key
+ok 149 - the grouping and connection code names no vendor key
+  ---
+  duration_ms: 2.173114
+  ...
+# Subtest: an edit that switches the Sky-Watcher connection submits the new key with the original uniqueId
+ok 150 - an edit that switches the Sky-Watcher connection submits the new key with the original uniqueId
+  ---
+  duration_ms: 3.599689
+  ...
+# Subtest: a new switch preselects nothing, even with one heater camera
+ok 151 - a new switch preselects nothing, even with one heater camera
+  ---
+  duration_ms: 3.127388
+  ...
+# Subtest: heater cameras come first and the others cannot be picked
+ok 152 - heater cameras come first and the others cannot be picked
+  ---
+  duration_ms: 0.416947
+  ...
+# Subtest: a camera another switch uses is labelled
+ok 153 - a camera another switch uses is labelled
+  ---
+  duration_ms: 0.592992
+  ...
+# Subtest: picking a camera sends its index and serial
+ok 154 - picking a camera sends its index and serial
+  ---
+  duration_ms: 0.326504
+  ...
+# Subtest: editing selects the saved heater camera by serial even after it moved index
+ok 155 - editing selects the saved heater camera by serial even after it moved index
+  ---
+  duration_ms: 0.330657
+  ...
+# Subtest: editing a switch saved as Auto or on a camera without the heater asks again
+ok 156 - editing a switch saved as Auto or on a camera without the heater asks again
+  ---
+  duration_ms: 0.385034
+  ...
+# Subtest: a saved camera that is not attached is kept as it was
+ok 157 - a saved camera that is not attached is kept as it was
+  ---
+  duration_ms: 0.490533
+  ...
+# Subtest: the user choice survives a refresh unless that camera is gone
+ok 158 - the user choice survives a refresh unless that camera is gone
+  ---
+  duration_ms: 0.29748
+  ...
+# Subtest: no heater camera attached says so
+ok 159 - no heater camera attached says so
+  ---
+  duration_ms: 0.553575
+  ...
+# Subtest: a failed listing still asks, offering the first indexes
+ok 160 - a failed listing still asks, offering the first indexes
+  ---
+  duration_ms: 0.810438
+  ...
+# Subtest: nothing checked yet
+ok 161 - nothing checked yet
+  ---
+  duration_ms: 1.632811
+  ...
+# Subtest: a newer release is offered by number
+ok 162 - a newer release is offered by number
+  ---
+  duration_ms: 0.22899
+  ...
+# Subtest: the same release is up to date
+ok 163 - the same release is up to date
+  ---
+  duration_ms: 0.200269
+  ...
+# Subtest: a dev build newer than the repository is up to date and says so
+ok 164 - a dev build newer than the repository is up to date and says so
+  ---
+  duration_ms: 0.455524
+  ...
+# Subtest: a failed check wins over a stale result
+ok 165 - a failed check wins over a stale result
+  ---
+  duration_ms: 0.246911
+  ...
+# Subtest: a check in progress says so, over a stale result or error
+ok 166 - a check in progress says so, over a stale result or error
+  ---
+  duration_ms: 0.22011
+  ...
+# Subtest: installer states
+ok 167 - installer states
+  ---
+  duration_ms: 0.412195
+  ...
+# Subtest: renders the release-notes subset and drops the title line
+ok 168 - renders the release-notes subset and drops the title line
+  ---
+  duration_ms: 1.314946
+  ...
+# Subtest: a second top-level heading is rendered, only the first is the title
+ok 169 - a second top-level heading is rendered, only the first is the title
+  ---
+  duration_ms: 0.605248
+  ...
+# Subtest: markup in the notes is text, never tags
+ok 170 - markup in the notes is text, never tags
+  ---
+  duration_ms: 0.538646
+  ...
+# Subtest: only http(s) links become anchors
+ok 171 - only http(s) links become anchors
+  ---
+  duration_ms: 0.565758
+  ...
+# Subtest: empty or missing notes render nothing
+ok 172 - empty or missing notes render nothing
+  ---
+  duration_ms: 0.266543
+  ...
+# Subtest: an unterminated fence still renders as code
+ok 173 - an unterminated fence still renders as code
+  ---
+  duration_ms: 0.23819
+  ...
+# Subtest: markdown inside a code span stays literal
+ok 174 - markdown inside a code span stays literal
+  ---
+  duration_ms: 0.589143
+  ...
+# Subtest: a NUL byte in the notes cannot reach the code-span placeholders
+ok 175 - a NUL byte in the notes cannot reach the code-span placeholders
+  ---
+  duration_ms: 0.568055
+  ...
+# Subtest: a disabled check is worded as such, before any stale result
+ok 176 - a disabled check is worded as such, before any stale result
+  ---
+  duration_ms: 0.478572
+  ...
+# Subtest: selector shows the host channel and is enabled when idle
+ok 177 - selector shows the host channel and is enabled when idle
+  ---
+  duration_ms: 1.970795
+  ...
+# Subtest: the selector note on Stable names the beta build that stays installed
+ok 178 - the selector note on Stable names the beta build that stays installed
+  ---
+  duration_ms: 0.68545
+  ...
+# Subtest: selector is disabled and says why when update_packages_url overrides the channel
+ok 179 - selector is disabled and says why when update_packages_url overrides the channel
+  ---
+  duration_ms: 0.308608
+  ...
+# Subtest: selector is disabled while a switch or an install runs, or the helper is missing
+ok 180 - selector is disabled while a switch or an install runs, or the helper is missing
+  ---
+  duration_ms: 0.490213
+  ...
+# Subtest: choosing stable on a beta build says the build stays until stable overtakes it
+ok 181 - choosing stable on a beta build says the build stays until stable overtakes it
+  ---
+  duration_ms: 0.298592
+  ...
+# Subtest: channel switch progress and result text
+ok 182 - channel switch progress and result text
+  ---
+  duration_ms: 0.38813
+  ...
+# Subtest: the update card loads its status when the page opens
+ok 183 - the update card loads its status when the page opens
+  ---
+  duration_ms: 1.686484
+  ...
+# Subtest: add-device option reads "DSLR / Mirrorless" and keeps the gphoto key
+ok 184 - add-device option reads "DSLR / Mirrorless" and keeps the gphoto key
+  ---
+  duration_ms: 2.622468
+  ...
+# Subtest: the gphoto configuration heading uses the same name
+ok 185 - the gphoto configuration heading uses the same name
+  ---
+  duration_ms: 0.286944
+  ...
+# Subtest: no visible option, heading, label or help text names gphoto2 or libgphoto2
+ok 186 - no visible option, heading, label or help text names gphoto2 or libgphoto2
+  ---
+  duration_ms: 2.316948
+  ...
+# Subtest: hotspot off, Cancel: no request, toggle stays on
+ok 187 - hotspot off, Cancel: no request, toggle stays on
+  ---
+  duration_ms: 15.675145
+  ...
+# Subtest: hotspot off, OK: sends PUT /ap with Enabled false
+ok 188 - hotspot off, OK: sends PUT /ap with Enabled false
+  ---
+  duration_ms: 3.316039
+  ...
+# Subtest: hotspot on confirms exactly once
+ok 189 - hotspot on confirms exactly once
+  ---
+  duration_ms: 2.691262
+  ...
+# Subtest: hotspot on, Cancel: no request, toggle back off
+ok 190 - hotspot on, Cancel: no request, toggle back off
+  ---
+  duration_ms: 2.676942
+  ...
+# Subtest: hotspot name change, Cancel: no request, previous name restored
+ok 191 - hotspot name change, Cancel: no request, previous name restored
+  ---
+  duration_ms: 2.586028
+  ...
+# Subtest: hotspot password change, Cancel: no request, field cleared
+ok 192 - hotspot password change, Cancel: no request, field cleared
+  ---
+  duration_ms: 3.801875
+  ...
+# Subtest: hotspot name change, OK: sends PUT /ap with the new name
+ok 193 - hotspot name change, OK: sends PUT /ap with the new name
+  ---
+  duration_ms: 2.371846
+  ...
+# Subtest: band click, Cancel: no request, previous band stays selected
+ok 194 - band click, Cancel: no request, previous band stays selected
+  ---
+  duration_ms: 4.363786
+  ...
+# Subtest: band click, OK: sends PUT /ap with the new band
+ok 195 - band click, OK: sends PUT /ap with the new band
+  ---
+  duration_ms: 4.419747
+  ...
+# Subtest: hotspot edits while the hotspot is off save without a prompt
+ok 196 - hotspot edits while the hotspot is off save without a prompt
+  ---
+  duration_ms: 4.551815
+  ...
+# Subtest: hotspot name edit while busy: no request, previous name restored
+ok 197 - hotspot name edit while busy: no request, previous name restored
+  ---
+  duration_ms: 3.319431
+  ...
+# Subtest: hotspot toggle while busy: no request, toggle put back
+ok 198 - hotspot toggle while busy: no request, toggle put back
+  ---
+  duration_ms: 3.822692
+  ...
+# Subtest: hotspot name emptied: no request, previous name restored
+ok 199 - hotspot name emptied: no request, previous name restored
+  ---
+  duration_ms: 3.611191
+  ...
+# Subtest: hotspot edit on 5 GHz with no country: no request, previous name restored
+ok 200 - hotspot edit on 5 GHz with no country: no request, previous name restored
+  ---
+  duration_ms: 3.877677
+  ...
+# Subtest: hotspot toggled off on 5 GHz with no country: toggle put back on
+ok 201 - hotspot toggled off on 5 GHz with no country: toggle put back on
+  ---
+  duration_ms: 3.356696
+  ...
+# Subtest: hotspot not configured, no password: no request, typed name kept
+ok 202 - hotspot not configured, no password: no request, typed name kept
+  ---
+  duration_ms: 5.572674
+  ...
+# Subtest: hotspot not configured, name emptied by password first: typed password kept
+ok 203 - hotspot not configured, name emptied by password first: typed password kept
+  ---
+  duration_ms: 4.806413
+  ...
+# Subtest: hotspot not configured, toggled on with no password: no request, toggle put back off
+ok 204 - hotspot not configured, toggled on with no password: no request, toggle put back off
+  ---
+  duration_ms: 9.743582
+  ...
+# Subtest: hotspot not configured, 5 GHz with no country: no request, typed name kept
+ok 205 - hotspot not configured, 5 GHz with no country: no request, typed name kept
+  ---
+  duration_ms: 6.543499
+  ...
+# Subtest: hotspot not configured: name then password sends one PUT with both
+ok 206 - hotspot not configured: name then password sends one PUT with both
+  ---
+  duration_ms: 3.833044
+  ...
+# Subtest: WiFi radio off, Cancel: no request, toggle stays on
+ok 207 - WiFi radio off, Cancel: no request, toggle stays on
+  ---
+  duration_ms: 3.825723
+  ...
+# Subtest: WiFi radio off, OK: sends PUT /radio with Enabled false
+ok 208 - WiFi radio off, OK: sends PUT /radio with Enabled false
+  ---
+  duration_ms: 3.249805
+  ...
+# Subtest: WiFi radio on saves without a prompt
+ok 209 - WiFi radio on saves without a prompt
+  ---
+  duration_ms: 2.282876
+  ...
+# Subtest: on the hotspot address: hotspot off prompts once, Cancel sends nothing
+ok 210 - on the hotspot address: hotspot off prompts once, Cancel sends nothing
+  ---
+  duration_ms: 3.918102
+  ...
+# Subtest: on the hotspot address: hotspot name edit prompts once, Cancel sends nothing
+ok 211 - on the hotspot address: hotspot name edit prompts once, Cancel sends nothing
+  ---
+  duration_ms: 2.238371
+  ...
+# Subtest: on the hotspot address: radio off prompts once, Cancel sends nothing
+ok 212 - on the hotspot address: radio off prompts once, Cancel sends nothing
+  ---
+  duration_ms: 2.100103
+  ...
+# Subtest: hotspot-only board (ApActive, no Ssid) on a LAN host: hotspot off prompts
+ok 213 - hotspot-only board (ApActive, no Ssid) on a LAN host: hotspot off prompts
+  ---
+  duration_ms: 3.630815
+  ...
+# Subtest: SSID identity uses exact bytes while duplicate display labels show the encoding
+ok 214 - SSID identity uses exact bytes while duplicate display labels show the encoding
+  ---
+  duration_ms: 1.785967
+  ...
+# Subtest: one attached camera beside two configured entries is offered at its own index
+ok 215 - one attached camera beside two configured entries is offered at its own index
+  ---
+  duration_ms: 3.331367
+  ...
+# Subtest: a camera another entry holds by serial is shown but cannot be picked
+ok 216 - a camera another entry holds by serial is shown but cannot be picked
+  ---
+  duration_ms: 0.310384
+  ...
+# Subtest: a camera with no serial is saved by index and model name
+ok 217 - a camera with no serial is saved by index and model name
+  ---
+  duration_ms: 0.259294
+  ...
+# Subtest: editing selects the saved camera by serial even after it moved index
+ok 218 - editing selects the saved camera by serial even after it moved index
+  ---
+  duration_ms: 0.249614
+  ...
+# Subtest: a Refresh that moves the picked camera to another slot keeps that camera picked
+ok 219 - a Refresh that moves the picked camera to another slot keeps that camera picked
+  ---
+  duration_ms: 0.266127
+  ...
+# Subtest: an edited entry whose camera is not attached keeps its saved binding
+ok 220 - an edited entry whose camera is not attached keeps its saved binding
+  ---
+  duration_ms: 0.561335
+  ...
+# Subtest: an entry that never learned a serial says so and can be rebound by picking
+ok 221 - an entry that never learned a serial says so and can be rebound by picking
+  ---
+  duration_ms: 0.416035
+  ...
+# Subtest: an edited entry saved by model name selects its attached camera, and says it binds by name
+ok 222 - an edited entry saved by model name selects its attached camera, and says it binds by name
+  ---
+  duration_ms: 0.579783
+  ...
+# Subtest: the by-hand fallback is always offered, and reads the index boxes
+ok 223 - the by-hand fallback is always offered, and reads the index boxes
+  ---
+  duration_ms: 0.615184
+  ...
+# Subtest: the hint explains an empty or failed listing
+ok 224 - the hint explains an empty or failed listing
+  ---
+  duration_ms: 0.524093
+  ...
+# Subtest: configureWarning reads the warning out of a configuredevice reply
+ok 225 - configureWarning reads the warning out of a configuredevice reply
+  ---
+  duration_ms: 0.264023
+  ...
+# Subtest: the by-hand ZWO camera index is not auto-numbered from the saved cameras
+ok 226 - the by-hand ZWO camera index is not auto-numbered from the saved cameras
+  ---
+  duration_ms: 1.54456
+  ...
+# Subtest: a picked ZWO camera replaces the index and ID boxes in the saved entry
+ok 227 - a picked ZWO camera replaces the index and ID boxes in the saved entry
+  ---
+  duration_ms: 2.69371
+  ...
+# Subtest: the by-hand ZWO camera choice sends the index and ID boxes, and no pick refuses the save
+ok 228 - the by-hand ZWO camera choice sends the index and ID boxes, and no pick refuses the save
+  ---
+  duration_ms: 3.811452
+  ...
+# Subtest: the ZWO camera picker says it is listing until the listing lands, and an edit keeps its own camera
+ok 229 - the ZWO camera picker says it is listing until the listing lands, and an edit keeps its own camera
+  ---
+  duration_ms: 19.808429
+  ...
+1..229
+# tests 229
+# suites 0
+# pass 229
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1235.078932

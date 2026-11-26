@@ -1,0 +1,43 @@
+-- The CXX compiler identification is GNU 14.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Building ZWO camera driver support
+-- Found PkgConfig: /usr/bin/pkg-config (found version "1.8.1")
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Building QHY camera, filter wheel, CFW3 (USB) and Q-Focuser driver support
+-- Building iOptron mount driver support
+-- iOptron driver: Serial/TCP mount + iMate PowerBox (libgpiod) Switch support enabled
+-- Building SynScan mount driver support
+-- SynScan driver: Serial and TCP connection support enabled
+-- Building SkyWatcher motor controller mount driver support
+-- SkyWatcher driver: Serial and UDP (Wi-Fi) connection support enabled
+-- Building OnStep mount driver support
+-- OnStep driver: Serial connection support enabled
+-- Building WeeWX observing conditions driver support
+-- Found CURL: /usr/lib/aarch64-linux-gnu/libcurl.so (found version "8.14.1")
+-- WeeWX driver: HTTP JSON feed support enabled
+-- Building SVBONY camera driver support
+-- Building libgphoto2 DSLR/mirrorless camera driver support
+-- Checking for module 'libraw'
+--   Found libraw, version 0.21.4
+-- Building Celestron NexStar and CGX/CGX-L mount driver support
+-- Celestron driver: NexStar serial/TCP and CGX direct USB support enabled
+-- Building Bisque/Paramount (TheSkyX) mount driver support
+-- Bisque driver: TCP connection to TheSkyX enabled
+-- Building ToupTek camera driver support
+-- ToupTek driver: camera + focuser + StellaVita (libgpiod) Switch support enabled
+-- Building Altair camera driver support
+-- Building Player One camera and filter wheel driver support
+-- Checking for module 'hidapi-hidraw'
+--   Found hidapi-hidraw, version 0.14.0
+-- Found ZLIB: /usr/lib/aarch64-linux-gnu/libz.so (found version "1.3.1")
+-- Checking for module 'libsystemd'
+--   Found libsystemd, version 257
+-- Configuring done (1.3s)
+-- Generating done (0.2s)
+-- Build files have been written to: /__w/AlpacaBridge/AlpacaBridge/AlpacaHTTP/build

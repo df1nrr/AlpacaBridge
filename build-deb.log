@@ -1,0 +1,1907 @@
+[STEP] Generating debian/changelog from CHANGELOG.md (version 6.0.0~beta5)...
+[STEP] debian/changelog generated and parses cleanly.
+[STEP] Building .deb with dpkg-buildpackage...
+dpkg-buildpackage: info: source package alpacabridge
+dpkg-buildpackage: info: source version 6.0.0~beta5
+dpkg-buildpackage: info: source distribution beta
+dpkg-buildpackage: info: source changed by OpenAstro <support@openastro.net>
+ dpkg-source --before-build .
+dpkg-buildpackage: info: host architecture arm64
+ debian/rules clean
+dh clean
+   debian/rules override_dh_auto_clean
+make[1]: Entering directory '/__w/AlpacaBridge/AlpacaBridge'
+rm -rf /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu
+make[1]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge'
+   dh_clean
+ debian/rules binary
+dh binary
+   dh_update_autotools_config
+   dh_autoreconf
+   debian/rules override_dh_auto_configure
+make[1]: Entering directory '/__w/AlpacaBridge/AlpacaBridge'
+/__w/AlpacaBridge/AlpacaBridge/scripts/build_bundled_gphoto.sh --destdir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage \
+  --build-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src --jobs 4
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/libgphoto2/libgphoto2-2.5.34.tar.xz: OK
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether sleep supports fractional seconds... yes
+checking filesystem timestamp resolution... 0.01
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... no
+checking for mawk... mawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking xargs -n works... yes
+checking whether UID '0' is supported by ustar format... yes
+checking whether GID '0' is supported by ustar format... yes
+checking how to create a ustar tar archive... gnutar
+checking for POSIX sh $() command substitution... yes
+checking original CC value... ""
+checking original CXX value... ""
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C23 features... -std=gnu23
+checking whether gcc -std=gnu23 understands -c and -o together... yes
+checking whether make supports the include directive... yes (GNU style)
+checking dependency style of gcc -std=gnu23... gcc3
+checking how to run the C preprocessor... gcc -std=gnu23 -E
+checking for g++... g++
+checking whether the compiler supports GNU C++... yes
+checking whether g++ accepts -g... yes
+checking dependency style of g++... gcc3
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for ar... ar
+checking the archiver (ar) interface... ar
+checking for rsync... no
+/* confdefs.h */
+#define PACKAGE_NAME "libgphoto2 photo camera library"
+#define PACKAGE_TARNAME "libgphoto2"
+#define PACKAGE_VERSION "2.5.34"
+#define PACKAGE_STRING "libgphoto2 photo camera library 2.5.34"
+#define PACKAGE_BUGREPORT "gphoto-devel@lists.sourceforge.net"
+#define PACKAGE_URL ""
+#define PACKAGE "libgphoto2"
+#define VERSION "2.5.34"
+configure: saving original confdefs.h and creating empty confdefs.h
+checking CFLAGS value before... -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard
+checking CXXFLAGS value before... -g -O2 -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard
+checking whether CFLAGS can append -std=c90... yes
+checking whether CFLAGS can append -pedantic -Wall -Wextra -Werror... yes
+checking whether to test pedantic -std=c90... yes
+checking whether CFLAGS can append -std=c99... yes
+checking whether CFLAGS can append -pedantic -Wall -Wextra -Werror... yes
+checking whether to test pedantic -std=c99... yes
+checking whether CFLAGS can append -std=c11... yes
+checking whether CFLAGS can append -pedantic -Wall -Wextra -Werror... yes
+checking whether to test pedantic -std=c11... yes
+checking whether CFLAGS can append -std=c2x... yes
+checking whether CFLAGS can append -pedantic -Wall -Wextra -Werror... yes
+checking whether to test pedantic -std=c2x... yes
+checking whether CXXFLAGS can append -std=c++98... yes
+checking whether CXXFLAGS can append -pedantic -Wall -Wextra -Werror... yes
+checking whether to test pedantic -std=c++98... yes
+checking whether CXXFLAGS can append -std=c++11... yes
+checking whether CXXFLAGS can append -pedantic -Wall -Wextra -Werror... yes
+checking whether to test pedantic -std=c++11... yes
+checking whether CXXFLAGS can append -std=c++14... yes
+checking whether CXXFLAGS can append -pedantic -Wall -Wextra -Werror... yes
+checking whether to test pedantic -std=c++14... yes
+checking whether CXXFLAGS can append -std=c++17... yes
+checking whether CXXFLAGS can append -pedantic -Wall -Wextra -Werror... yes
+checking whether to test pedantic -std=c++17... yes
+checking whether CXXFLAGS can append -std=c++20... yes
+checking whether CXXFLAGS can append -pedantic -Wall -Wextra -Werror... yes
+checking whether to test pedantic -std=c++20... yes
+checking whether CFLAGS can append -Werror=unknown-warning-option... no
+checking whether CFLAGS can append -Wall... yes
+checking whether CFLAGS can append -Wextra... yes
+checking whether CFLAGS can append -Wmost... no
+checking whether CFLAGS can append -Werror=incompatible-pointer-types... yes
+checking whether CFLAGS can append -Werror=implicit... yes
+checking whether CFLAGS can append -Werror=int-conversion... yes
+checking whether CFLAGS can append -Wno-error=reserved-identifier... no
+checking whether CFLAGS can append -Wno-error=documentation-deprecated-sync... no
+checking whether CFLAGS can append -Wno-unused-parameter... yes
+checking CFLAGS value after... -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter
+checking CXXFLAGS value after... -g -O2 -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard
+configure: restoring original confdefs.h
+/* confdefs.h */
+#define PACKAGE_NAME "libgphoto2 photo camera library"
+#define PACKAGE_TARNAME "libgphoto2"
+#define PACKAGE_VERSION "2.5.34"
+#define PACKAGE_STRING "libgphoto2 photo camera library 2.5.34"
+#define PACKAGE_BUGREPORT "gphoto-devel@lists.sourceforge.net"
+#define PACKAGE_URL ""
+#define PACKAGE "libgphoto2"
+#define VERSION "2.5.34"
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for stdarg.h... yes
+checking for va_copy() or replacement... va_copy
+checking build system type... aarch64-unknown-linux-gnu
+checking host system type... aarch64-unknown-linux-gnu
+checking how to print strings... printf
+checking for a sed that does not truncate output... (cached) /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc -std=gnu23... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 3145728
+checking how to convert aarch64-unknown-linux-gnu file names to aarch64-unknown-linux-gnu format... func_convert_file_noop
+checking how to convert aarch64-unknown-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for file... file
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ranlib... ranlib
+checking for archiver @FILE support... @
+checking for strip... strip
+checking command to parse /usr/bin/nm -B output from gcc -std=gnu23 object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc -std=gnu23 supports -fno-rtti -fno-exceptions... no
+checking for gcc -std=gnu23 option to produce PIC... -fPIC -DPIC
+checking if gcc -std=gnu23 PIC flag -fPIC -DPIC works... yes
+checking if gcc -std=gnu23 static flag -static works... yes
+checking if gcc -std=gnu23 supports -c -o file.o... yes
+checking if gcc -std=gnu23 supports -c -o file.o... (cached) yes
+checking whether the gcc -std=gnu23 linker (/usr/bin/ld) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking for shl_load... no
+checking for shl_load in -ldld... no
+checking for dlopen... yes
+checking whether a program can dlopen itself... yes
+checking whether a statically linked program can dlopen itself... no
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+checking how to run the C++ preprocessor... g++ -E
+checking for ld used by g++... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking whether the g++ linker (/usr/bin/ld) supports shared libraries... yes
+checking for g++ option to produce PIC... -fPIC -DPIC
+checking if g++ PIC flag -fPIC -DPIC works... yes
+checking if g++ static flag -static works... yes
+checking if g++ supports -c -o file.o... yes
+checking if g++ supports -c -o file.o... (cached) yes
+checking whether the g++ linker (/usr/bin/ld) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking for libltdl... autodetecting
+checking for libltdl at default location... yes
+checking LTDLINCL (autodetected)... 
+checking LIBLTDL (autodetected)... -lltdl
+checking translation text domain symbol... GETTEXT_PACKAGE_LIBGPHOTO2
+checking translation text domain value... libgphoto2-6
+checking translation subdirectory... po
+checking whether NLS is requested... no
+checking for msgfmt... /usr/bin/msgfmt
+checking for gmsgfmt... /usr/bin/msgfmt
+checking for xgettext... /usr/bin/xgettext
+checking for msgmerge... /usr/bin/msgmerge
+checking for ld used by gcc -std=gnu23... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for shared library run path origin... done
+checking for egrep -e... (cached) /usr/bin/grep -E
+checking for CFPreferencesCopyAppValue... no
+checking for CFLocaleCopyCurrent... no
+checking whether to use NLS... no
+checking for iconv... yes
+checking for working iconv... yes
+checking for iconv declaration... 
+         extern size_t iconv (iconv_t cd, char * *inbuf, size_t *inbytesleft, char * *outbuf, size_t *outbytesleft);
+checking for gcc -std=gnu23 option to support large files... none needed
+checking for asm .symver support... yes
+checking for main in -libs... no
+checking for sqrt in -lm... yes
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking whether to build with libjpeg... auto
+checking for libjpeg via variables... no
+checking for libjpeg... yes
+checking linking with libjpeg works... yes
+checking type of jpeg_mem_dest size... unsigned long*
+checking for WSAStartup in -lws2_32... no
+checking for dynamic library extension... .so
+checking for libxml-2.0 to use... no
+checking for libcurl to use... no
+checking for gdlib to use... no
+checking for libtiff-4 to use... no
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking for egrep... (cached) /usr/bin/grep -E
+checking for sys/param.h... yes
+checking for sys/mman.h... yes
+checking for sys/select.h... yes
+checking for locale.h... yes
+checking for memory.h... yes
+checking for getopt.h... yes
+checking for unistd.h... (cached) yes
+checking for mcheck.h... yes
+checking for limits.h... yes
+checking for sys/time.h... yes
+checking for langinfo.h... yes
+checking for library containing mmap... none required
+checking for inline... inline
+checking for an ANSI C-conforming const... yes
+checking for size_t... yes
+checking for getenv... yes
+checking for getopt... yes
+checking for getopt_long... yes
+checking for mkdir... yes
+checking for setenv... yes
+checking for strdup... yes
+checking for strncpy... yes
+checking for strcpy... yes
+checking for snprintf... yes
+checking for sprintf... yes
+checking for vsnprintf... yes
+checking for gmtime_r... yes
+checking for statvfs... yes
+checking for localtime_r... yes
+checking for lstat... yes
+checking for inet_aton... yes
+checking for rand_r... yes
+checking whether struct tm is in sys/time.h or time.h... time.h
+checking for tm_gmtoff in struct tm... yes
+checking for sys/mount.h... yes
+checking for sys/statvfs.h... yes
+checking for sys/user.h... yes
+checking for sys/vfs.h... yes
+checking for struct statvfs.f_blocks... yes
+checking whether byte ordering is bigendian... no
+checking for le32toh in machine/endian.h... no
+checking for ntohl in arpa/inet.h... yes
+checking for swap32 in machine/endian.h... no
+checking for bswap_32 in byteswap.h... yes
+checking where to install camlibs (camlibdir)... ${libdir}/libgphoto2/2.5.34 (default)
+checking for deprecated --with-camlibdir argument... not used (very good)
+checking default location to look for camlibs... value of camlibdir (default)
+checking for cmp... /usr/bin/cmp
+checking for sort... /usr/bin/sort
+checking for tr... /usr/bin/tr
+checking for uniq... /usr/bin/uniq
+checking for expr... /usr/bin/expr
+checking for sleep... /usr/bin/sleep
+checking for sleep... /usr/bin/sleep
+checking whether configure script should sleep... yes
+checking for comm... /usr/bin/comm
+checking whether comm -23 works... yes
+checking with-camlibs requested... standard set
+checking with-camlibs parsing... finished
+checking value of set camlib-set-diff-skipping... docupen lumix
+checking value of set camlib-set-diff-over-standard... 
+checking value of set camlib-set-diff-from-standard... 
+checking value of set camlib-set-diff-skipping... { 'docupen', 'lumix' }
+checking value of set camlib-set-diff-from-standard... { }
+checking value of set camlib-set-diff-over-standard... { }
+checking whether skipping some requested camlibs... yes (docupen lumix)
+configure: WARNING:
+
+    #=========================================================#
+    # We are skipping building one or more camlibs, probably  #
+    # due to missing dependencies.  Check the dependencies if #
+    # you insist on building these camlibs.                   #
+    #=========================================================#
+
+checking camlib set to build in detail... ax203 canon digigr8 dimagev directory jl2005a jl2005c kodak_dc240 mars pentax ptp2 quicktake1x0 ricoh_g3 sierra sonix sq905 st2205 topfield tp6801
+checking for dot... no
+checking HAVE_DOT... no
+checking for doxygen... no
+checking HAVE_DOXYGEN... no
+checking whether to create internal code docs... no
+checking for hotplug doc dir... ${datarootdir}/doc/${PACKAGE_TARNAME}/linux-hotplug (default)
+checking for hotplug usermap dir... ${datarootdir}/doc/${PACKAGE_TARNAME}/linux-hotplug (default)
+checking for libexif to use... autodetect
+checking for libexif >= 0.6.13... yes
+checking whether we use a version of libexif with ExifData.ifd[]... yes
+checking for libexif/exif-data.h... yes
+checking for function exif_data_new in libexif... yes
+checking libexif library flags... "-lexif "
+checking libexif cpp flags... ""
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating gphoto2-config
+config.status: creating camlibs/Makefile
+config.status: creating camlibs/canon/doc/Makefile
+config.status: creating libgphoto2/Makefile
+config.status: creating libgphoto2.pc
+config.status: creating libgphoto2-uninstalled.pc
+config.status: creating examples/Makefile
+config.status: creating tests/Makefile
+config.status: creating packaging/Makefile
+config.status: creating packaging/generic/Makefile
+config.status: creating po/Makefile.in
+config.status: creating doc/Makefile
+config.status: creating doc/Doxyfile
+config.status: creating doc/Doxyfile-internals
+config.status: creating doc/api/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+config.status: executing po-directories commands
+config.status: creating po/POTFILES
+config.status: creating po/Makefile
+=== configuring in libgphoto2_port (/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port)
+configure: running /bin/bash ./configure --disable-option-checking '--prefix=/usr/lib/alpacabridge/libgphoto2'  '--disable-static' '--disable-nls' '--disable-docs' '--with-camlibs=standard' '--with-libexif=auto' '--with-libxml-2.0=no' '--with-libcurl=no' '--with-gdlib=no' '--with-libtiff-4=no' 'LDFLAGS=-Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags' 'CFLAGS=-g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard' 'CPPFLAGS=-Wdate-time -D_FORTIFY_SOURCE=2' 'CXXFLAGS=-g -O2 -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard' --cache-file=/dev/null --srcdir=.
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether sleep supports fractional seconds... yes
+checking filesystem timestamp resolution... 0.01
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... no
+checking for mawk... mawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking xargs -n works... yes
+checking whether UID '0' is supported by ustar format... yes
+checking whether GID '0' is supported by ustar format... yes
+checking how to create a ustar tar archive... gnutar
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C23 features... -std=gnu23
+checking whether gcc -std=gnu23 understands -c and -o together... yes
+checking whether make supports the include directive... yes (GNU style)
+checking dependency style of gcc -std=gnu23... gcc3
+checking how to run the C preprocessor... gcc -std=gnu23 -E
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for ar... ar
+checking the archiver (ar) interface... ar
+checking build system type... aarch64-unknown-linux-gnu
+checking host system type... aarch64-unknown-linux-gnu
+checking how to print strings... printf
+checking for a sed that does not truncate output... (cached) /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc -std=gnu23... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 3145728
+checking how to convert aarch64-unknown-linux-gnu file names to aarch64-unknown-linux-gnu format... func_convert_file_noop
+checking how to convert aarch64-unknown-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for file... file
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ranlib... ranlib
+checking for archiver @FILE support... @
+checking for strip... strip
+checking command to parse /usr/bin/nm -B output from gcc -std=gnu23 object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc -std=gnu23 supports -fno-rtti -fno-exceptions... no
+checking for gcc -std=gnu23 option to produce PIC... -fPIC -DPIC
+checking if gcc -std=gnu23 PIC flag -fPIC -DPIC works... yes
+checking if gcc -std=gnu23 static flag -static works... yes
+checking if gcc -std=gnu23 supports -c -o file.o... yes
+checking if gcc -std=gnu23 supports -c -o file.o... (cached) yes
+checking whether the gcc -std=gnu23 linker (/usr/bin/ld) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking for shl_load... no
+checking for shl_load in -ldld... no
+checking for dlopen... yes
+checking whether a program can dlopen itself... yes
+checking whether a statically linked program can dlopen itself... no
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+checking for libltdl... autodetecting
+checking for libltdl at default location... yes
+checking LTDLINCL (autodetected)... 
+checking LIBLTDL (autodetected)... -lltdl
+checking for POSIX sh $() command substitution... yes
+checking translation text domain symbol... GETTEXT_PACKAGE_LIBGPHOTO2_PORT
+checking translation text domain value... libgphoto2_port-12
+checking translation subdirectory... po
+checking whether NLS is requested... no
+checking for msgfmt... /usr/bin/msgfmt
+checking for gmsgfmt... /usr/bin/msgfmt
+checking for xgettext... /usr/bin/xgettext
+checking for msgmerge... /usr/bin/msgmerge
+checking for ld used by gcc -std=gnu23... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for shared library run path origin... done
+checking for egrep -e... (cached) /usr/bin/grep -E
+checking for CFPreferencesCopyAppValue... no
+checking for CFLocaleCopyCurrent... no
+checking whether to use NLS... no
+checking for iconv... yes
+checking for working iconv... yes
+checking for iconv declaration... 
+         extern size_t iconv (iconv_t cd, char * *inbuf, size_t *inbytesleft, char * *outbuf, size_t *outbytesleft);
+checking for gettext... yes
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking for egrep... (cached) /usr/bin/grep -E
+checking for inline... inline
+checking for an ANSI C-conforming const... yes
+checking for stdlib.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking for stdio.h... (cached) yes
+checking for fcntl.h... yes
+checking for errno.h... yes
+checking for sys/time.h... yes
+checking for sys/param.h... yes
+checking for sys/select.h... yes
+checking for termios.h... yes
+checking for sgetty.h... no
+checking for ttold.h... no
+checking for ioctl-types.h... no
+checking for fcntl.h... (cached) yes
+checking for sgtty.h... yes
+checking for sys/ioctl.h... yes
+checking for sys/time.h... (cached) yes
+checking for termio.h... yes
+checking for unistd.h... (cached) yes
+checking for endian.h... yes
+checking for byteswap.h... yes
+checking for asm/io.h... no
+checking for mntent.h... yes
+checking for sys/mntent.h... no
+checking for sys/mnttab.h... no
+checking for scsi/sg.h... yes
+checking for limits.h... yes
+checking for sys/file.h... yes
+checking for regex.h... yes
+checking for regexec in -lregex... no
+checking for asm .symver support... yes
+checking for mnt_mountp in struct mnttab... no
+checking for setmntent... yes
+checking for endmntent... yes
+checking for strerror... yes
+checking for snprintf... yes
+checking for vsnprintf... yes
+checking for flock... yes
+checking for stdarg.h... yes
+checking for va_copy() or replacement... va_copy
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for dynamic library extension... .so
+checking for libexif to use... autodetect
+checking for libexif >= 0.6.13... yes
+checking whether we use a version of libexif with ExifData.ifd[]... yes
+checking for libexif/exif-data.h... yes
+checking for function exif_data_new in libexif... yes
+checking libexif library flags... "-lexif "
+checking libexif cpp flags... ""
+checking for lockdev.h... no
+checking for ttylock.h... no
+checking for dev_lock in -llockdev... no
+checking for pthread_create in -lpthread... yes
+checking for libusb-1.0 to use... autodetect
+checking for libusb-1.0 >= 1.0.0... yes
+checking for libusb_strerror... yes
+checking for libusb_wrap_sys_device... yes
+checking whether we have LIBUSB_OPTION_NO_DEVICE_DISCOVERY... yes
+checking for libusb.h... yes
+checking for function libusb_init in libusb-1.0... yes
+checking libusb-1.0 library flags... "-lusb-1.0 "
+checking libusb-1.0 cpp flags... "-I/usr/include/libusb-1.0 "
+checking for libusb to use... autodetect
+checking for libusb >= 0.1.5... no
+checking libusb config program... libusb-config
+checking for libusb-config... no
+checking where to install iolibs (port libraries) (iolibdir)... ${libdir}/libgphoto2_port/0.12.2 (default)
+checking for deprecated --with-iolibdir argument... not used (very good)
+checking default location to look for iolibs (port libraries)... value of iolibdir (default)
+checking for re_compile_pattern... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating po/Makefile.in
+config.status: creating libgphoto2_port/Makefile
+config.status: creating libgphoto2_port.pc
+config.status: creating libgphoto2_port-uninstalled.pc
+config.status: creating gphoto2-port-config
+config.status: creating tests/Makefile
+config.status: creating doc/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+config.status: executing po-directories commands
+config.status: creating po/POTFILES
+config.status: creating po/Makefile
+
+Configuration (libgphoto2_port 0.12.2):
+
+  Build
+    Source directory:              .
+    Compiler:                      gcc -std=gnu23
+    libltdl includes:              
+    libltdl library:               -lltdl
+    Use translations:              no
+    libexif:                       yes
+
+  Serial ports
+    Serial support:                yes
+    ttylock locking:               no
+    lockdev locking:               no
+
+  USB ports
+    libusb-1.0:                    yes
+    libusb:                        no
+    virtual USB support:           disabled, no virtual PTP test camera
+
+  General
+    IOLIBs:                        disk ptpip serial usb1 usbdiskdirect usbscsi
+
+  Documentation
+    build API docs with gtk-doc:   no (not requested)
+
+You may run "make" and "make install" now.
+
+Configuration (libgphoto2 2.5.34):
+
+  Build
+    Source code location:          .
+    Compiler:                      gcc -std=gnu23
+    libltdl includes:              
+    libltdl library:               -lltdl
+
+  Features
+    Use translations:              no
+    JPEG mangling support:         yes
+    Winsocket support (for PTP/..: no
+    libxml-2.0:                    no
+    XML support for Olympus E s..: no
+    libcurl:                       no
+    CURL support for Lumix Wifi:   no
+    gdlib:                         no
+    libGD conversion support:      no
+    libtiff-4:                     no
+    TIFF support:                  no
+    Camlibs:                       standard set (ax203 canon digigr8 dimagev directory jl2005a jl2005c kodak_dc240 mars pentax ptp2 quicktake1x0 ricoh_g3 sierra sonix sq905 st2205 topfield tp6801 SKIPPING docupen lumix)
+    build doxygen docs:            no
+    build API docs with gtk-doc:   no (not requested)
+    libexif:                       yes
+
+    Subprojects:                   libgphoto2_port
+
+You may run "make" and "make install" now.
+Please check whether the configuration I have detected matches what
+you would like to have. E.g. make sure that USB support is there if
+you intend to use USB cameras with libgphoto2 photo camera library.
+
+Please also check that PKG_CONFIG_PATH contains
+    ${libdir}/pkgconfig
+before compiling any libgphoto2 frontend.
+make[2]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34'
+make  all-recursive
+make[3]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34'
+Making all in libgphoto2_port
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port'
+make  all-recursive
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port'
+Making all in po
+make[6]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/po'
+make[6]: Nothing to be done for 'all'.
+make[6]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/po'
+Making all in libgphoto2_port
+make[6]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/libgphoto2_port'
+  CC       libgphoto2_port_la-gphoto2-port-info-list.lo
+  CC       libgphoto2_port_la-gphoto2-port-locking.lo
+  CC       libgphoto2_port_la-gphoto2-port-log.lo
+  CC       libgphoto2_port_la-gphoto2-port-version.lo
+  CC       libgphoto2_port_la-gphoto2-port.lo
+  CC       libgphoto2_port_la-gphoto2-port-portability.lo
+  CC       libgphoto2_port_la-gphoto2-port-result.lo
+  CCLD     libgphoto2_port.la
+  lgp CPPFLAGS -I.. -I../libgphoto2_port -DLOCALEDIR="/usr/lib/alpacabridge/libgphoto2/share/locale" -DIOLIBS="/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2" -D_GPHOTO2_INTERNAL_CODE 
+  lgp LIBADD   -lltdl 
+  lgp LDFLAGS  -no-undefined -Wl,--version-script=./libgphoto2_port.ver -version-info 14:0:2
+make[6]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/libgphoto2_port'
+Making all in .
+make[6]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port'
+  CC       serial/la-unix.lo
+  CC       libusb1/usb1_la-libusb1.lo
+  CC       usbdiskdirect/la-linux.lo
+  CC       usbscsi/la-linux.lo
+  CC       disk/la-disk.lo
+  CC       ptpip/la-ptpip.lo
+  CCLD     serial.la
+  CCLD     usbdiskdirect.la
+  CCLD     usbscsi.la
+  CCLD     disk.la
+  CCLD     ptpip.la
+  CCLD     usb1.la
+  iol LIBADD   ./libgphoto2_port/libgphoto2_port.la
+  iol LDFLAGS  -module -no-undefined -avoid-version -export-dynamic -export-symbols ./iolib.sym -rpath '/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2'
+make[6]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port'
+Making all in tests
+make[6]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/tests'
+  CC       test_gp_port-test-gp-port.o
+  CC       test_port_list-test-port-list.o
+  CCLD     test-port-list
+  CCLD     test-gp-port
+make[6]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/tests'
+Making all in doc
+make[6]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/doc'
+Dummy target all-local without gtk-doc.
+make[6]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/doc'
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port'
+Making all in libgphoto2
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2'
+  CC       libgphoto2_la-gphoto2-abilities-list.lo
+  CC       libgphoto2_la-ahd_bayer.lo
+  CC       libgphoto2_la-bayer.lo
+  CC       libgphoto2_la-gphoto2-camera.lo
+  CC       libgphoto2_la-gphoto2-context.lo
+  CC       libgphoto2_la-exif.lo
+  CC       libgphoto2_la-gphoto2-file.lo
+  CC       libgphoto2_la-gphoto2-filesys.lo
+  CC       libgphoto2_la-gamma.lo
+  CC       libgphoto2_la-jpeg.lo
+gphoto2-file.c: In function 'gp_file_open':
+gphoto2-file.c:666:17: warning: '__builtin_strncpy' specified bound 256 equals destination size [-Wstringop-truncation]
+  666 |                 strncpy (file->name, filename, sizeof (file->name));
+      |                 ^
+gphoto2-file.c:664:17: warning: '__builtin_strncpy' specified bound 256 equals destination size [-Wstringop-truncation]
+  664 |                 strncpy (file->name, name + 1, sizeof (file->name));
+      |                 ^
+gphoto2-file.c:673:33: warning: '__builtin_strncpy' specified bound 64 equals destination size [-Wstringop-truncation]
+  673 |                                 strncpy (file->mime_type, mime_table[i+1], sizeof(file->mime_type));
+      |                                 ^
+gphoto2-file.c: In function 'gp_file_set_name':
+gphoto2-file.c:1009:9: warning: '__builtin_strncpy' specified bound 256 equals destination size [-Wstringop-truncation]
+ 1009 |         strncpy (file->name, name, sizeof (file->name));
+      |         ^
+gphoto2-file.c: In function 'gp_file_set_mime_type':
+gphoto2-file.c:1026:9: warning: '__builtin_strncpy' specified bound 64 equals destination size [-Wstringop-truncation]
+ 1026 |         strncpy (file->mime_type, mime_type, sizeof (file->mime_type));
+      |         ^
+  CC       libgphoto2_la-gphoto2-list.lo
+gphoto2-filesys.c: In function 'gp_filesystem_scan':
+gphoto2-filesys.c:1433:17: warning: '__builtin_strncpy' specified bound 128 equals destination size [-Wstringop-truncation]
+ 1433 |                 strncpy (path, folder, sizeof (path));
+      |                 ^
+  CC       libgphoto2_la-gphoto2-result.lo
+  CC       libgphoto2_la-gphoto2-version.lo
+gphoto2-camera.c: In function 'gp_camera_file_get_info':
+gphoto2-camera.c:1620:17: warning: '__builtin_strncpy' specified bound 64 equals destination size [-Wstringop-truncation]
+ 1620 |                 strncpy (info->preview.type, mime_type,
+      |                 ^
+  CC       libgphoto2_la-gphoto2-setting.lo
+  CC       libgphoto2_la-gphoto2-widget.lo
+gphoto2-setting.c: In function 'gp_settings_path.isra':
+gphoto2-setting.c:210:40: warning: '/gphoto' directive output may be truncated writing 7 bytes into a region of size between 1 and 1024 [-Wformat-truncation=]
+  210 |         snprintf (dir, GP_PATH_MAX, "%s/gphoto", xdg_config_home);
+      |                                        ^~~~~~~
+In file included from /usr/include/stdio.h:970,
+                 from gphoto2-setting.c:29:
+In function 'snprintf',
+    inlined from 'gp_settings_path.isra' at gphoto2-setting.c:210:2:
+/usr/include/aarch64-linux-gnu/bits/stdio2.h:68:10: note: '__builtin___snprintf_chk' output between 8 and 1031 bytes into a destination of size 1024
+   68 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   69 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   70 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+gphoto2-setting.c: In function 'gp_settings_path.isra':
+gphoto2-setting.c:211:41: warning: '/settings' directive output may be truncated writing 9 bytes into a region of size between 1 and 1024 [-Wformat-truncation=]
+  211 |         snprintf (path, GP_PATH_MAX, "%s/settings", dir);
+      |                                         ^~~~~~~~~
+In function 'snprintf',
+    inlined from 'gp_settings_path.isra' at gphoto2-setting.c:211:2:
+/usr/include/aarch64-linux-gnu/bits/stdio2.h:68:10: note: '__builtin___snprintf_chk' output between 10 and 1033 bytes into a destination of size 1024
+   68 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   69 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   70 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+  CCLD     libgphoto2.la
+  lg2 CPPFLAGS -I.. -I.. -I../libgphoto2_port -I../libgphoto2_port -D_GPHOTO2_INTERNAL_CODE -DLOCALEDIR="/usr/lib/alpacabridge/libgphoto2/share/locale" -DCAMLIBS="/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34"  
+  lg2 LIBADD   ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lltdl -lexif  -lm 
+  lg2 LDFLAGS  -no-undefined -export-symbols ./libgphoto2.sym -version-info 10:0:4 
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2'
+Making all in camlibs
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs'
+Making all in .
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs'
+  CC       ax203/la-library.lo
+  CC       ax203/la-ax203.lo
+  CC       ax203/la-ax203_decode_yuv.lo
+  CC       ax203/la-ax203_decode_yuv_delta.lo
+  CC       ax203/la-ax203_compress_jpeg.lo
+  CC       ax203/la-jpeg_memsrcdest.lo
+  CC       ax203/la-tinyjpeg.lo
+  CC       ax203/la-jidctflt.lo
+  CC       canon/la-canon.lo
+  CC       canon/la-library.lo
+  CC       canon/la-serial.lo
+canon/canon.c: In function 'canon_int_identify_camera':
+canon/canon.c:689:9: warning: '__builtin_strncpy' specified bound 32 equals destination size [-Wstringop-truncation]
+  689 |         strncpy (camera->pl->ident, (char *) msg + 12, 32);
+      |         ^
+canon/canon.c:697:17: warning: '__builtin_strncpy' specified bound 32 equals destination size [-Wstringop-truncation]
+  697 |                 strncpy (camera->pl->owner, (char *) msg + 4, 32);
+      |                 ^
+canon/canon.c:691:17: warning: '__builtin_strncpy' specified bound 32 equals destination size [-Wstringop-truncation]
+  691 |                 strncpy (camera->pl->owner, (char *) msg + 44, 32);
+      |                 ^
+  CC       canon/la-usb.lo
+canon/canon.c: In function 'canon_int_find_new_image':
+canon/canon.c:1330:33: warning: '__builtin_strncpy' specified bound 128 equals destination size [-Wstringop-truncation]
+ 1330 |                                 strncpy ( path->name, new_name, sizeof(path->name) );
+      |                                 ^
+canon/canon.c:1331:33: warning: '__builtin_strncpy' output may be truncated copying 1024 bytes from a string of length 1999 [-Wstringop-truncation]
+ 1331 |                                 strncpy ( path->folder, canon2gphotopath ( camera, path->folder ), sizeof(path->folder) );
+      |                                 ^
+In function 'canon_serial_send_packet',
+    inlined from 'canon_serial_send_msg.isra' at canon/serial.c:557:4:
+canon/serial.c:338:23: warning: array subscript -3 is outside array bounds of 'unsigned char[65537]' [-Warray-bounds=]
+  338 |         hdr[PKT_TYPE] = type;
+      |         ~~~~~~~~~~~~~~^~~~~~
+canon/serial.c: In function 'canon_serial_send_msg.isra':
+canon/serial.c:514:23: note: at offset -3 into object 'upload_buffer' of size 65537
+  514 |         unsigned char upload_buffer[MAX_PKT_PAYLOAD + 2];
+      |                       ^~~~~~~~~~~~~
+In function 'canon_serial_send_packet',
+    inlined from 'canon_serial_send_msg.isra' at canon/serial.c:557:4:
+canon/serial.c:339:22: warning: array subscript -4 is outside array bounds of 'unsigned char[65537]' [-Warray-bounds=]
+  339 |         hdr[PKT_SEQ] = seq;
+      |         ~~~~~~~~~~~~~^~~~~
+canon/serial.c: In function 'canon_serial_send_msg.isra':
+canon/serial.c:514:23: note: at offset -4 into object 'upload_buffer' of size 65537
+  514 |         unsigned char upload_buffer[MAX_PKT_PAYLOAD + 2];
+      |                       ^~~~~~~~~~~~~
+In function 'canon_serial_send_packet',
+    inlined from 'canon_serial_send_msg.isra' at canon/serial.c:557:4:
+canon/serial.c:340:26: warning: array subscript -2 is outside array bounds of 'unsigned char[65537]' [-Warray-bounds=]
+  340 |         hdr[PKT_LEN_LSB] = len & 0xff;
+      |         ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+canon/serial.c: In function 'canon_serial_send_msg.isra':
+canon/serial.c:514:23: note: at offset -2 into object 'upload_buffer' of size 65537
+  514 |         unsigned char upload_buffer[MAX_PKT_PAYLOAD + 2];
+      |                       ^~~~~~~~~~~~~
+In function 'canon_serial_send_packet',
+    inlined from 'canon_serial_send_msg.isra' at canon/serial.c:557:4:
+canon/serial.c:341:26: warning: array subscript -1 is outside array bounds of 'unsigned char[65537]' [-Warray-bounds=]
+  341 |         hdr[PKT_LEN_MSB] = len >> 8;
+      |         ~~~~~~~~~~~~~~~~~^~~~~~~~~~
+canon/serial.c: In function 'canon_serial_send_msg.isra':
+canon/serial.c:514:23: note: at offset -1 into object 'upload_buffer' of size 65537
+  514 |         unsigned char upload_buffer[MAX_PKT_PAYLOAD + 2];
+      |                       ^~~~~~~~~~~~~
+In function 'canon_serial_send_packet',
+    inlined from 'canon_serial_send_msg.isra' at canon/serial.c:557:4:
+canon/serial.c:335:24: warning: array subscript -4 is outside array bounds of 'unsigned char[65537]' [-Warray-bounds=]
+  335 |         unsigned char *hdr = pkt - PKT_HDR_LEN;
+      |                        ^~~
+canon/serial.c: In function 'canon_serial_send_msg.isra':
+canon/serial.c:514:23: note: at offset -4 into object 'upload_buffer' of size 65537
+  514 |         unsigned char upload_buffer[MAX_PKT_PAYLOAD + 2];
+      |                       ^~~~~~~~~~~~~
+In function 'canon_serial_send_packet',
+    inlined from 'canon_serial_send_msg.isra' at canon/serial.c:557:4:
+canon/serial.c:335:24: warning: array subscript -4 is outside array bounds of 'unsigned char[65537]' [-Warray-bounds=]
+  335 |         unsigned char *hdr = pkt - PKT_HDR_LEN;
+      |                        ^~~
+canon/serial.c: In function 'canon_serial_send_msg.isra':
+canon/serial.c:514:23: note: at offset -4 into object 'upload_buffer' of size 65537
+  514 |         unsigned char upload_buffer[MAX_PKT_PAYLOAD + 2];
+      |                       ^~~~~~~~~~~~~
+In function 'canon_serial_send_packet',
+    inlined from 'canon_serial_send_msg.isra' at canon/serial.c:557:4:
+canon/serial.c:339:22: warning: writing 2 bytes into a region of size 0 [-Wstringop-overflow=]
+  339 |         hdr[PKT_SEQ] = seq;
+      |         ~~~~~~~~~~~~~^~~~~
+canon/serial.c: In function 'canon_serial_send_msg.isra':
+canon/serial.c:514:23: note: at offset -4 into destination object 'upload_buffer' of size 65537
+  514 |         unsigned char upload_buffer[MAX_PKT_PAYLOAD + 2];
+      |                       ^~~~~~~~~~~~~
+canon/canon.c: In function 'canon_int_get_disk_name_info':
+canon/canon.c:2881:33: warning: '__builtin_strncpy' specified bound 128 equals destination size [-Wstringop-truncation]
+ 2881 |                                 strncpy ( name_local, name, sizeof(name_local) );
+      |                                 ^
+canon/canon.c: In function 'canon_int_list_directory':
+canon/canon.c:3335:41: warning: '__builtin_strncpy' specified bound 64 equals destination size [-Wstringop-truncation]
+ 3335 |                                         strncpy (info.file.type,
+      |                                         ^
+canon/canon.c: In function 'canon_int_get_info_func':
+canon/canon.c:3896:41: warning: '__builtin_strncpy' specified bound 64 equals destination size [-Wstringop-truncation]
+ 3896 |                                         strncpy (info->file.type,
+      |                                         ^
+  CC       canon/la-crc.lo
+  CC       canon/la-util.lo
+  CC       digigr8/la-library.lo
+  CC       digigr8/la-digigr8.lo
+  CC       digigr8/la-digi_postprocess.lo
+  CC       minolta/dimagev/dimagev_la-capture.lo
+  CC       minolta/dimagev/dimagev_la-data.lo
+  CC       minolta/dimagev/dimagev_la-delete.lo
+  CC       minolta/dimagev/dimagev_la-dimagev.lo
+  CC       minolta/dimagev/dimagev_la-download.lo
+  CC       minolta/dimagev/dimagev_la-info.lo
+  CC       minolta/dimagev/dimagev_la-packet.lo
+  CC       minolta/dimagev/dimagev_la-status.lo
+  CC       minolta/dimagev/dimagev_la-upload.lo
+  CC       minolta/dimagev/dimagev_la-util.lo
+  CC       directory/la-directory.lo
+  CC       jl2005a/la-library.lo
+  CC       jl2005a/la-jl2005a.lo
+  CC       jl2005c/la-library.lo
+  CC       jl2005c/la-jl2005c.lo
+  CC       jl2005c/la-jpeg_memsrcdest.lo
+  CC       jl2005c/la-jl2005bcd_decompress.lo
+  CC       jl2005c/la-img_enhance.lo
+  CC       kodak/dc240/la-dc240.lo
+  CC       kodak/dc240/la-library.lo
+  CC       mars/la-library.lo
+  CC       mars/la-mars.lo
+  CC       pentax/la-library.lo
+kodak/dc240/library.c: In function 'dc240_get_status':
+kodak/dc240/library.c:634:5: warning: '__builtin_strncpy' specified bound 11 equals destination size [-Wstringop-truncation]
+  634 |     strncpy (table->volumeID, (char*)&fdata[16], 11);
+      |     ^
+kodak/dc240/library.c:636:5: warning: '__builtin_strncpy' specified bound 32 equals destination size [-Wstringop-truncation]
+  636 |     strncpy (table->cameraID, (char*)&fdata[28], 32);
+      |     ^
+kodak/dc240/library.c:670:5: warning: '__builtin_strncpy' specified bound 11 equals destination size [-Wstringop-truncation]
+  670 |     strncpy (table->borderFileName, (char*)&fdata[140], 11);
+      |     ^
+  CC       pentax/la-pslr.lo
+  CC       pentax/la-pslr_enum.lo
+  CC       pentax/la-pslr_log.lo
+  CC       pentax/la-pslr_lens.lo
+  CC       pentax/la-pslr_model.lo
+  CC       pentax/la-pslr_utils.lo
+  CC       pentax/la-js0n.lo
+  CC       ptp2/la-ptp.lo
+  CC       ptp2/la-library.lo
+  CC       ptp2/la-usb.lo
+  CC       ptp2/la-ptpip.lo
+In file included from ptp2/ptp.c:193:
+ptp2/ptp-pack.c: In function 'ptp_unpack_PTPTIME.part.0':
+ptp2/ptp-pack.c:504:9: warning: '__builtin_strncpy' specified bound 40 equals destination size [-Wstringop-truncation]
+  504 |         strncpy (ptpdate, str, sizeof(ptpdate));
+      |         ^
+  CC       ptp2/la-config.lo
+ptp2/library.c: In function 'find_object_path':
+ptp2/library.c:3424:9: warning: '__builtin_strncpy' specified bound 128 equals destination size [-Wstringop-truncation]
+ 3424 |         strncpy  (path->name,  (*ob)->oi.Filename, sizeof(path->name));
+      |         ^
+  CC       ptp2/la-olympus-wrap.lo
+  CC       ptp2/la-chdk.lo
+ptp2/ptp.c: In function 'ptp_sigma_fp_getpictfileinfo2':
+ptp2/ptp.c:1222:9: warning: '__builtin_strncpy' specified bound 4 equals destination size [-Wstringop-truncation]
+ 1222 |         strncpy(pictinfo->fileext, (char*)data+28, 4);
+      |         ^
+  CC       ptp2/la-fujiptpip.lo
+  CC       quicktake1x0/la-quicktake1x0.lo
+ptp2/ptp.c: In function 'ptp_nikon_getwifiprofilelist':
+ptp2/ptp.c:5087:17: warning: '__builtin_strncpy' specified bound 16 equals destination size [-Wstringop-truncation]
+ 5087 |                 strncpy(params->wifi_profiles[profn].creation_date, buffer, sizeof(params->wifi_profiles[profn].creation_date));
+      |                 ^
+ptp2/ptp.c:5094:17: warning: '__builtin_strncpy' specified bound 16 equals destination size [-Wstringop-truncation]
+ 5094 |                 strncpy(params->wifi_profiles[profn].lastusage_date, buffer, sizeof(params->wifi_profiles[profn].lastusage_date));
+      |                 ^
+ptp2/ptp.c: In function 'ptp_nikon_writewifiprofile':
+ptp2/ptp.c:5180:9: warning: '__builtin_strncpy' output may be truncated copying 16 bytes from a string of length 16 [-Wstringop-truncation]
+ 5180 |         strncpy((char*)&buffer[0x05], profile->profile_name, 16);
+      |         ^
+ptp2/ptp.c:5203:9: warning: '__builtin_strncpy' output may be truncated copying 32 bytes from a string of length 32 [-Wstringop-truncation]
+ 5203 |         strncpy((char*)&buffer[0x4A], profile->essid, 32);
+      |         ^
+  CC       quicktake1x0/la-qtk-thumbnail-decoder.lo
+  CC       quicktake1x0/la-qtkt-decoder.lo
+  CC       quicktake1x0/la-qtkn-decoder.lo
+  CC       quicktake1x0/la-qtk-helpers.lo
+  CC       ricoh/g3_la-g3.lo
+  CC       sierra/la-sierra.lo
+  CC       sierra/la-library.lo
+ptp2/config.c: In function '_put_nikon_wifi_profile_write':
+ptp2/config.c:11181:17: warning: '__builtin_strncpy' output may be truncated copying 16 bytes from a string of length 1023 [-Wstringop-truncation]
+11181 |                 strncpy(profile.profile_name, buffer, 16);
+      |                 ^
+ptp2/config.c:11183:17: warning: '__builtin_strncpy' output may be truncated copying 32 bytes from a string of length 1023 [-Wstringop-truncation]
+11183 |                 strncpy(profile.essid, buffer, 32);
+      |                 ^
+sierra/library.c: In function 'sierra_capture':
+sierra/library.c:1426:17: warning: '__builtin_strncpy' specified bound 1024 equals destination size [-Wstringop-truncation]
+ 1426 |                 strncpy (filepath->folder, folder, sizeof (filepath->folder));
+      |                 ^
+  CC       sierra/la-sierra-usbwrap.lo
+  CC       sierra/la-sierra-desc.lo
+  CC       sierra/la-nikon-desc.lo
+  CC       sierra/la-olympus-desc.lo
+  CC       sierra/la-epson-desc.lo
+  CC       sonix/la-library.lo
+  CC       sonix/la-sonix.lo
+  CC       sq905/la-library.lo
+  CC       sq905/la-sq905.lo
+  CC       sq905/la-postprocess.lo
+  CC       st2205/la-library.lo
+  CC       st2205/la-st2205.lo
+  CC       st2205/la-st2205_decode.lo
+  CC       st2205/la-st2205_tables.lo
+  CC       topfield/la-crc16.lo
+  CC       topfield/la-tf_bytes.lo
+  CC       topfield/la-mjd.lo
+  CC       topfield/la-puppy.lo
+  CC       topfield/la-usb_io.lo
+  CC       tp6801/la-library.lo
+  CC       tp6801/la-tp6801.lo
+  CC       template/la-template.lo
+  CCLD     ax203.la
+  CCLD     canon.la
+  CCLD     digigr8.la
+  CCLD     dimagev.la
+  CCLD     directory.la
+  CCLD     jl2005a.la
+  CCLD     jl2005c.la
+  CCLD     kodak_dc240.la
+  CCLD     mars.la
+  CCLD     pentax.la
+  CCLD     quicktake1x0.la
+  CCLD     ricoh_g3.la
+  CCLD     sierra.la
+  CCLD     sonix.la
+  CCLD     sq905.la
+  CCLD     st2205.la
+  CCLD     topfield.la
+  CCLD     tp6801.la
+  CCLD     template.la
+  CCLD     ptp2.la
+  cam CPPFLAGS -D_GPHOTO2_INTERNAL_CODE -DLOCALEDIR="/usr/lib/alpacabridge/libgphoto2/share/locale" -DCAMLIBS="/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34" -I.. -I.. -I../libgphoto2_port
+  cam LIBADD   ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la
+  cam LDFLAGS  -module -no-undefined -avoid-version -export-dynamic -export-symbols '../camlibs/camlib.sym' -rpath '/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34'
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs'
+Making all in canon/doc
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs/canon/doc'
+Dummy target all-local without gtk-doc.
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs/canon/doc'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs'
+Making all in tests
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/tests'
+  CC       print-libgphoto2-version.o
+  CC       test-gphoto2.o
+  CC       test-filesys.o
+  CCLD     print-libgphoto2-version
+  CCLD     test-gphoto2
+  CCLD     test-filesys
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/tests'
+Making all in examples
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/examples'
+  CC       sample-autodetect.o
+  CC       context.o
+  CC       config.o
+  CC       sample-multi-detect.o
+  CC       autodetect.o
+  CC       lunkwill-canon-capture.o
+  CC       sample-owner.o
+  CC       sample-photobooth.o
+  CC       preview.o
+  CC       focus.o
+  CC       sample-tether.o
+  CC       sample-afl.o
+  CC       best-iso.o
+  CC       sample-capture.o
+  CC       sample-trigger-capture.o
+  CC       sample-justfocus.o
+  CCLD     sample-autodetect
+  CCLD     sample-multi-detect
+  CCLD     lunkwill-canon-capture
+  CCLD     sample-owner
+  CCLD     sample-photobooth
+  CCLD     sample-preview
+  CCLD     sample-tether
+  CCLD     sample-afl
+  CCLD     best-iso
+  CCLD     sample-capture
+  CCLD     sample-trigger-capture
+  CCLD     sample-justfocus
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/examples'
+Making all in po
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/po'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/po'
+Making all in packaging
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging'
+Making all in generic
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging/generic'
+  CC       print-camera-list.o
+  CCLD     print-camera-list
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging/generic'
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging'
+make[5]: Nothing to be done for 'all-am'.
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging'
+Making all in doc
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc'
+Making all in api
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc/api'
+Dummy target all-local without gtk-doc.
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc/api'
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc'
+make[5]: Nothing to be done for 'all-am'.
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc'
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34'
+  env CFLAGS   -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter
+  env CPPFLAGS -Wdate-time -D_FORTIFY_SOURCE=2
+  env LDFLAGS  -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34'
+make[3]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34'
+make[2]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34'
+make[2]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34'
+Making install in libgphoto2_port
+make[3]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port'
+Making install in po
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/po'
+if test "libgphoto2_port" = "gettext-tools"; then \
+  /usr/bin/mkdir -p /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/gettext/po; \
+  for file in Makefile.in.in remove-potcdate.sin quot.sed boldquot.sed en@quot.header en@boldquot.header insert-header.sin Rules-quot   Makevars.template; do \
+    /usr/bin/install -c -m 644 ./$file \
+		    /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/gettext/po/$file; \
+  done; \
+  for file in Makevars; do \
+    rm -f /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/gettext/po/$file; \
+  done; \
+else \
+  : ; \
+fi
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/po'
+Making install in libgphoto2_port
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/libgphoto2_port'
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/libgphoto2_port'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib'
+ /bin/bash ../libtool   --mode=install /usr/bin/install -c   libgphoto2_port.la '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib'
+libtool: install: /usr/bin/install -c .libs/libgphoto2_port.so.12.2.0 /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port.so.12.2.0
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib && { ln -s -f libgphoto2_port.so.12.2.0 libgphoto2_port.so.12 || { rm -f libgphoto2_port.so.12 && ln -s libgphoto2_port.so.12.2.0 libgphoto2_port.so.12; }; })
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib && { ln -s -f libgphoto2_port.so.12.2.0 libgphoto2_port.so || { rm -f libgphoto2_port.so && ln -s libgphoto2_port.so.12.2.0 libgphoto2_port.so; }; })
+libtool: install: /usr/bin/install -c .libs/libgphoto2_port.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port.la
+libtool: warning: remember to run 'libtool --finish /usr/lib/alpacabridge/libgphoto2/lib'
+make[5]: Nothing to be done for 'install-data-am'.
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/libgphoto2_port'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/libgphoto2_port'
+Making install in .
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port'
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/bin'
+ /usr/bin/install -c gphoto2-port-config '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/bin'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/doc/libgphoto2_port'
+ /usr/bin/install -c -m 644 AUTHORS README NEWS '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/doc/libgphoto2_port'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2'
+ /bin/bash ./libtool   --mode=install /usr/bin/install -c   serial.la usb1.la usbdiskdirect.la usbscsi.la disk.la ptpip.la '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2'
+libtool: warning: relinking 'serial.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wmissing-declarations -Wmissing-prototypes -module -no-undefined -avoid-version -export-dynamic -export-symbols ./iolib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o serial.la serial/la-unix.lo ./libgphoto2_port/libgphoto2_port.la -lpthread -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/serial.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2/serial.so
+libtool: install: /usr/bin/install -c .libs/serial.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2/serial.la
+libtool: warning: relinking 'usb1.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wmissing-declarations -Wmissing-prototypes -module -no-undefined -avoid-version -export-dynamic -export-symbols ./iolib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o usb1.la libusb1/usb1_la-libusb1.lo ./libgphoto2_port/libgphoto2_port.la -lusb-1.0 -lpthread -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/usb1.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2/usb1.so
+libtool: install: /usr/bin/install -c .libs/usb1.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2/usb1.la
+libtool: warning: relinking 'usbdiskdirect.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wmissing-declarations -Wmissing-prototypes -module -no-undefined -avoid-version -export-dynamic -export-symbols ./iolib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o usbdiskdirect.la usbdiskdirect/la-linux.lo ./libgphoto2_port/libgphoto2_port.la -lpthread -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/usbdiskdirect.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2/usbdiskdirect.so
+libtool: install: /usr/bin/install -c .libs/usbdiskdirect.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2/usbdiskdirect.la
+libtool: warning: relinking 'usbscsi.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wmissing-declarations -Wmissing-prototypes -module -no-undefined -avoid-version -export-dynamic -export-symbols ./iolib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o usbscsi.la usbscsi/la-linux.lo ./libgphoto2_port/libgphoto2_port.la -lpthread -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/usbscsi.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2/usbscsi.so
+libtool: install: /usr/bin/install -c .libs/usbscsi.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2/usbscsi.la
+libtool: warning: relinking 'disk.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wmissing-declarations -Wmissing-prototypes -module -no-undefined -avoid-version -export-dynamic -export-symbols ./iolib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o disk.la disk/la-disk.lo ./libgphoto2_port/libgphoto2_port.la -lpthread -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/disk.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2/disk.so
+libtool: install: /usr/bin/install -c .libs/disk.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2/disk.la
+libtool: warning: relinking 'ptpip.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wmissing-declarations -Wmissing-prototypes -module -no-undefined -avoid-version -export-dynamic -export-symbols ./iolib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o ptpip.la ptpip/la-ptpip.lo ./libgphoto2_port/libgphoto2_port.la -lpthread -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/ptpip.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2/ptpip.so
+libtool: install: /usr/bin/install -c .libs/ptpip.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2/ptpip.la
+libtool: warning: remember to run 'libtool --finish /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port/0.12.2'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/include'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/include/gphoto2'
+ /usr/bin/install -c -m 644  gphoto2/gphoto2-port.h gphoto2/gphoto2-port-info-list.h gphoto2/gphoto2-port-log.h gphoto2/gphoto2-port-version.h gphoto2/gphoto2-port-portability.h gphoto2/gphoto2-port-result.h '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/include/gphoto2'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/pkgconfig'
+ /usr/bin/install -c -m 644 libgphoto2_port.pc '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/pkgconfig'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/libgphoto2_port/0.12.2/vcamera'
+ /usr/bin/install -c -m 644 vusb/README.txt '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/libgphoto2_port/0.12.2/vcamera'
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port'
+Making install in tests
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/tests'
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/tests'
+make[5]: Nothing to be done for 'install-exec-am'.
+make[5]: Nothing to be done for 'install-data-am'.
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/tests'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/tests'
+Making install in doc
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/doc'
+Dummy target all-local without gtk-doc.
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/doc'
+make[5]: Nothing to be done for 'install-exec-am'.
+Dummy target install-data-local without gtk-doc
+Re-run configure with gtk-doc and adequate parameters and run make again to build docs.
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/doc'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/doc'
+make[3]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port'
+Making install in libgphoto2
+make[3]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2'
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib'
+ /bin/bash ../libtool   --mode=install /usr/bin/install -c   libgphoto2.la '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib'
+libtool: warning: relinking 'libgphoto2.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -no-undefined -export-symbols ./libgphoto2.sym -version-info 10:0:4 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o libgphoto2.la -rpath /usr/lib/alpacabridge/libgphoto2/lib libgphoto2_la-gphoto2-abilities-list.lo libgphoto2_la-ahd_bayer.lo libgphoto2_la-bayer.lo libgphoto2_la-gphoto2-camera.lo libgphoto2_la-gphoto2-context.lo libgphoto2_la-exif.lo libgphoto2_la-gphoto2-file.lo libgphoto2_la-gphoto2-filesys.lo libgphoto2_la-gamma.lo libgphoto2_la-jpeg.lo libgphoto2_la-gphoto2-list.lo libgphoto2_la-gphoto2-result.lo libgphoto2_la-gphoto2-version.lo libgphoto2_la-gphoto2-setting.lo libgphoto2_la-gphoto2-widget.lo ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lltdl -lexif -lm -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/libgphoto2.so.6.4.0T /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2.so.6.4.0
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib && { ln -s -f libgphoto2.so.6.4.0 libgphoto2.so.6 || { rm -f libgphoto2.so.6 && ln -s libgphoto2.so.6.4.0 libgphoto2.so.6; }; })
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib && { ln -s -f libgphoto2.so.6.4.0 libgphoto2.so || { rm -f libgphoto2.so && ln -s libgphoto2.so.6.4.0 libgphoto2.so; }; })
+libtool: install: /usr/bin/install -c .libs/libgphoto2.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2.la
+libtool: warning: remember to run 'libtool --finish /usr/lib/alpacabridge/libgphoto2/lib'
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2'
+make[3]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2'
+Making install in camlibs
+make[3]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs'
+Making install in .
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs'
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs'
+make[5]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34'
+ /bin/bash ../libtool   --mode=install /usr/bin/install -c   ax203.la canon.la digigr8.la dimagev.la directory.la jl2005a.la jl2005c.la kodak_dc240.la mars.la pentax.la ptp2.la quicktake1x0.la ricoh_g3.la sierra.la sonix.la sq905.la st2205.la topfield.la tp6801.la '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34'
+libtool: warning: relinking 'ax203.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o ax203.la ax203/la-library.lo ax203/la-ax203.lo ax203/la-ax203_decode_yuv.lo ax203/la-ax203_decode_yuv_delta.lo ax203/la-ax203_compress_jpeg.lo ax203/la-jpeg_memsrcdest.lo ax203/la-tinyjpeg.lo ax203/la-jidctflt.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -ljpeg -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/ax203.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/ax203.so
+libtool: install: /usr/bin/install -c .libs/ax203.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/ax203.la
+libtool: warning: relinking 'canon.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o canon.la canon/la-canon.lo canon/la-library.lo canon/la-serial.lo canon/la-usb.lo canon/la-crc.lo canon/la-util.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lexif -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/canon.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/canon.so
+libtool: install: /usr/bin/install -c .libs/canon.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/canon.la
+libtool: warning: relinking 'digigr8.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o digigr8.la digigr8/la-library.lo digigr8/la-digigr8.lo digigr8/la-digi_postprocess.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/digigr8.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/digigr8.so
+libtool: install: /usr/bin/install -c .libs/digigr8.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/digigr8.la
+libtool: warning: relinking 'dimagev.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o dimagev.la minolta/dimagev/dimagev_la-capture.lo minolta/dimagev/dimagev_la-data.lo minolta/dimagev/dimagev_la-delete.lo minolta/dimagev/dimagev_la-dimagev.lo minolta/dimagev/dimagev_la-download.lo minolta/dimagev/dimagev_la-info.lo minolta/dimagev/dimagev_la-packet.lo minolta/dimagev/dimagev_la-status.lo minolta/dimagev/dimagev_la-upload.lo minolta/dimagev/dimagev_la-util.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/dimagev.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/dimagev.so
+libtool: install: /usr/bin/install -c .libs/dimagev.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/dimagev.la
+libtool: warning: relinking 'directory.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o directory.la directory/la-directory.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lexif -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/directory.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/directory.so
+libtool: install: /usr/bin/install -c .libs/directory.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/directory.la
+libtool: warning: relinking 'jl2005a.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o jl2005a.la jl2005a/la-library.lo jl2005a/la-jl2005a.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/jl2005a.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/jl2005a.so
+libtool: install: /usr/bin/install -c .libs/jl2005a.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/jl2005a.la
+libtool: warning: relinking 'jl2005c.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o jl2005c.la jl2005c/la-library.lo jl2005c/la-jl2005c.lo jl2005c/la-jpeg_memsrcdest.lo jl2005c/la-jl2005bcd_decompress.lo jl2005c/la-img_enhance.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -ljpeg -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/jl2005c.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/jl2005c.so
+libtool: install: /usr/bin/install -c .libs/jl2005c.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/jl2005c.la
+libtool: warning: relinking 'kodak_dc240.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o kodak_dc240.la kodak/dc240/la-dc240.lo kodak/dc240/la-library.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/kodak_dc240.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/kodak_dc240.so
+libtool: install: /usr/bin/install -c .libs/kodak_dc240.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/kodak_dc240.la
+libtool: warning: relinking 'mars.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o mars.la mars/la-library.lo mars/la-mars.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/mars.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/mars.so
+libtool: install: /usr/bin/install -c .libs/mars.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/mars.la
+libtool: warning: relinking 'pentax.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -Wno-unused -DLIBGPHOTO2 -DPKTDATADIR=\"/\" -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o pentax.la pentax/la-library.lo pentax/la-pslr.lo pentax/la-pslr_enum.lo pentax/la-pslr_log.lo pentax/la-pslr_lens.lo pentax/la-pslr_model.lo pentax/la-pslr_utils.lo pentax/la-js0n.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/pentax.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/pentax.so
+libtool: install: /usr/bin/install -c .libs/pentax.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/pentax.la
+libtool: warning: relinking 'ptp2.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -Wshadow -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o ptp2.la ptp2/la-ptp.lo ptp2/la-library.lo ptp2/la-usb.lo ptp2/la-ptpip.lo ptp2/la-config.lo ptp2/la-olympus-wrap.lo ptp2/la-chdk.lo ptp2/la-fujiptpip.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -ljpeg -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/ptp2.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/ptp2.so
+libtool: install: /usr/bin/install -c .libs/ptp2.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/ptp2.la
+libtool: warning: relinking 'quicktake1x0.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o quicktake1x0.la quicktake1x0/la-quicktake1x0.lo quicktake1x0/la-qtk-thumbnail-decoder.lo quicktake1x0/la-qtkt-decoder.lo quicktake1x0/la-qtkn-decoder.lo quicktake1x0/la-qtk-helpers.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/quicktake1x0.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/quicktake1x0.so
+libtool: install: /usr/bin/install -c .libs/quicktake1x0.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/quicktake1x0.la
+libtool: warning: relinking 'ricoh_g3.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o ricoh_g3.la ricoh/g3_la-g3.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/ricoh_g3.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/ricoh_g3.so
+libtool: install: /usr/bin/install -c .libs/ricoh_g3.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/ricoh_g3.la
+libtool: warning: relinking 'sierra.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o sierra.la sierra/la-sierra.lo sierra/la-library.lo sierra/la-sierra-usbwrap.lo sierra/la-sierra-desc.lo sierra/la-nikon-desc.lo sierra/la-olympus-desc.lo sierra/la-epson-desc.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lexif -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/sierra.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/sierra.so
+libtool: install: /usr/bin/install -c .libs/sierra.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/sierra.la
+libtool: warning: relinking 'sonix.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o sonix.la sonix/la-library.lo sonix/la-sonix.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/sonix.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/sonix.so
+libtool: install: /usr/bin/install -c .libs/sonix.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/sonix.la
+libtool: warning: relinking 'sq905.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o sq905.la sq905/la-library.lo sq905/la-sq905.lo sq905/la-postprocess.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/sq905.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/sq905.so
+libtool: install: /usr/bin/install -c .libs/sq905.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/sq905.la
+libtool: warning: relinking 'st2205.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o st2205.la st2205/la-library.lo st2205/la-st2205.lo st2205/la-st2205_decode.lo st2205/la-st2205_tables.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/st2205.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/st2205.so
+libtool: install: /usr/bin/install -c .libs/st2205.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/st2205.la
+libtool: warning: relinking 'topfield.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o topfield.la topfield/la-crc16.lo topfield/la-tf_bytes.lo topfield/la-mjd.lo topfield/la-puppy.lo topfield/la-usb_io.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/topfield.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/topfield.so
+libtool: install: /usr/bin/install -c .libs/topfield.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/topfield.la
+libtool: warning: relinking 'tp6801.la'
+libtool: install: (cd /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs; /bin/bash "/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libtool"  --silent --tag CC --mode=relink gcc -std=gnu23 -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter -module -no-undefined -avoid-version -export-dynamic -export-symbols ../camlibs/camlib.sym -rpath /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34 -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags -o tp6801.la tp6801/la-library.lo tp6801/la-tp6801.lo ../libgphoto2/libgphoto2.la ../libgphoto2_port/libgphoto2_port/libgphoto2_port.la -lm -inst-prefix-dir /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage)
+libtool: install: /usr/bin/install -c .libs/tp6801.soT /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/tp6801.so
+libtool: install: /usr/bin/install -c .libs/tp6801.lai /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34/tp6801.la
+libtool: warning: remember to run 'libtool --finish /usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/2.5.34'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/doc/libgphoto2/camlibs'
+ /usr/bin/install -c -m 644 adc65/README.adc65 agfa-cl20/README.agfa-cl20 aox/README.aox ax203/README.ax203-compression ax203/README.ax203 canon/README.canon clicksmart310/README.clicksmart310 digigr8/README.9050 digigr8/README.9051 digigr8/README.9052 digigr8/README.905C digigr8/README.913D enigma13/README.enigma13 gsmart300/README.gsmart300 iclick/README.iclick jamcam/README.jamcam jl2005a/README.jl2005a jl2005c/README.jl2005c jl2005c/README.jl2005bcd-compression konica/README.konica largan/lmini/README.largan-lmini lg_gsm/README.lg_gsm mars/README.mars minolta/dimagev/README.minolta-dimagev mustek/README.mustek panasonic/coolshot/README.panasonic-coolshot panasonic/l859/README.panasonic-l859 panasonic/README.panasonic pccam300/README.pccam300 pccam600/README.pccam600 pentax/README.pentax ptp2/README.ptp2 smal/README.smal sonix/README.sonix sonydscf1/README.sonydscf1 soundvision/README.soundvision spca50x/README.spca50x sq905/README.913C sq905/README.sq905 st2205/README.st2205-compression '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/doc/libgphoto2/camlibs'
+ /usr/bin/install -c -m 644 st2205/README.st2205 toshiba/pdrm11/README.toshiba-pdrm11 tp6801/README.tp6801 '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/doc/libgphoto2/camlibs'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/libgphoto2/2.5.34/konica'
+ /usr/bin/install -c -m 644 konica/localization/english konica/localization/french konica/localization/german konica/localization/japanese konica/localization/korean konica/localization/spanish '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/libgphoto2/2.5.34/konica'
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs'
+Making install in canon/doc
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs/canon/doc'
+Dummy target all-local without gtk-doc.
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs/canon/doc'
+make[5]: Nothing to be done for 'install-exec-am'.
+Dummy target install-data-local without gtk-doc
+Re-run configure with gtk-doc and adequate parameters and run make again to build docs.
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs/canon/doc'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs/canon/doc'
+make[3]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/camlibs'
+Making install in tests
+make[3]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/tests'
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/tests'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/tests'
+make[3]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/tests'
+Making install in examples
+make[3]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/examples'
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/examples'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/examples'
+make[3]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/examples'
+Making install in po
+make[3]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/po'
+if test "libgphoto2" = "gettext-tools"; then \
+  /usr/bin/mkdir -p /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/gettext/po; \
+  for file in Makefile.in.in remove-potcdate.sin quot.sed boldquot.sed en@quot.header en@boldquot.header insert-header.sin Rules-quot   Makevars.template; do \
+    /usr/bin/install -c -m 644 ./$file \
+		    /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/gettext/po/$file; \
+  done; \
+  for file in Makevars; do \
+    rm -f /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/gettext/po/$file; \
+  done; \
+else \
+  : ; \
+fi
+make[3]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/po'
+Making install in packaging
+make[3]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging'
+Making install in generic
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging/generic'
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging/generic'
+make[5]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/udev'
+ /usr/bin/install -c check-ptp-camera '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/udev'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2'
+  /bin/bash ../../libtool   --mode=install /usr/bin/install -c print-camera-list '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2'
+libtool: warning: '../../libgphoto2/libgphoto2.la' has not been installed in '/usr/lib/alpacabridge/libgphoto2/lib'
+libtool: warning: '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/libgphoto2_port/libgphoto2_port/libgphoto2_port.la' has not been installed in '/usr/lib/alpacabridge/libgphoto2/lib'
+libtool: warning: '../../libgphoto2_port/libgphoto2_port/libgphoto2_port.la' has not been installed in '/usr/lib/alpacabridge/libgphoto2/lib'
+libtool: install: /usr/bin/install -c .libs/print-camera-list /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2/print-camera-list
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging/generic'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging/generic'
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging'
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging'
+make[5]: Nothing to be done for 'install-exec-am'.
+make[5]: Nothing to be done for 'install-data-am'.
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging'
+make[3]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/packaging'
+Making install in doc
+make[3]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc'
+Making install in api
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc/api'
+Dummy target all-local without gtk-doc.
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc/api'
+make[5]: Nothing to be done for 'install-exec-am'.
+Dummy target install-data-local without gtk-doc
+Re-run configure with gtk-doc and adequate parameters and run make again to build docs.
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc/api'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc/api'
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc'
+make[5]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc'
+make[5]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/man/man3'
+ /usr/bin/install -c -m 644 libgphoto2.3 libgphoto2_port.3 '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/man/man3'
+make[5]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc'
+make[3]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34/doc'
+make[3]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34'
+  env CFLAGS   -g -O2 -Werror=implicit-function-declaration -ffile-prefix-map=/__w/AlpacaBridge/AlpacaBridge=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -mbranch-protection=standard -Wall -Wextra -Werror=incompatible-pointer-types -Werror=implicit -Werror=int-conversion -Wno-unused-parameter
+  env CPPFLAGS -Wdate-time -D_FORTIFY_SOURCE=2
+  env LDFLAGS  -Wl,-z,relro -Wl,-z,relro -Wl,-z,now -Wl,-rpath,/usr/lib/alpacabridge/libgphoto2/lib -Wl,--disable-new-dtags
+make[4]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/bin'
+ /usr/bin/install -c gphoto2-config '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/bin'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/doc/libgphoto2'
+ /usr/bin/install -c -m 644 AUTHORS COPYING NEWS ABOUT-NLS ChangeLog README.md RELEASE-HOWTO.md README.packaging '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/share/doc/libgphoto2'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/include'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/include/gphoto2'
+ /usr/bin/install -c -m 644  gphoto2/gphoto2.h gphoto2/gphoto2-abilities-list.h gphoto2/gphoto2-camera.h gphoto2/gphoto2-context.h gphoto2/gphoto2-file.h gphoto2/gphoto2-filesys.h gphoto2/gphoto2-library.h gphoto2/gphoto2-list.h gphoto2/gphoto2-result.h gphoto2/gphoto2-setting.h gphoto2/gphoto2-version.h gphoto2/gphoto2-widget.h '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/include/gphoto2'
+ /usr/bin/mkdir -p '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/pkgconfig'
+ /usr/bin/install -c -m 644 libgphoto2.pc '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2/lib/pkgconfig'
+make[4]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34'
+make[3]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34'
+make[2]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-src/libgphoto2-2.5.34'
+NOTE: You need to generate a hwdb too, this file just contains the scsi generic device entries.
+libgphoto2 2.5.34 installed under /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/libgphoto2; rules in /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/udev/rules.d/61-alpacabridge-libgphoto2.rules
+cmake -S /__w/AlpacaBridge/AlpacaBridge/AlpacaHTTP -B /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DALPACACORE_ENABLE_ALL_VENDORS=ON \
+  -DALPACACORE_GPHOTO_STAGE=/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage \
+  -DCMAKE_SKIP_BUILD_RPATH=ON \
+  -DALPACAHTTP_BUILD_TESTS=OFF \
+  -DALPACACORE_BUILD_TESTS=OFF \
+  
+-- The CXX compiler identification is GNU 14.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Building ZWO camera driver support
+-- Found PkgConfig: /usr/bin/pkg-config (found version "1.8.1")
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Building QHY camera, filter wheel, CFW3 (USB) and Q-Focuser driver support
+-- Building iOptron mount driver support
+-- iOptron driver: Serial/TCP mount + iMate PowerBox (libgpiod) Switch support enabled
+-- Building SynScan mount driver support
+-- SynScan driver: Serial and TCP connection support enabled
+-- Building SkyWatcher motor controller mount driver support
+-- SkyWatcher driver: Serial and UDP (Wi-Fi) connection support enabled
+-- Building OnStep mount driver support
+-- OnStep driver: Serial connection support enabled
+-- Building WeeWX observing conditions driver support
+-- Found CURL: /usr/lib/aarch64-linux-gnu/libcurl.so (found version "8.14.1")
+-- WeeWX driver: HTTP JSON feed support enabled
+-- Building SVBONY camera driver support
+-- Building libgphoto2 DSLR/mirrorless camera driver support
+-- Checking for module 'libraw'
+--   Found libraw, version 0.21.4
+-- Building Celestron NexStar and CGX/CGX-L mount driver support
+-- Celestron driver: NexStar serial/TCP and CGX direct USB support enabled
+-- Building Bisque/Paramount (TheSkyX) mount driver support
+-- Bisque driver: TCP connection to TheSkyX enabled
+-- Building ToupTek camera driver support
+-- ToupTek driver: camera + focuser + StellaVita (libgpiod) Switch support enabled
+-- Building Altair camera driver support
+-- Building Player One camera and filter wheel driver support
+-- Checking for module 'hidapi-hidraw'
+--   Found hidapi-hidraw, version 0.14.0
+-- Found ZLIB: /usr/lib/aarch64-linux-gnu/libz.so (found version "1.3.1")
+-- Checking for module 'libsystemd'
+--   Found libsystemd, version 257
+-- Configuring done (1.8s)
+-- Generating done (0.1s)
+-- Build files have been written to: /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu
+make[1]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge'
+   debian/rules override_dh_auto_build
+make[1]: Entering directory '/__w/AlpacaBridge/AlpacaBridge'
+cmake --build /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu --parallel 4
+gmake[2]: Entering directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu'
+[  1%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/alpaca_defs.cpp.o
+[  1%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/device_capabilities.cpp.o
+[  1%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/util/logging.cpp.o
+[  1%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/util/threading.cpp.o
+[  2%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/util/error_handling.cpp.o
+[  2%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/util/host_clock.cpp.o
+[  3%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/util/units.cpp.o
+[  3%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/util/device_location_store.cpp.o
+[  4%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/util/atomic_file.cpp.o
+[  4%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/util/flat_number_file.cpp.o
+[  5%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/util/power_port_state_store.cpp.o
+[  5%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/util/rotator_sync_offset_store.cpp.o
+[  6%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/util/unique_id.cpp.o
+[  6%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/util/lock_gate.cpp.o
+[  7%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/core/util/thermal_camera_choice.cpp.o
+[  7%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/catalog/device_config.cpp.o
+[  8%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/catalog/device_catalog.cpp.o
+[  8%] Building CXX object AlpacaCore/CMakeFiles/alpacacore.dir/src/management/device_registry.cpp.o
+[  9%] Linking CXX static library libalpacacore.a
+[  9%] Built target alpacacore
+[  9%] Building CXX object AlpacaCore/src/vendors/openweather/CMakeFiles/alpacacore_openweather.dir/openweather_observingconditions_driver.cpp.o
+[ 10%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_protocol_wrapper.cpp.o
+[ 10%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_sdk_wrapper.cpp.o
+[ 10%] Building CXX object AlpacaCore/src/vendors/qhy/CMakeFiles/alpacacore_qhy.dir/qhy_sdk_wrapper.cpp.o
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/ioptron/ioptron_protocol_wrapper.cpp: In member function 'std::pair<double, double> alpacacore::vendor::ioptron::iOptronProtocolWrapper::get_guide_rates()':
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/ioptron/ioptron_protocol_wrapper.cpp:2248:67: note: parameter passing for argument of type 'std::pair<double, double>' when C++17 is enabled changed to match C++14 in GCC 10.1
+ 2248 | std::pair<double, double> iOptronProtocolWrapper::get_guide_rates() {
+      |                                                                   ^
+[ 10%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_camera_identity.cpp.o
+[ 11%] Building CXX object AlpacaCore/src/vendors/openweather/CMakeFiles/alpacacore_openweather.dir/openweather_catalog.cpp.o
+[ 12%] Building CXX object AlpacaCore/src/vendors/qhy/CMakeFiles/alpacacore_qhy.dir/qhy_camera_driver.cpp.o
+[ 13%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_camera_driver.cpp.o
+[ 13%] Linking CXX static library libalpacacore_openweather.a
+[ 13%] Built target alpacacore_openweather
+[ 13%] Building CXX object AlpacaCore/src/vendors/qhy/CMakeFiles/alpacacore_qhy.dir/qhy_filterwheel_driver.cpp.o
+[ 14%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_telescope_driver.cpp.o
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/ioptron/ioptron_telescope_driver.cpp: In member function 'std::pair<double, double> alpacacore::vendor::ioptron::iOptronTelescopeDriver::Wire::get_guide_rates() const':
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/ioptron/ioptron_telescope_driver.cpp:208:59: note: parameter passing for argument of type 'std::pair<double, double>' when C++17 is enabled changed to match C++14 in GCC 10.1
+  208 |         std::pair<double, double> get_guide_rates() const {
+      |                                                           ^
+[ 14%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_ieaf_protocol_wrapper.cpp.o
+[ 15%] Building CXX object AlpacaCore/src/vendors/qhy/CMakeFiles/alpacacore_qhy.dir/qhy_cfw3_protocol_wrapper.cpp.o
+[ 15%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_switch_driver.cpp.o
+[ 15%] Building CXX object AlpacaCore/src/vendors/synscan/CMakeFiles/alpacacore_synscan.dir/synscan_protocol_wrapper.cpp.o
+[ 15%] Building CXX object AlpacaCore/src/vendors/qhy/CMakeFiles/alpacacore_qhy.dir/qhy_cfw3_filterwheel_driver.cpp.o
+[ 16%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_ieaf_focuser_driver.cpp.o
+[ 17%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_thermal_listing.cpp.o
+[ 17%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_asiair_protocol_wrapper.cpp.o
+[ 18%] Building CXX object AlpacaCore/src/vendors/qhy/CMakeFiles/alpacacore_qhy.dir/qhy_qfocuser_protocol_wrapper.cpp.o
+[ 19%] Building CXX object AlpacaCore/src/vendors/synscan/CMakeFiles/alpacacore_synscan.dir/synscan_telescope_driver.cpp.o
+[ 19%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_iefw_protocol_wrapper.cpp.o
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/synscan/synscan_telescope_driver.cpp: In member function 'virtual std::pair<double, double> alpacacore::vendor::synscan::SynScanTelescopeDriver::get_axis_rate_range(int) const':
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/synscan/synscan_telescope_driver.cpp:2057:76: note: parameter passing for argument of type 'std::pair<double, double>' when C++17 is enabled changed to match C++14 in GCC 10.1
+ 2057 |     std::pair<double, double> get_axis_rate_range(int axis) const override {
+      |                                                                            ^
+[ 19%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_asiair_switch_driver.cpp.o
+[ 19%] Building CXX object AlpacaCore/src/vendors/qhy/CMakeFiles/alpacacore_qhy.dir/qhy_focuser_driver.cpp.o
+[ 20%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_filterwheel_driver.cpp.o
+[ 21%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_asiair_plus_protocol_wrapper.cpp.o
+[ 21%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_asiair_plus_switch_driver.cpp.o
+[ 22%] Building CXX object AlpacaCore/src/vendors/qhy/CMakeFiles/alpacacore_qhy.dir/qhy_catalog.cpp.o
+[ 22%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_ifr_protocol_wrapper.cpp.o
+[ 22%] Building CXX object AlpacaCore/src/vendors/synscan/CMakeFiles/alpacacore_synscan.dir/synscan_catalog.cpp.o
+[ 22%] Linking CXX static library libalpacacore_qhy.a
+[ 22%] Built target alpacacore_qhy
+[ 23%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_eaf_wrapper.cpp.o
+[ 24%] Linking CXX static library libalpacacore_synscan.a
+[ 24%] Built target alpacacore_synscan
+[ 25%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_ifr_focuser_driver.cpp.o
+[ 25%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_ifr_rotator_driver.cpp.o
+[ 26%] Building CXX object AlpacaCore/src/vendors/skywatcher/CMakeFiles/alpacacore_skywatcher.dir/skywatcher_protocol_wrapper.cpp.o
+[ 26%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_focuser_driver.cpp.o
+[ 27%] Building CXX object AlpacaCore/src/vendors/onstep/CMakeFiles/alpacacore_onstep.dir/onstep_protocol_wrapper.cpp.o
+[ 28%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_iguider_v4l2_wrapper.cpp.o
+[ 29%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_efw_wrapper.cpp.o
+[ 29%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_iguider_camera_driver.cpp.o
+[ 29%] Building CXX object AlpacaCore/src/vendors/skywatcher/CMakeFiles/alpacacore_skywatcher.dir/skywatcher_telescope_driver.cpp.o
+[ 29%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_filterwheel_driver.cpp.o
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/skywatcher/skywatcher_telescope_driver.cpp: In member function 'std::pair<double, double> alpacacore::vendor::skywatcher::SkyWatcherTelescopeDriver::target_or_throw() const':
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/skywatcher/skywatcher_telescope_driver.cpp:2540:55: note: parameter passing for argument of type 'std::pair<double, double>' when C++17 is enabled changed to match C++14 in GCC 10.1
+ 2540 |     std::pair<double, double> target_or_throw() const {
+      |                                                       ^
+[ 29%] Building CXX object AlpacaCore/src/vendors/onstep/CMakeFiles/alpacacore_onstep.dir/onstep_telescope_driver.cpp.o
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/onstep/onstep_telescope_driver.cpp: In member function 'std::pair<double, double> alpacacore::vendor::onstep::OnStepTelescopeDriver::target_or_throw_locked() const':
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/onstep/onstep_telescope_driver.cpp:1477:62: note: parameter passing for argument of type 'std::pair<double, double>' when C++17 is enabled changed to match C++14 in GCC 10.1
+ 1477 |     std::pair<double, double> target_or_throw_locked() const {
+      |                                                              ^
+[ 30%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_catalog.cpp.o
+[ 31%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_caa_wrapper.cpp.o
+[ 31%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_powerbox_wrapper.cpp.o
+[ 31%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_rotator_driver.cpp.o
+[ 32%] Building CXX object AlpacaCore/src/vendors/skywatcher/CMakeFiles/alpacacore_skywatcher.dir/skywatcher_catalog.cpp.o
+[ 33%] Building CXX object AlpacaCore/src/vendors/ioptron/CMakeFiles/alpacacore_ioptron.dir/ioptron_switch_driver.cpp.o
+[ 34%] Building CXX object AlpacaCore/src/vendors/onstep/CMakeFiles/alpacacore_onstep.dir/onstep_catalog.cpp.o
+[ 34%] Linking CXX static library libalpacacore_skywatcher.a
+[ 34%] Built target alpacacore_skywatcher
+[ 34%] Linking CXX static library libalpacacore_onstep.a
+[ 35%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_mount_protocol_wrapper.cpp.o
+[ 35%] Built target alpacacore_onstep
+[ 35%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_telescope_driver.cpp.o
+[ 35%] Building CXX object AlpacaCore/src/vendors/weewx/CMakeFiles/alpacacore_weewx.dir/weewx_observingconditions_driver.cpp.o
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/zwo/zwo_telescope_driver.cpp: In member function 'virtual std::pair<double, double> alpacacore::vendor::zwo::ZWOTelescopeDriver::get_axis_rate_range(int) const':
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/zwo/zwo_telescope_driver.cpp:1517:76: note: parameter passing for argument of type 'std::pair<double, double>' when C++17 is enabled changed to match C++14 in GCC 10.1
+ 1517 |     std::pair<double, double> get_axis_rate_range(int axis) const override {
+      |                                                                            ^
+[ 35%] Linking CXX static library libalpacacore_ioptron.a
+[ 35%] Built target alpacacore_ioptron
+[ 36%] Building CXX object AlpacaCore/src/vendors/zwo/CMakeFiles/alpacacore_zwo.dir/zwo_catalog.cpp.o
+[ 37%] Building CXX object AlpacaCore/src/vendors/weewx/CMakeFiles/alpacacore_weewx.dir/weewx_catalog.cpp.o
+[ 37%] Linking CXX static library libalpacacore_weewx.a
+[ 37%] Built target alpacacore_weewx
+[ 37%] Building CXX object AlpacaCore/src/vendors/gemini/CMakeFiles/alpacacore_gemini.dir/gemini_protocol_wrapper.cpp.o
+[ 37%] Building CXX object AlpacaCore/src/vendors/wandererastro/CMakeFiles/alpacacore_wandererastro.dir/wandererastro_protocol_wrapper.cpp.o
+[ 38%] Building CXX object AlpacaCore/src/vendors/gemini/CMakeFiles/alpacacore_gemini.dir/gemini_focuser_driver.cpp.o
+[ 38%] Linking CXX static library libalpacacore_zwo.a
+[ 38%] Built target alpacacore_zwo
+[ 39%] Building CXX object AlpacaCore/src/vendors/wandererastro/CMakeFiles/alpacacore_wandererastro.dir/wandererastro_covercalibrator_driver.cpp.o
+[ 40%] Building CXX object AlpacaCore/src/vendors/svbony/CMakeFiles/alpacacore_svbony.dir/svbony_sdk_wrapper.cpp.o
+[ 40%] Building CXX object AlpacaCore/src/vendors/gemini/CMakeFiles/alpacacore_gemini.dir/gemini_flatpanel_protocol_wrapper.cpp.o
+[ 40%] Building CXX object AlpacaCore/src/vendors/gphoto/CMakeFiles/alpacacore_gphoto.dir/gphoto_sdk_wrapper.cpp.o
+[ 40%] Building CXX object AlpacaCore/src/vendors/svbony/CMakeFiles/alpacacore_svbony.dir/svbony_camera_driver.cpp.o
+[ 40%] Building CXX object AlpacaCore/src/vendors/wandererastro/CMakeFiles/alpacacore_wandererastro.dir/wandererastro_rotator_protocol_wrapper.cpp.o
+[ 41%] Building CXX object AlpacaCore/src/vendors/gphoto/CMakeFiles/alpacacore_gphoto.dir/gphoto_camera_driver.cpp.o
+[ 42%] Building CXX object AlpacaCore/src/vendors/gemini/CMakeFiles/alpacacore_gemini.dir/gemini_flatpanel_driver.cpp.o
+[ 42%] Building CXX object AlpacaCore/src/vendors/svbony/CMakeFiles/alpacacore_svbony.dir/svbony_catalog.cpp.o
+[ 43%] Building CXX object AlpacaCore/src/vendors/wandererastro/CMakeFiles/alpacacore_wandererastro.dir/wandererastro_rotator_driver.cpp.o
+[ 44%] Linking CXX static library libalpacacore_svbony.a
+[ 44%] Built target alpacacore_svbony
+[ 44%] Building CXX object AlpacaCore/src/vendors/gemini/CMakeFiles/alpacacore_gemini.dir/gemini_pdh_protocol_wrapper.cpp.o
+[ 44%] Building CXX object AlpacaCore/src/vendors/gphoto/CMakeFiles/alpacacore_gphoto.dir/gphoto_catalog.cpp.o
+[ 44%] Building CXX object AlpacaCore/src/vendors/wandererastro/CMakeFiles/alpacacore_wandererastro.dir/wandererastro_filterwheel_protocol_wrapper.cpp.o
+[ 45%] Linking CXX static library libalpacacore_gphoto.a
+[ 45%] Built target alpacacore_gphoto
+[ 46%] Building CXX object AlpacaCore/src/vendors/gemini/CMakeFiles/alpacacore_gemini.dir/gemini_pdh_switch_driver.cpp.o
+[ 47%] Building CXX object AlpacaCore/src/vendors/wandererastro/CMakeFiles/alpacacore_wandererastro.dir/wandererastro_filterwheel_driver.cpp.o
+[ 47%] Building CXX object AlpacaCore/src/vendors/celestron/CMakeFiles/alpacacore_celestron.dir/celestron_cgx_geometry.cpp.o
+[ 47%] Building CXX object AlpacaCore/src/vendors/gemini/CMakeFiles/alpacacore_gemini.dir/gemini_catalog.cpp.o
+[ 47%] Building CXX object AlpacaCore/src/vendors/wandererastro/CMakeFiles/alpacacore_wandererastro.dir/wandererastro_box_protocol_wrapper.cpp.o
+[ 48%] Building CXX object AlpacaCore/src/vendors/celestron/CMakeFiles/alpacacore_celestron.dir/celestron_cgx_protocol.cpp.o
+[ 49%] Building CXX object AlpacaCore/src/vendors/bisque/CMakeFiles/alpacacore_bisque.dir/bisque_protocol_wrapper.cpp.o
+[ 49%] Building CXX object AlpacaCore/src/vendors/celestron/CMakeFiles/alpacacore_celestron.dir/celestron_cgx_protocol_wrapper.cpp.o
+[ 50%] Linking CXX static library libalpacacore_gemini.a
+[ 50%] Built target alpacacore_gemini
+[ 51%] Building CXX object AlpacaCore/src/vendors/wandererastro/CMakeFiles/alpacacore_wandererastro.dir/wandererastro_box_switch_driver.cpp.o
+[ 51%] Building CXX object AlpacaCore/src/vendors/bisque/CMakeFiles/alpacacore_bisque.dir/bisque_telescope_driver.cpp.o
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/bisque/bisque_telescope_driver.cpp: In member function 'virtual std::pair<double, double> alpacacore::vendor::bisque::BisqueTelescopeDriver::get_axis_rate_range(int) const':
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/bisque/bisque_telescope_driver.cpp:1118:76: note: parameter passing for argument of type 'std::pair<double, double>' when C++17 is enabled changed to match C++14 in GCC 10.1
+ 1118 |     std::pair<double, double> get_axis_rate_range(int axis) const override {
+      |                                                                            ^
+[ 52%] Building CXX object AlpacaCore/src/vendors/celestron/CMakeFiles/alpacacore_celestron.dir/celestron_cgx_telescope_driver.cpp.o
+[ 52%] Building CXX object AlpacaCore/src/vendors/bisque/CMakeFiles/alpacacore_bisque.dir/bisque_catalog.cpp.o
+[ 52%] Building CXX object AlpacaCore/src/vendors/wandererastro/CMakeFiles/alpacacore_wandererastro.dir/wandererastro_catalog.cpp.o
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/celestron/celestron_cgx_telescope_driver.cpp: In member function 'virtual std::pair<double, double> alpacacore::vendor::celestron::CelestronCgxTelescopeDriver::get_axis_rate_range(int) const':
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/celestron/celestron_cgx_telescope_driver.cpp:1767:86: note: parameter passing for argument of type 'std::pair<double, double>' when C++17 is enabled changed to match C++14 in GCC 10.1
+ 1767 | std::pair<double, double> CelestronCgxTelescopeDriver::get_axis_rate_range(int axis) const {
+      |                                                                                      ^~~~~
+[ 52%] Building CXX object AlpacaCore/src/vendors/touptek/CMakeFiles/alpacacore_touptek.dir/touptek_sdk_wrapper.cpp.o
+[ 53%] Linking CXX static library libalpacacore_bisque.a
+[ 53%] Built target alpacacore_bisque
+[ 54%] Linking CXX static library libalpacacore_wandererastro.a
+[ 54%] Building CXX object AlpacaCore/src/vendors/celestron/CMakeFiles/alpacacore_celestron.dir/celestron_focuser_driver.cpp.o
+[ 54%] Built target alpacacore_wandererastro
+[ 55%] Building CXX object AlpacaCore/src/vendors/touptek/CMakeFiles/alpacacore_touptek.dir/touptek_camera_driver.cpp.o
+[ 56%] Building CXX object AlpacaCore/src/vendors/playerone/CMakeFiles/alpacacore_playerone.dir/playerone_sdk_wrapper.cpp.o
+[ 56%] Building CXX object AlpacaCore/src/vendors/playerone/CMakeFiles/alpacacore_playerone.dir/playerone_camera_driver.cpp.o
+[ 56%] Building CXX object AlpacaCore/src/vendors/touptek/CMakeFiles/alpacacore_touptek.dir/touptek_focuser_driver.cpp.o
+[ 57%] Building CXX object AlpacaCore/src/vendors/celestron/CMakeFiles/alpacacore_celestron.dir/celestron_protocol_wrapper.cpp.o
+[ 58%] Building CXX object AlpacaCore/src/vendors/astroasis/CMakeFiles/alpacacore_astroasis.dir/astroasis_protocol_wrapper.cpp.o
+[ 58%] Building CXX object AlpacaCore/src/vendors/astroasis/CMakeFiles/alpacacore_astroasis.dir/astroasis_focuser_driver.cpp.o
+[ 59%] Building CXX object AlpacaCore/src/vendors/touptek/CMakeFiles/alpacacore_touptek.dir/touptek_filterwheel_driver.cpp.o
+[ 60%] Building CXX object AlpacaCore/src/vendors/playerone/CMakeFiles/alpacacore_playerone.dir/playerone_switch_driver.cpp.o
+[ 60%] Building CXX object AlpacaCore/src/vendors/celestron/CMakeFiles/alpacacore_celestron.dir/celestron_telescope_driver.cpp.o
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/celestron/celestron_telescope_driver.cpp: In member function 'virtual std::pair<double, double> alpacacore::vendor::celestron::CelestronTelescopeDriver::get_axis_rate_range(int) const':
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/src/vendors/celestron/celestron_telescope_driver.cpp:2637:76: note: parameter passing for argument of type 'std::pair<double, double>' when C++17 is enabled changed to match C++14 in GCC 10.1
+ 2637 |     std::pair<double, double> get_axis_rate_range(int axis) const override {
+      |                                                                            ^
+[ 60%] Building CXX object AlpacaCore/src/vendors/touptek/CMakeFiles/alpacacore_touptek.dir/touptek_thermal_switch_driver.cpp.o
+[ 61%] Building CXX object AlpacaCore/src/vendors/astroasis/CMakeFiles/alpacacore_astroasis.dir/astroasis_catalog.cpp.o
+[ 61%] Building CXX object AlpacaCore/src/vendors/playerone/CMakeFiles/alpacacore_playerone.dir/playerone_pw_wrapper.cpp.o
+[ 61%] Linking CXX static library libalpacacore_astroasis.a
+[ 61%] Built target alpacacore_astroasis
+[ 62%] Building CXX object AlpacaCore/src/vendors/touptek/CMakeFiles/alpacacore_touptek.dir/touptek_catalog.cpp.o
+[ 63%] Building CXX object AlpacaCore/src/vendors/playerone/CMakeFiles/alpacacore_playerone.dir/playerone_filterwheel_driver.cpp.o
+[ 63%] Building CXX object AlpacaCore/src/vendors/deepskydad/CMakeFiles/alpacacore_deepskydad.dir/deepskydad_flatpanel_protocol_wrapper.cpp.o
+[ 63%] Building CXX object AlpacaCore/src/vendors/touptek/CMakeFiles/alpacacore_touptek.dir/touptek_thermal_listing.cpp.o
+[ 64%] Building CXX object AlpacaCore/src/vendors/touptek/CMakeFiles/alpacacore_touptek.dir/touptek_powerbox_wrapper.cpp.o
+[ 64%] Building CXX object AlpacaCore/src/vendors/playerone/CMakeFiles/alpacacore_playerone.dir/playerone_catalog.cpp.o
+[ 65%] Building CXX object AlpacaCore/src/vendors/celestron/CMakeFiles/alpacacore_celestron.dir/celestron_catalog.cpp.o
+[ 66%] Linking CXX static library libalpacacore_playerone.a
+[ 66%] Built target alpacacore_playerone
+[ 67%] Building CXX object AlpacaCore/src/vendors/deepskydad/CMakeFiles/alpacacore_deepskydad.dir/deepskydad_covercalibrator_driver.cpp.o
+[ 67%] Building CXX object AlpacaCore/src/vendors/touptek/CMakeFiles/alpacacore_touptek.dir/touptek_switch_driver.cpp.o
+[ 67%] Building CXX object AlpacaCore/src/vendors/deepskydad/CMakeFiles/alpacacore_deepskydad.dir/deepskydad_catalog.cpp.o
+[ 67%] Linking CXX static library libalpacacore_celestron.a
+[ 67%] Built target alpacacore_celestron
+[ 68%] Building CXX object AlpacaCore/src/vendors/simulator/CMakeFiles/alpacacore_simulator.dir/simulator_dome_model.cpp.o
+[ 69%] Building CXX object AlpacaCore/src/vendors/scopedome/CMakeFiles/alpacacore_scopedome.dir/scopedome_usb21_protocol_wrapper.cpp.o
+[ 69%] Building CXX object AlpacaCore/src/vendors/simulator/CMakeFiles/alpacacore_simulator.dir/simulator_dome_driver.cpp.o
+[ 70%] Linking CXX static library libalpacacore_deepskydad.a
+[ 70%] Built target alpacacore_deepskydad
+[ 71%] Building CXX object AlpacaCore/src/vendors/simulator/CMakeFiles/alpacacore_simulator.dir/simulator_catalog.cpp.o
+[ 72%] Linking CXX static library libalpacacore_touptek.a
+[ 72%] Built target alpacacore_touptek
+[ 72%] Building CXX object AlpacaCore/src/vendors/scopedome/CMakeFiles/alpacacore_scopedome.dir/scopedome_dome_driver.cpp.o
+[ 73%] Building CXX object AlpacaCore/src/vendors/scopedome/CMakeFiles/alpacacore_scopedome.dir/scopedome_catalog.cpp.o
+[ 73%] Linking CXX static library libalpacacore_simulator.a
+[ 73%] Built target alpacacore_simulator
+[ 74%] Building CXX object AlpacaCore/src/vendors/allsky/CMakeFiles/alpacacore_allsky.dir/allsky_image_analysis.cpp.o
+[ 75%] Building CXX object AlpacaCore/src/vendors/altair/CMakeFiles/alpacacore_altair.dir/altair_sdk_wrapper.cpp.o
+[ 75%] Building CXX object AlpacaCore/src/vendors/allsky/CMakeFiles/alpacacore_allsky.dir/allsky_drivers.cpp.o
+[ 75%] Linking CXX static library libalpacacore_scopedome.a
+[ 75%] Building CXX object AlpacaCore/src/vendors/altair/CMakeFiles/alpacacore_altair.dir/altair_camera_driver.cpp.o
+[ 75%] Built target alpacacore_scopedome
+[ 76%] Building CXX object AlpacaCore/src/vendors/allsky/CMakeFiles/alpacacore_allsky.dir/allsky_catalog.cpp.o
+[ 77%] Building CXX object AlpacaCore/src/vendors/altair/CMakeFiles/alpacacore_altair.dir/altair_catalog.cpp.o
+[ 77%] Linking CXX static library libalpacacore_altair.a
+[ 77%] Built target alpacacore_altair
+[ 77%] Linking CXX static library libalpacacore_allsky.a
+[ 77%] Built target alpacacore_allsky
+[ 78%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/astroasis/astroasis_schema.cpp.o
+[ 78%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/catalog/builtin_catalog.cpp.o
+[ 78%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/altair/altair_schema.cpp.o
+[ 79%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/deepskydad/deepskydad_schema.cpp.o
+[ 79%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/simulator/simulator_schema.cpp.o
+[ 80%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/scopedome/scopedome_schema.cpp.o
+[ 80%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/allsky/allsky_schema.cpp.o
+[ 81%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/openweather/openweather_schema.cpp.o
+[ 81%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/skywatcher/skywatcher_schema.cpp.o
+[ 82%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/weewx/weewx_schema.cpp.o
+[ 82%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/svbony/svbony_schema.cpp.o
+[ 83%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/gphoto/gphoto_schema.cpp.o
+[ 83%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/playerone/playerone_schema.cpp.o
+[ 84%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/bisque/bisque_schema.cpp.o
+[ 84%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/onstep/onstep_schema.cpp.o
+[ 85%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/celestron/celestron_schema.cpp.o
+[ 85%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/synscan/synscan_schema.cpp.o
+[ 86%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/qhy/qhy_schema.cpp.o
+[ 86%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/touptek/touptek_schema.cpp.o
+[ 87%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/gemini/gemini_schema.cpp.o
+[ 87%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/wandererastro/wandererastro_schema.cpp.o
+[ 88%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/zwo/zwo_schema.cpp.o
+[ 88%] Building CXX object AlpacaCore/CMakeFiles/alpacacore_builtins.dir/src/vendors/ioptron/ioptron_schema.cpp.o
+[ 89%] Linking CXX static library libalpacacore_builtins.a
+[ 89%] Built target alpacacore_builtins
+[ 91%] Building CXX object CMakeFiles/alpacahttp.dir/src/core/config.cpp.o
+[ 91%] Building CXX object CMakeFiles/alpacahttp.dir/src/core/response.cpp.o
+[ 91%] Building CXX object CMakeFiles/alpacahttp.dir/src/core/request.cpp.o
+[ 91%] Building CXX object CMakeFiles/alpacahttp.dir/src/core/json_utils.cpp.o
+[ 92%] Building CXX object CMakeFiles/alpacahttp.dir/src/core/catalog_json.cpp.o
+[ 92%] Building CXX object CMakeFiles/alpacahttp.dir/src/http/router.cpp.o
+[ 93%] Building CXX object CMakeFiles/alpacahttp.dir/src/http/device_call.cpp.o
+[ 93%] Building CXX object CMakeFiles/alpacahttp.dir/src/http/image_payload.cpp.o
+[ 94%] Building CXX object CMakeFiles/alpacahttp.dir/src/http/server.cpp.o
+In file included from /__w/AlpacaBridge/AlpacaBridge/AlpacaHTTP/src/http/router.cpp:18:
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/include/alpacacore/telescope_driver.h: In member function 'virtual std::vector<std::pair<double, double> > alpacacore::TelescopeDriver::get_axis_rate_ranges(int) const':
+/__w/AlpacaBridge/AlpacaBridge/AlpacaCore/include/alpacacore/telescope_driver.h:790:42: note: parameter passing for argument of type 'std::pair<double, double>' when C++17 is enabled changed to match C++14 in GCC 10.1
+  790 |         return {get_axis_rate_range(axis)};
+      |                                          ^
+[ 94%] Building CXX object CMakeFiles/alpacahttp.dir/src/http/thread_join.cpp.o
+[ 95%] Building CXX object CMakeFiles/alpacahttp.dir/src/util/threading.cpp.o
+[ 95%] Building CXX object CMakeFiles/alpacahttp.dir/src/util/logging_adapter.cpp.o
+[ 96%] Building CXX object CMakeFiles/alpacahttp.dir/src/util/error_mapping.cpp.o
+[ 96%] Building CXX object CMakeFiles/alpacahttp.dir/src/util/host_timezone.cpp.o
+[ 97%] Building CXX object CMakeFiles/alpacahttp.dir/src/util/wifi_manager.cpp.o
+[ 97%] Building CXX object CMakeFiles/alpacahttp.dir/src/util/software_update.cpp.o
+[ 98%] Building CXX object CMakeFiles/alpacahttp.dir/src/discovery/discovery.cpp.o
+[ 98%] Linking CXX static library libalpacahttp.a
+[ 98%] Built target alpacahttp
+[ 98%] Building CXX object CMakeFiles/alpacahttp_server.dir/examples/simple_server/main.cpp.o
+[100%] Linking CXX executable alpacahttp_server
+[100%] Built target alpacahttp_server
+gmake[2]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu'
+make[1]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge'
+   create-stamp debian/debhelper-build-stamp
+   dh_prep
+   debian/rules override_dh_auto_install
+make[1]: Entering directory '/__w/AlpacaBridge/AlpacaBridge'
+# --- Server binary ---
+install -D -m 755 /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/alpacahttp_server \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/bin/alpacabridge
+# --- Bundled vendor shared libraries ---
+install -d /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge
+cp -a /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/QHY/sdk_linux_arm64_26.07.28/usr/local/lib/libqhyccd.so* \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/
+# ZWO ASI Camera shared library (used by SmartGuider via zwoasi)
+cp -a /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/ZWO/ASI_Camera_SDK/lib/linux/armv8/libASICamera2.so* \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/
+# SVBONY Camera shared library
+cp -a /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/SVBONY/lib/armv8/libSVBCameraSDK.so* \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/
+# ToupTek Camera shared library
+cp -a /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/ToupTek/toupcamsdk.20260519/linux/arm64/glibc/libtoupcam.so* \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/
+# Altair Camera shared library (ToupTek OEM SDK under Altair's name)
+cp -a /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/Altair/altaircamsdk.20260531/linux/arm64/glibc/libaltaircam.so* \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/
+# Player One Camera shared library (SmartGuider dlopens this directly)
+cp -a /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/PlayerOne/PlayerOne_Camera_SDK_Linux_V3.10.1/lib/arm64/libPlayerOneCamera.so* \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/
+# Player One Phoenix Filter Wheel shared library
+cp -a /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/PlayerOne/PlayerOne_FilterWheel_SDK_Linux_V1.2.3/lib/arm64/libPlayerOnePW.so* \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/
+# libgphoto2 (library, camlibs, iolibs) in its private prefix. Not on the
+# ldconfig path: the server finds it through its DT_RPATH. The headers,
+# pkg-config files, *-config scripts, unversioned .so links and the
+# check-ptp-camera udev helper (the generated rules do not call it) are
+# build-time only and do not ship.
+cp -a /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/alpacabridge/. /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/
+rm -rf /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/libgphoto2/include \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/libgphoto2/lib/pkgconfig \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/libgphoto2/bin \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/libgphoto2/lib/udev \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2.so \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/libgphoto2/lib/libgphoto2_port.so
+# --- Register vendor library path with the dynamic linker ---
+install -d /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/etc/ld.so.conf.d
+echo '/usr/lib/alpacabridge' > /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/etc/ld.so.conf.d/alpacabridge.conf
+chmod 644 /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/etc/ld.so.conf.d/alpacabridge.conf
+# --- QHY firmware files (usr-merge: /usr/lib, never aliased /lib) ---
+install -d /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/firmware/qhy
+cp -a /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/QHY/sdk_linux_arm64_26.07.28/lib/firmware/qhy/. /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/firmware/qhy/
+# --- QHY fxload (FX3-capable, replaces system fxload) ---
+install -D -m 755 /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/QHY/sdk_linux_arm64_26.07.28/sbin/fxload \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/sbin/fxload
+# --- Udev rules (one copy per vendor; usr-merge: /usr/lib, never aliased /lib) ---
+install -d /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d
+install -m 644 \
+  /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/ZWO/ASI_Camera_SDK/lib/linux/asi.rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d/
+install -m 644 \
+  /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/ZWO/CAA/lib/caa.rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d/
+install -m 644 \
+  /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/ZWO/EAF/lib/eaf.rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d/
+install -m 644 \
+  /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/ZWO/EFW/lib/efw.rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d/
+install -m 644 \
+  /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/QHY/sdk_linux_arm64_26.07.28/lib/udev/rules.d/85-qhyccd.rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d/
+install -m 644 \
+  /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/SVBONY/90-ckusb.rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d/
+install -m 644 \
+  /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/ToupTek/toupcamsdk.20260519/linux/udev/99-toupcam.rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d/
+# 99-altaircam.rules also grants ToupTek's 0547/04b4 ids, duplicating
+# 99-toupcam.rules. Keep both: each vendor's rule is installed on its own
+# and neither is expected to cover the other.
+install -m 644 \
+  /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/Altair/altaircamsdk.20260531/linux/udev/99-altaircam.rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d/
+install -m 644 \
+  /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/PlayerOne/PlayerOne_Camera_SDK_Linux_V3.10.1/udev/99-player_one_astronomy.rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d/
+# ASIAIR Plus (RK3568): /dev/pwm-gpio-misc is created root-only by ZWO's
+# pwm_gpio.ko; this rule opens it to the gpio group (postinst guarantees
+# the group exists and enrolls the service user). The shell installers
+# pick this up via their *.rules discovery loop — the .deb previously
+# missed it, leaving the RK3568 switch EACCES-dead on a stock-kernel box.
+install -m 644 \
+  /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/ZWO/asiair-plus/99-zwo-asiair-plus.rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d/
+install -m 644 \
+  /__w/AlpacaBridge/AlpacaBridge/AlpacaCore/external/oasisastro/99-astroasis-focuser.rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d/
+# libgphoto2 camera rules, generated from the bundled build
+install -m 644 /__w/AlpacaBridge/AlpacaBridge/obj-aarch64-linux-gnu/gphoto-stage/usr/lib/udev/rules.d/61-alpacabridge-libgphoto2.rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d/
+# RTC write-back (client-corrected time -> /dev/rtcN). Named so dh_installudev
+# (which only picks up debian/alpacabridge.udev) does not also install it
+# into /lib/udev/rules.d.
+install -m 644 /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge-rtc.udev \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/udev/rules.d/60-alpacabridge.rules
+# --- Polkit rule: WiFi management via NetworkManager ---
+install -D -m 644 /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge.polkit-rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/share/polkit-1/rules.d/50-alpacabridge-wifi.rules
+# --- Software update helper (docs/software-update.md) ---
+# Root-owned oneshot unit + helper script + the polkit rule that lets the
+# service user start exactly that unit. The unit is installed here rather
+# than through dh_installsystemd's debian/<pkg>.<name>.service lookup so
+# the override below can keep it out of the enable/start snippets.
+install -D -m 755 /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge-software-update \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/libexec/alpacabridge/software-update
+install -D -m 644 /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge-update.service \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/systemd/system/alpacabridge-update.service
+# Update channel (Stable/Beta) helper: a template unit, started as the
+# two instances the polkit rule names; also kept out of the snippets.
+install -D -m 755 /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge-set-update-channel \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/libexec/alpacabridge/set-update-channel
+install -D -m 644 /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge-channel@.service \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/systemd/system/alpacabridge-channel@.service
+install -D -m 644 /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge-update.polkit-rules \
+  /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/share/polkit-1/rules.d/50-alpacabridge-update.rules
+# --- Web UI assets ---
+install -d /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/share/alpacabridge/web
+cp -a /__w/AlpacaBridge/AlpacaBridge/AlpacaHTTP/web/. /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/share/alpacabridge/web/
+# --- Runtime state directory (/var/lib, NOT /etc) ---
+# The state file (config/registered_devices.json) is deliberately NOT
+# shipped in the package: files under /var/lib are not conffiles, so a
+# shipped copy would clobber user state on every upgrade. postinst creates
+# it (and migrates any pre-3.0.1 /etc/alpacabridge state) instead.
+install -d /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/var/lib/alpacabridge
+# Symlink web UI into the working directory for the server's CWD-relative
+# lookup (it also falls back to /usr/share/alpacabridge/web directly).
+ln -sf /usr/share/alpacabridge/web /__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/var/lib/alpacabridge/web
+make[1]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge'
+   dh_installdocs
+   dh_installchangelogs
+   dh_installinit
+   debian/rules override_dh_installsystemd
+make[1]: Entering directory '/__w/AlpacaBridge/AlpacaBridge'
+dh_installsystemd alpacabridge.service
+make[1]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge'
+   dh_perl
+   dh_link
+   dh_strip_nondeterminism
+   dh_compress
+   dh_fixperms
+   dh_missing
+   debian/rules override_dh_dwz
+make[1]: Entering directory '/__w/AlpacaBridge/AlpacaBridge'
+dh_dwz --exclude=usr/lib/alpacabridge/
+dwz: debian/alpacabridge/usr/sbin/fxload: .debug_info section not present
+dwz: Too few files for multifile optimization
+dh_dwz: warning: No dwz multifile created, but not explicitly requested either so ignoring it.
+dh_dwz: warning: Common issues include no debug information at all (missing -g) and
+dh_dwz: warning: compressed debug information (#931891).
+make[1]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge'
+   debian/rules override_dh_strip
+make[1]: Entering directory '/__w/AlpacaBridge/AlpacaBridge'
+dh_strip --exclude=usr/lib/alpacabridge/
+make[1]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge'
+   dh_makeshlibs -a
+   debian/rules override_dh_shlibdeps
+make[1]: Entering directory '/__w/AlpacaBridge/AlpacaBridge'
+dh_shlibdeps -- -l/__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge -l/__w/AlpacaBridge/AlpacaBridge/debian/alpacabridge/usr/lib/alpacabridge/libgphoto2/lib
+dpkg-shlibdeps: warning: diversions involved - output may be incorrect
+ diversion by libc6 from: /lib/ld-linux-aarch64.so.1
+dpkg-shlibdeps: warning: diversions involved - output may be incorrect
+ diversion by libc6 to: /lib/ld-linux-aarch64.so.1.usr-is-merged
+dpkg-shlibdeps: warning: can't extract name and version from library name 'libtoupcam.so'
+dpkg-shlibdeps: warning: can't extract name and version from library name 'libtoupcam.so'
+dpkg-shlibdeps: warning: can't extract name and version from library name 'libtoupcam.so'
+dpkg-shlibdeps: warning: can't extract name and version from library name 'libtoupcam.so'
+dpkg-shlibdeps: warning: can't extract name and version from library name 'libaltaircam.so'
+dpkg-shlibdeps: warning: can't extract name and version from library name 'libaltaircam.so'
+dpkg-shlibdeps: warning: can't extract name and version from library name 'libaltaircam.so'
+dpkg-shlibdeps: warning: can't extract name and version from library name 'libaltaircam.so'
+dpkg-shlibdeps: warning: debian/alpacabridge/usr/lib/alpacabridge/libqhyccd.so.26.7.28.10 contains an unresolvable reference to symbol pthread_detach: it's probably a plugin
+dpkg-shlibdeps: warning: 2 other similar warnings have been skipped (use -v to see them all)
+dpkg-shlibdeps: warning: debian/alpacabridge/usr/lib/alpacabridge/libPlayerOneCamera.so.3.10.1 contains an unresolvable reference to symbol pthread_create: it's probably a plugin
+dpkg-shlibdeps: warning: package could avoid a useless dependency if debian/alpacabridge/usr/lib/alpacabridge/libtoupcam.so was not linked against librt.so.1 (it uses none of the library's symbols)
+dpkg-shlibdeps: warning: package could avoid a useless dependency if debian/alpacabridge/usr/lib/alpacabridge/libtoupcam.so debian/alpacabridge/usr/lib/alpacabridge/libaltaircam.so were not linked against libdl.so.2 (they use none of the library's symbols)
+make[1]: Leaving directory '/__w/AlpacaBridge/AlpacaBridge'
+   dh_installdeb
+   dh_gencontrol
+   dh_md5sums
+   dh_builddeb
+dpkg-deb: building package 'alpacabridge' in '../alpacabridge_6.0.0~beta5_arm64.deb'.
+dpkg-deb: building package 'alpacabridge-dbgsym' in '../alpacabridge-dbgsym_6.0.0~beta5_arm64.deb'.
+ dpkg-genbuildinfo --build=binary -O../alpacabridge_6.0.0~beta5_arm64.buildinfo
+ dpkg-genchanges --build=binary -O../alpacabridge_6.0.0~beta5_arm64.changes
+dpkg-genchanges: info: binary-only upload (no source code included)
+ dpkg-source --after-build .
+dpkg-buildpackage: info: binary-only upload (no source included)
+[DONE] Package built. See ../alpacabridge_6.0.0~beta5_arm64.deb (or ../ for artifacts).
